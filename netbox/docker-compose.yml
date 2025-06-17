@@ -23,7 +23,7 @@ services:
       start_period: 120s
       timeout: 3s
       interval: 15s
-      test: "curl -f http://localhost:8080/api/ || exit 1"
+      test: "curl -f http://localhost:8080/login/ || exit 1"
     volumes:
     - netbox-media-files:/opt/netbox/netbox/media:z,rw
     - netbox-reports-files:/opt/netbox/netbox/reports:z,rw
