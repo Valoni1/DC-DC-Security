@@ -1,0 +1,166 @@
+
+{
+  "network-instance": [
+    {
+      "name": "mgmt",
+      "type": "ip-vrf",
+      "admin-state": "enable",
+      "description": "Management network instance",
+      "interface": [
+        {
+          "name": "mgmt0.0"
+        }
+      ],
+      "protocols": {
+        "linux": {
+          "import-routes": true,
+          "export-routes": true,
+          "export-neighbors": true
+        }
+      }
+    },
+    {
+      "name": "default",
+      "router-id": "172.20.0.12",
+      "interface": [
+        {
+          "name": "ethernet-1/1.0"
+        },
+        {
+          "name": "ethernet-1/2.0"
+        },
+        {
+          "name": "ethernet-1/11.0"
+        },
+        {
+          "name": "ethernet-1/12.0"
+        },
+        {
+          "name": "ethernet-1/13.0"
+        },
+        {
+          "name": "ethernet-1/14.0"
+        },
+        {
+          "name": "lo0.0"
+        }
+      ],
+      "protocols": {
+        "bgp": {
+          "admin-state": "enable",
+          "autonomous-system": 65000,
+          "router-id": "172.20.0.12",
+          "afi-safi": [
+            {
+              "afi-safi-name": "evpn",
+              "admin-state": "enable"
+            },
+            {
+              "afi-safi-name": "ipv4-unicast",
+              "admin-state": "enable"
+            }
+          ],
+          "group": [
+            {
+              "group-name": "spine-pod1",
+              "admin-state": "enable",
+              "peer-as": 65001
+            },
+            {
+              "group-name": "spine-pod2",
+              "admin-state": "enable",
+              "peer-as": 65002
+            },
+            {
+              "group-name": "dc-gateway",
+              "admin-state": "enable",
+              "peer-as": 65535
+            }
+          ],
+          "neighbor": [
+            {
+              "description" : "syd1-dcgw1",
+              "admin-state": "enable",
+              "peer-address": "10.0.0.2",
+              "peer-group": "dc-gateway"
+            }, 
+            {
+              "description" : "syd1-dcgw2",
+              "admin-state": "enable",
+              "peer-address": "10.0.0.6",
+              "peer-group": "dc-gateway"
+            }, 
+            {
+              "description" : "syd1-pd1-sp1",
+              "admin-state": "enable",
+              "peer-address": "10.0.0.17",
+              "peer-group": "spine-pod1"
+            }, 
+            {
+              "description" : "syd1-pd1-sp2",
+              "admin-state": "enable",
+              "peer-address": "10.0.0.19",
+              "peer-group": "spine-pod1"
+            }, 
+            {
+              "description" : "syd1-pd2-sp1",
+              "admin-state": "enable",
+              "peer-address": "10.0.0.21",
+              "peer-group": "spine-pod2"
+            }, 
+            {
+              "description" : "syd1-pd2-sp2",
+              "admin-state": "enable",
+              "peer-address": "10.0.0.23",
+              "peer-group": "spine-pod2"
+            }
+          ]
+        },
+        "ospf": {
+          "instance": [
+            {
+              "name": "0",
+              "admin-state": "enable",
+              "version": "ospf-v2",
+              "area": [
+                {
+                  "area-id": "0.0.0.0",
+                  "interface": [
+                    {
+                      "interface-name": "ethernet-1/1.0",
+                      "interface-type": "point-to-point"
+                    },
+                    {
+                      "interface-name": "ethernet-1/2.0",
+                      "interface-type": "point-to-point"
+                    },
+                    {
+                      "interface-name": "ethernet-1/11.0",
+                      "interface-type": "point-to-point"
+                    },
+                    {
+                      "interface-name": "ethernet-1/12.0",
+                      "interface-type": "point-to-point"
+                    },
+                    {
+                      "interface-name": "ethernet-1/13.0",
+                      "interface-type": "point-to-point"
+                    },
+                    {
+                      "interface-name": "ethernet-1/14.0",
+                      "interface-type": "point-to-point"
+                    },
+                    {
+                      "interface-name": "lo0.0",
+                      "passive": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "interface": [
+      {
+        "name": "ethernet-1/1",
+        "admin-state": "enable",
+        "subinterface": [
+          {
+            "index": 0,
+            "admin-state": "enable",
+            "ipv4": {
+              "admin-state": "enable",
+              "address": [
+                {
+                  "ip-prefix": "10.0.0.3/31"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ethernet-1/2",
+        "admin-state": "enable",
+        "subinterface": [
+          {
+            "index": 0,
+            "admin-state": "enable",
+            "ipv4": {
+              "admin-state": "enable",
+              "address": [
+                {
+                  "ip-prefix": "10.0.0.7/31"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ethernet-1/11",
+        "admin-state": "enable",
+        "subinterface": [
+          {
+            "index": 0,
+            "admin-state": "enable",
+            "ipv4": {
+              "admin-state": "enable",
+              "address": [
+                {
+                  "ip-prefix": "10.0.0.16/31"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ethernet-1/12",
+        "admin-state": "enable",
+        "subinterface": [
+          {
+            "index": 0,
+            "admin-state": "enable",
+            "ipv4": {
+              "admin-state": "enable",
+              "address": [
+                {
+                  "ip-prefix": "10.0.0.18/31"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ethernet-1/13",
+        "admin-state": "enable",
+        "subinterface": [
+          {
+            "index": 0,
+            "admin-state": "enable",
+            "ipv4": {
+              "admin-state": "enable",
+              "address": [
+                {
+                  "ip-prefix": "10.0.0.20/31"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ethernet-1/14",
+        "admin-state": "enable",
+        "subinterface": [
+          {
+            "index": 0,
+            "admin-state": "enable",
+            "ipv4": {
+              "admin-state": "enable",
+              "address": [
+                {
+                  "ip-prefix": "10.0.0.22/31"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "lo0",
+        "admin-state": "enable",
+        "subinterface": [
+          {
+            "index": 0,
+            "admin-state": "enable",
+            "ipv4": {
+              "admin-state": "enable",
+              "address": [
+                {
+                  "ip-prefix": "172.20.0.12/32"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+       "name": "mgmt0",
+       "admin-state": "enable",
+       "subinterface": [
+         {
+           "index": 0,
+           "admin-state": "enable",
+           "ip-mtu": 1500,
+           "ipv4": {
+             "admin-state": "enable",
+             "dhcp-client": {
+             }
+           },
+           "ipv6": {
+             "admin-state": "enable",
+             "dhcp-client": {
+             }
+           }
+         }
+       ]
+     }
+    ]
+  }

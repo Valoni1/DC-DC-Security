@@ -1,0 +1,285 @@
+name: SYD1
+topology:
+    nodes:
+        graphite:
+            kind: linux
+            image: netreplica/graphite:latest
+            env:
+                HOST_CONNECTION: ${SSH_CONNECTION}
+            binds:
+                - __clabDir__/topology-data.json:/htdocs/default/default.json:ro
+                - __clabDir__/ansible-inventory.yml:/htdocs/lab/default/ansible-inventory.yml:ro
+            ports:
+                - 8080:80
+            exec:
+                - sh -c 'graphite_motd.sh 8080'
+            labels:
+                graph-hide: yes
+
+        syd1-ss1:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: superspine
+                graph-level: 10
+                role: Superspine
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd1-sp1:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: spine
+                graph-level: 10
+                role: Spine
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd1-sp2:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: spine
+                graph-level: 10
+                role: Spine
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd2-sp1:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: spine
+                graph-level: 10
+                role: Spine
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd2-sp2:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: spine
+                graph-level: 10
+                role: Spine
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-ss2:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: superspine
+                graph-level: 10
+                role: Superspine
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd1-l1:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd1-l2:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd1-l3:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd1-l4:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd1-l5:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd1-l6:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd2-l1:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd2-l2:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd2-l3:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd2-l4:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd2-l5:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+        syd1-pd2-l6:
+            kind: srl
+            type: ixrd3l 
+            image: ghcr.io/nokia/srlinux:latest
+            labels:
+                graph-icon: leaf
+                graph-level: 10
+                role: Leaf
+                group: SYD1
+                platform: SR-Linux
+                vendor: Nokia
+                model: 7220 IXR-D3L 32*100GE
+
+    links:
+        - endpoints: ["syd1-ss1:e1-11", "syd1-pd1-sp1:e1-27"]
+        - endpoints: ["syd1-ss1:e1-12", "syd1-pd1-sp2:e1-27"]
+        - endpoints: ["syd1-ss1:e1-13", "syd1-pd2-sp1:e1-27"]
+        - endpoints: ["syd1-ss1:e1-14", "syd1-pd2-sp2:e1-27"]
+        - endpoints: ["syd1-ss2:e1-11", "syd1-pd1-sp1:e1-28"]
+        - endpoints: ["syd1-ss2:e1-12", "syd1-pd1-sp2:e1-28"]
+        - endpoints: ["syd1-ss2:e1-13", "syd1-pd2-sp1:e1-28"]
+        - endpoints: ["syd1-ss2:e1-14", "syd1-pd2-sp2:e1-28"]
+        - endpoints: ["syd1-pd1-sp1:e1-1", "syd1-pd1-l1:e1-28"]
+        - endpoints: ["syd1-pd1-sp1:e1-2", "syd1-pd1-l2:e1-28"]
+        - endpoints: ["syd1-pd1-sp1:e1-3", "syd1-pd1-l3:e1-28"]
+        - endpoints: ["syd1-pd1-sp1:e1-4", "syd1-pd1-l4:e1-28"]
+        - endpoints: ["syd1-pd1-sp1:e1-5", "syd1-pd1-l5:e1-28"]
+        - endpoints: ["syd1-pd1-sp1:e1-6", "syd1-pd1-l6:e1-28"]
+        - endpoints: ["syd1-pd1-sp2:e1-1", "syd1-pd1-l1:e1-27"]
+        - endpoints: ["syd1-pd1-sp2:e1-2", "syd1-pd1-l2:e1-27"]
+        - endpoints: ["syd1-pd1-sp2:e1-3", "syd1-pd1-l3:e1-27"]
+        - endpoints: ["syd1-pd1-sp2:e1-4", "syd1-pd1-l4:e1-27"]
+        - endpoints: ["syd1-pd1-sp2:e1-5", "syd1-pd1-l5:e1-27"]
+        - endpoints: ["syd1-pd1-sp2:e1-6", "syd1-pd1-l6:e1-27"]
+        - endpoints: ["syd1-pd2-sp1:e1-1", "syd1-pd2-l1:e1-28"]
+        - endpoints: ["syd1-pd2-sp1:e1-2", "syd1-pd2-l2:e1-28"]
+        - endpoints: ["syd1-pd2-sp1:e1-3", "syd1-pd2-l3:e1-28"]
+        - endpoints: ["syd1-pd2-sp1:e1-4", "syd1-pd2-l4:e1-28"]
+        - endpoints: ["syd1-pd2-sp1:e1-5", "syd1-pd2-l5:e1-28"]
+        - endpoints: ["syd1-pd2-sp1:e1-6", "syd1-pd2-l6:e1-28"]
+        - endpoints: ["syd1-pd2-sp2:e1-1", "syd1-pd2-l1:e1-27"]
+        - endpoints: ["syd1-pd2-sp2:e1-2", "syd1-pd2-l2:e1-27"]
+        - endpoints: ["syd1-pd2-sp2:e1-3", "syd1-pd2-l3:e1-27"]
+        - endpoints: ["syd1-pd2-sp2:e1-4", "syd1-pd2-l4:e1-27"]
+        - endpoints: ["syd1-pd2-sp2:e1-5", "syd1-pd2-l5:e1-27"]
+        - endpoints: ["syd1-pd2-sp2:e1-6", "syd1-pd2-l6:e1-27"]
