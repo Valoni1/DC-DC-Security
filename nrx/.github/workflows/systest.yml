@@ -1,0 +1,58 @@
+name: System Tests
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+    paths:
+      - '**'
+      - '!**.md'
+      - '!**.png'
+      - '!**/__about__.py'
+      - '!mkdocs.yml'
+      - '!.github/workflows/**'
+      - '.github/workflows/systest.yml'
+  pull_request:
+    branches: [ "main", "dev" ]
+    paths:
+      - '**'
+      - '!**.md'
+      - '!**.png'
+      - '!**/__about__.py'
+      - '!mkdocs.yml'
+      - '!.github/workflows/**'
+      - '.github/workflows/systest.yml'
+  workflow_dispatch:
+
+env:
+  PYVER: '3.11'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    env:
+      NB_API_URL: ${{ secrets.NB_API_URL }}
+      NB_API_TOKEN: ${{ secrets.NB_API_TOKEN }}
+
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        submodules: 'true'
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ env.PYVER }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Run tests on local data
+      run: |
+        make test
+    - name: Run tests on Netbox cloud instance
+      run: |
+        make test-cloud
