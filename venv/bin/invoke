@@ -1,4 +1,4 @@
-#!/home/ubuntu/DC-DC-Testbed/netbox-nrx-clab/venv/bin/python3
+#!/home/samuel/DC-DC-Security/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

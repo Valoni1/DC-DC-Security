@@ -1,0 +1,116 @@
+---
+graphite:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.19
+dc1-dci-r1:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.22
+dc1-ss1:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.13
+dc1-ss2:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.6
+dc2-dci-r1:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.7
+dc2-ss1:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.9
+dc2-ss2:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.3
+syd1-pd1-l1:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.12
+syd1-pd1-l2:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.10
+syd1-pd1-l3:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.16
+syd1-pd1-l4:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.15
+syd1-pd1-l5:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.23
+syd1-pd1-l6:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.21
+syd1-pd1-sp1:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.20
+syd1-pd1-sp2:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.11
+syd1-pd2-l1:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.4
+syd1-pd2-l2:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.18
+syd1-pd2-l3:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.5
+syd1-pd2-l4:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.17
+syd1-pd2-l5:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.2
+syd1-pd2-l6:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.8
+syd1-pd2-sp1:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.14
+syd1-pd2-sp2:
+    username: admin
+    password: NokiaSrl1!
+    platform: srl
+    hostname: 172.20.20.24
