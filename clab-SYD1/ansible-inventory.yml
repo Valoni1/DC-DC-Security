@@ -1,0 +1,56 @@
+all:
+  vars:
+    # The generated inventory is assumed to be used from the clab host.
+    # Hence no http proxy should be used. Therefore we make sure the http
+    # module does not attempt using any global http proxy.
+    ansible_httpapi_use_proxy: false
+  children:
+    linux:
+      hosts:
+        clab-SYD1-graphite:
+          ansible_host: 172.20.20.10
+    srl:
+      vars:
+        ansible_network_os: nokia.srlinux.srlinux
+        # default connection type for nodes of this kind
+        # feel free to override this in your inventory
+        ansible_connection: ansible.netcommon.httpapi
+        ansible_user: admin
+        ansible_password: NokiaSrl1!
+      hosts:
+        clab-SYD1-syd1-pd1-l1:
+          ansible_host: 172.20.20.13
+        clab-SYD1-syd1-pd1-l2:
+          ansible_host: 172.20.20.5
+        clab-SYD1-syd1-pd1-l3:
+          ansible_host: 172.20.20.4
+        clab-SYD1-syd1-pd1-l4:
+          ansible_host: 172.20.20.8
+        clab-SYD1-syd1-pd1-l5:
+          ansible_host: 172.20.20.19
+        clab-SYD1-syd1-pd1-l6:
+          ansible_host: 172.20.20.18
+        clab-SYD1-syd1-pd1-sp1:
+          ansible_host: 172.20.20.9
+        clab-SYD1-syd1-pd1-sp2:
+          ansible_host: 172.20.20.12
+        clab-SYD1-syd1-pd2-l1:
+          ansible_host: 172.20.20.2
+        clab-SYD1-syd1-pd2-l2:
+          ansible_host: 172.20.20.7
+        clab-SYD1-syd1-pd2-l3:
+          ansible_host: 172.20.20.14
+        clab-SYD1-syd1-pd2-l4:
+          ansible_host: 172.20.20.15
+        clab-SYD1-syd1-pd2-l5:
+          ansible_host: 172.20.20.16
+        clab-SYD1-syd1-pd2-l6:
+          ansible_host: 172.20.20.11
+        clab-SYD1-syd1-pd2-sp1:
+          ansible_host: 172.20.20.17
+        clab-SYD1-syd1-pd2-sp2:
+          ansible_host: 172.20.20.3
+        clab-SYD1-syd1-ss1:
+          ansible_host: 172.20.20.20
+        clab-SYD1-syd1-ss2:
+          ansible_host: 172.20.20.6

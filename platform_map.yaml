@@ -10,7 +10,20 @@ platforms:
   sros:
     kinds:
       clab: sros
+  srl-leaf:
+    kinds:
+      clab: srl-leaf
+  srl-spine:
+    kinds:
+      clab: srl-spine
+  srl-superspine:
+    kinds:
+      clab: srl-superspine
+  srl-gateway:
+    kinds:
+      clab: srl-gateway
 kinds:
+  clab:
     linux:
       nodes:
         template: clab/nodes/default.j2
@@ -32,3 +45,31 @@ kinds:
         type: sr-1s
       interface_names:
         template: clab/interface_names/sros.j2
+    srl-leaf:
+      nodes:
+        template: clab/nodes/srl.j2
+        type: ixrh4
+        memory: 1Gb
+      interface_names:
+        template: clab/interface_names/srl.j2
+    srl-spine:
+      nodes:
+        template: clab/nodes/srl.j2
+        type: ixrh4
+        memory: 1.5Gb
+      interface_names:
+        template: clab/interface_names/srl.j2
+    srl-superspine:
+      nodes:
+        template: clab/nodes/srl.j2
+        type: ixrh4
+        memory: 1.5Gb
+      interface_names:
+        template: clab/interface_names/srl.j2
+    srl-gateway:
+      nodes:
+        template: clab/nodes/srl.j2
+        type: ixrh4
+        memory: 2Gb
+      interface_names:
+        template: clab/interface_names/srl.j2

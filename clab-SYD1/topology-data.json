@@ -1,0 +1,1301 @@
+{
+  "name": "SYD1",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-464f1d4dab65",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "3fff:172:20:20::/64",
+        "ipv6-gw": "3fff:172:20:20::1",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMgU6Gbpb4LjSlrBG0eq4fPQRcKsvDMay3K2Ef4msY6K"],
+  "nodes": {
+    "graphite": {
+      "index": "0",
+      "shortname": "graphite",
+      "longname": "clab-SYD1-graphite",
+      "fqdn": "graphite.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/graphite",
+      "kind": "linux",
+      "image": "netreplica/graphite:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.10",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::a",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/graphite",
+        "clab-node-longname": "clab-SYD1-graphite",
+        "clab-node-name": "graphite",
+        "clab-node-type": "",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-hide": "yes"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 8080,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 8080,
+          "port": 80,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "syd1-pd1-l1": {
+      "index": "1",
+      "shortname": "syd1-pd1-l1",
+      "longname": "clab-SYD1-syd1-pd1-l1",
+      "fqdn": "syd1-pd1-l1.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l1",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.13",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::d",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:87:01:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l1",
+        "clab-node-longname": "clab-SYD1-syd1-pd1-l1",
+        "clab-node-name": "syd1-pd1-l1",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd1-l2": {
+      "index": "2",
+      "shortname": "syd1-pd1-l2",
+      "longname": "clab-SYD1-syd1-pd1-l2",
+      "fqdn": "syd1-pd1-l2.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l2",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.5",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::5",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:79:02:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l2",
+        "clab-node-longname": "clab-SYD1-syd1-pd1-l2",
+        "clab-node-name": "syd1-pd1-l2",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd1-l3": {
+      "index": "3",
+      "shortname": "syd1-pd1-l3",
+      "longname": "clab-SYD1-syd1-pd1-l3",
+      "fqdn": "syd1-pd1-l3.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l3",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:00:03:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l3",
+        "clab-node-longname": "clab-SYD1-syd1-pd1-l3",
+        "clab-node-name": "syd1-pd1-l3",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd1-l4": {
+      "index": "4",
+      "shortname": "syd1-pd1-l4",
+      "longname": "clab-SYD1-syd1-pd1-l4",
+      "fqdn": "syd1-pd1-l4.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l4",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.8",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::8",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:2d:04:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l4",
+        "clab-node-longname": "clab-SYD1-syd1-pd1-l4",
+        "clab-node-name": "syd1-pd1-l4",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd1-l5": {
+      "index": "5",
+      "shortname": "syd1-pd1-l5",
+      "longname": "clab-SYD1-syd1-pd1-l5",
+      "fqdn": "syd1-pd1-l5.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l5",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.19",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::13",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:2e:05:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l5",
+        "clab-node-longname": "clab-SYD1-syd1-pd1-l5",
+        "clab-node-name": "syd1-pd1-l5",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd1-l6": {
+      "index": "6",
+      "shortname": "syd1-pd1-l6",
+      "longname": "clab-SYD1-syd1-pd1-l6",
+      "fqdn": "syd1-pd1-l6.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l6",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.18",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::12",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:8e:06:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-l6",
+        "clab-node-longname": "clab-SYD1-syd1-pd1-l6",
+        "clab-node-name": "syd1-pd1-l6",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd1-sp1": {
+      "index": "7",
+      "shortname": "syd1-pd1-sp1",
+      "longname": "clab-SYD1-syd1-pd1-sp1",
+      "fqdn": "syd1-pd1-sp1.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-sp1",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.9",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::9",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:5d:07:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-sp1",
+        "clab-node-longname": "clab-SYD1-syd1-pd1-sp1",
+        "clab-node-name": "syd1-pd1-sp1",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "spine",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Spine",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd1-sp2": {
+      "index": "8",
+      "shortname": "syd1-pd1-sp2",
+      "longname": "clab-SYD1-syd1-pd1-sp2",
+      "fqdn": "syd1-pd1-sp2.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-sp2",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.12",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::c",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:39:08:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd1-sp2",
+        "clab-node-longname": "clab-SYD1-syd1-pd1-sp2",
+        "clab-node-name": "syd1-pd1-sp2",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "spine",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Spine",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd2-l1": {
+      "index": "9",
+      "shortname": "syd1-pd2-l1",
+      "longname": "clab-SYD1-syd1-pd2-l1",
+      "fqdn": "syd1-pd2-l1.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l1",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:de:09:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l1",
+        "clab-node-longname": "clab-SYD1-syd1-pd2-l1",
+        "clab-node-name": "syd1-pd2-l1",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd2-l2": {
+      "index": "10",
+      "shortname": "syd1-pd2-l2",
+      "longname": "clab-SYD1-syd1-pd2-l2",
+      "fqdn": "syd1-pd2-l2.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l2",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.7",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::7",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:a9:0a:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l2",
+        "clab-node-longname": "clab-SYD1-syd1-pd2-l2",
+        "clab-node-name": "syd1-pd2-l2",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd2-l3": {
+      "index": "11",
+      "shortname": "syd1-pd2-l3",
+      "longname": "clab-SYD1-syd1-pd2-l3",
+      "fqdn": "syd1-pd2-l3.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l3",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.14",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::e",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:95:0b:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l3",
+        "clab-node-longname": "clab-SYD1-syd1-pd2-l3",
+        "clab-node-name": "syd1-pd2-l3",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd2-l4": {
+      "index": "12",
+      "shortname": "syd1-pd2-l4",
+      "longname": "clab-SYD1-syd1-pd2-l4",
+      "fqdn": "syd1-pd2-l4.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l4",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.15",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::f",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:cf:0c:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l4",
+        "clab-node-longname": "clab-SYD1-syd1-pd2-l4",
+        "clab-node-name": "syd1-pd2-l4",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd2-l5": {
+      "index": "13",
+      "shortname": "syd1-pd2-l5",
+      "longname": "clab-SYD1-syd1-pd2-l5",
+      "fqdn": "syd1-pd2-l5.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l5",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.16",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::10",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:f6:0d:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l5",
+        "clab-node-longname": "clab-SYD1-syd1-pd2-l5",
+        "clab-node-name": "syd1-pd2-l5",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd2-l6": {
+      "index": "14",
+      "shortname": "syd1-pd2-l6",
+      "longname": "clab-SYD1-syd1-pd2-l6",
+      "fqdn": "syd1-pd2-l6.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l6",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.11",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::b",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:bb:0e:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-l6",
+        "clab-node-longname": "clab-SYD1-syd1-pd2-l6",
+        "clab-node-name": "syd1-pd2-l6",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "leaf",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Leaf",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd2-sp1": {
+      "index": "15",
+      "shortname": "syd1-pd2-sp1",
+      "longname": "clab-SYD1-syd1-pd2-sp1",
+      "fqdn": "syd1-pd2-sp1.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-sp1",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.17",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::11",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:1b:0f:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-sp1",
+        "clab-node-longname": "clab-SYD1-syd1-pd2-sp1",
+        "clab-node-name": "syd1-pd2-sp1",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "spine",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Spine",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-pd2-sp2": {
+      "index": "16",
+      "shortname": "syd1-pd2-sp2",
+      "longname": "clab-SYD1-syd1-pd2-sp2",
+      "fqdn": "syd1-pd2-sp2.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-sp2",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:ae:10:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-pd2-sp2",
+        "clab-node-longname": "clab-SYD1-syd1-pd2-sp2",
+        "clab-node-name": "syd1-pd2-sp2",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "spine",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Spine",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-ss1": {
+      "index": "17",
+      "shortname": "syd1-ss1",
+      "longname": "clab-SYD1-syd1-ss1",
+      "fqdn": "syd1-ss1.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-ss1",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.20",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::14",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:d7:11:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-ss1",
+        "clab-node-longname": "clab-SYD1-syd1-ss1",
+        "clab-node-name": "syd1-ss1",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "superspine",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Superspine",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    },
+    "syd1-ss2": {
+      "index": "18",
+      "shortname": "syd1-ss2",
+      "longname": "clab-SYD1-syd1-ss2",
+      "fqdn": "syd1-ss2.SYD1.io",
+      "group": "",
+      "labdir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-ss2",
+      "kind": "srl",
+      "image": "ghcr.io/nokia/srlinux:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.6",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::6",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "1a:31:12:00:00:00",
+      "labels": {
+        "clab-git-branch": "main",
+        "clab-git-hash": "f594eba",
+        "clab-mgmt-net-bridge": "br-464f1d4dab65",
+        "clab-node-group": "",
+        "clab-node-kind": "srl",
+        "clab-node-lab-dir": "/home/samuel/DC-DC-Security/clab-SYD1/syd1-ss2",
+        "clab-node-longname": "clab-SYD1-syd1-ss2",
+        "clab-node-name": "syd1-ss2",
+        "clab-node-type": "ixrd3l",
+        "clab-owner": "samuel",
+        "clab-topo-file": "/home/samuel/DC-DC-Security/SYD1.clab.yaml",
+        "containerlab": "SYD1",
+        "graph-icon": "superspine",
+        "graph-level": "10",
+        "group": "SYD1",
+        "model": "7220 IXR-D3L 32*100GE",
+        "platform": "SR-Linux",
+        "role": "Superspine",
+        "vendor": "Nokia"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-ss1",
+          "interface": "e1-11",
+          "mac": "aa:c1:ab:9e:20:62",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-sp1",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:b6:1a:c9",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-ss1",
+          "interface": "e1-12",
+          "mac": "aa:c1:ab:ee:31:e9",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-sp2",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:94:44:ed",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-ss1",
+          "interface": "e1-13",
+          "mac": "aa:c1:ab:7c:fe:f1",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-sp1",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:06:37:c7",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-ss1",
+          "interface": "e1-14",
+          "mac": "aa:c1:ab:a5:2b:b9",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-sp2",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:4e:76:d9",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-ss2",
+          "interface": "e1-11",
+          "mac": "aa:c1:ab:7d:d8:07",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-sp1",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:b6:2d:ab",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-ss2",
+          "interface": "e1-12",
+          "mac": "aa:c1:ab:a7:cf:a0",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-sp2",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:36:a4:bf",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-ss2",
+          "interface": "e1-13",
+          "mac": "aa:c1:ab:83:b4:cd",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-sp1",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:79:83:f4",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-ss2",
+          "interface": "e1-14",
+          "mac": "aa:c1:ab:60:2d:02",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-sp2",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:c7:47:b7",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp1",
+          "interface": "e1-1",
+          "mac": "aa:c1:ab:ba:81:7a",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l1",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:86:c3:49",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp1",
+          "interface": "e1-2",
+          "mac": "aa:c1:ab:db:85:df",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l2",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:92:e5:1a",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp1",
+          "interface": "e1-3",
+          "mac": "aa:c1:ab:41:29:93",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l3",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:fd:e1:b6",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp1",
+          "interface": "e1-4",
+          "mac": "aa:c1:ab:a1:18:06",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l4",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:b4:06:37",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp1",
+          "interface": "e1-5",
+          "mac": "aa:c1:ab:47:c6:1a",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l5",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:bf:53:12",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp1",
+          "interface": "e1-6",
+          "mac": "aa:c1:ab:0e:a1:e0",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l6",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:c6:ae:6f",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp2",
+          "interface": "e1-1",
+          "mac": "aa:c1:ab:84:81:18",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l1",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:d8:89:f6",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp2",
+          "interface": "e1-2",
+          "mac": "aa:c1:ab:7e:af:c8",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l2",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:28:a4:df",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp2",
+          "interface": "e1-3",
+          "mac": "aa:c1:ab:c3:c4:8c",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l3",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:cf:16:7a",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp2",
+          "interface": "e1-4",
+          "mac": "aa:c1:ab:5d:55:7d",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l4",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:05:84:5c",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp2",
+          "interface": "e1-5",
+          "mac": "aa:c1:ab:0c:ab:b2",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l5",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:e7:89:12",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd1-sp2",
+          "interface": "e1-6",
+          "mac": "aa:c1:ab:9e:2b:1e",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd1-l6",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:ef:80:32",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp1",
+          "interface": "e1-1",
+          "mac": "aa:c1:ab:dd:6f:62",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l1",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:66:2a:fa",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp1",
+          "interface": "e1-2",
+          "mac": "aa:c1:ab:68:70:f5",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l2",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:bf:24:14",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp1",
+          "interface": "e1-3",
+          "mac": "aa:c1:ab:f7:f1:d0",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l3",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:83:c6:68",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp1",
+          "interface": "e1-4",
+          "mac": "aa:c1:ab:b4:28:47",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l4",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:13:2f:19",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp1",
+          "interface": "e1-5",
+          "mac": "aa:c1:ab:e6:da:75",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l5",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:05:69:49",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp1",
+          "interface": "e1-6",
+          "mac": "aa:c1:ab:a3:7a:fe",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l6",
+          "interface": "e1-28",
+          "mac": "aa:c1:ab:c7:29:f9",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp2",
+          "interface": "e1-1",
+          "mac": "aa:c1:ab:3b:19:c6",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l1",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:a5:0f:bf",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp2",
+          "interface": "e1-2",
+          "mac": "aa:c1:ab:42:f3:f4",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l2",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:d1:43:78",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp2",
+          "interface": "e1-3",
+          "mac": "aa:c1:ab:b1:89:8a",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l3",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:68:08:a6",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp2",
+          "interface": "e1-4",
+          "mac": "aa:c1:ab:af:5f:5d",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l4",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:74:b0:c5",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp2",
+          "interface": "e1-5",
+          "mac": "aa:c1:ab:76:26:8a",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l5",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:ed:51:fa",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "syd1-pd2-sp2",
+          "interface": "e1-6",
+          "mac": "aa:c1:ab:f0:6f:7d",
+          "peer": "z"
+        },
+        "z": {
+          "node": "syd1-pd2-l6",
+          "interface": "e1-27",
+          "mac": "aa:c1:ab:79:36:39",
+          "peer": "a"
+        }
+      }
+    }
+  ]
+}
