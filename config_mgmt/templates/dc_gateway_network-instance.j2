@@ -49,12 +49,20 @@
           ],
           "group": [
             {
-              "group-name": "spine",
-              "admin-state": "enable"
+              "group-name": "superspine",
+              "admin-state": "enable",
+              "send-community": {
+                "standard": true,
+                "large": true
+              }
             },
             {
-              "group-name": "dc-gateway",
-              "admin-state": "enable"
+              "group-name": "dci",
+              "admin-state": "enable",
+              "send-community": {
+                "standard": true,
+                "large": true
+              }
             }
           ],
           "neighbor": [
@@ -62,11 +70,7 @@
             {
               "description" : "{{peer_name}}",
               "peer-address": "{{peer.remote_ip.split('/')[0]}}",
-              {%- if peer.role == "dc-gateway" %}
-              "peer-group": "dc-gateway",
-              {%- elif peer.role == "spine" %}
-              "peer-group": "spine",
-              {%- endif %}
+              "peer-group": "{{ "dci" if peer.is_dci else "superspine" }}",
               "peer-as": {{peer.asn}},
               "admin-state": "enable"
             }{{ ", " if not loop.last else "" }}
@@ -83,7 +87,8 @@
                 {
                   "area-id": "0.0.0.0",
                   "interface": [
-                    {%- for interface_name, interface in interfaces.items() %}
+                    {#- The IGP stays inside each DC; only eBGP crosses the DCI link #}
+                    {%- for interface_name, interface in interfaces.items() if not interface.is_dci %}
                     {
                       "interface-name": "{{interface_name}}.0",
                       "interface-type": "point-to-point"
