@@ -10,4 +10,4 @@ export NB_HOST="${NETBOX_URL:-http://localhost:8000}"
 export NB_TOKEN="${NETBOX_TOKEN}"
 
 cd config_mgmt
-python3 ./configure.py -p clab-SYD1- --commit true
+python3 ./configure.py -p clab-DC1-DC2- -s DC1 -s DC2 --commit true
