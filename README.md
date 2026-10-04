@@ -67,6 +67,12 @@ Host: http://localhost:8000
 Username: admin
 Password: admin
 
+The scripts in this repo read the NetBox API token from the environment rather than from files. Create a token in the NetBox UI (or use the one from your seed data) and export it before running steps 4 and 5, the `Makefile` targets, or the `*_dc1_dc2.py` / `set_*.py` helpers:
+```
+> export NETBOX_TOKEN='<your NetBox API token>'
+> export NETBOX_URL='http://localhost:8000'
+```
+
 ### 4 - Run NetReplica 
 Now run the NetReplica tool, `nrx` with some parametres defined in `nrx.conf`. NRX will talk to Netbox via it's API, query the `SYD1` site and built a Containerlab topology file based on the devices that have the `demo` tag attached to them. The output will be the `SYD1.clab.yaml` file in the root directory.
 
