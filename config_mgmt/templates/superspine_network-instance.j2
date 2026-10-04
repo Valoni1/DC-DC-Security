@@ -1,4 +1,4 @@
-{%- set autonomous_system = "65000" %}
+{%- set autonomous_system = asn %}
 {
   "network-instance": [
     {
@@ -48,32 +48,27 @@
             }
           ],
           "group": [
-            {%- for pod in pods %}
             {
-              "group-name": "spine-pod{{pod}}",
-              "admin-state": "enable",
-              "peer-as": {{ "6500" + pod }}
+              "group-name": "spine",
+              "admin-state": "enable"
             },
-            {%- endfor %}
             {
               "group-name": "dc-gateway",
-              "admin-state": "enable",
-              "peer-as": 65535
+              "admin-state": "enable"
             }
           ],
           "neighbor": [
             {%- for peer_name, peer in peers.items() %}
             {
               "description" : "{{peer_name}}",
-              "admin-state": "enable",
-              {%- if "dcgw" in peer_name %}
               "peer-address": "{{peer.remote_ip.split('/')[0]}}",
-              "peer-group": "dc-gateway"
+              {%- if peer.role == "dc-gateway" %}
+              "peer-group": "dc-gateway",
+              {%- elif peer.role == "spine" %}
+              "peer-group": "spine",
               {%- endif %}
-              {%- if "-sp" in peer_name %}
-              "peer-address": "{{peer.remote_ip.split('/')[0]}}",
-              "peer-group": "{{ "spine-pod" + peer_name.split('-')[1][2] }}"
-              {%- endif %}
+              "peer-as": {{peer.asn}},
+              "admin-state": "enable"
             }{{ ", " if not loop.last else "" }}
             {%- endfor %}
           ]

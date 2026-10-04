@@ -1,4 +1,4 @@
-{%- set autonomous_system = "6500" + device.location.name.split(' ')[1] %}
+{%- set autonomous_system = asn %}
 {
   "network-instance": [
     {
@@ -49,7 +49,7 @@
           ],
           "group": [
             {
-              "group-name": "leaf-{{device.location.slug}}",
+              "group-name": "leaf-{{fabric}}",
               "admin-state": "enable",
               "peer-as": {{autonomous_system}},
               "route-reflector": {
@@ -62,7 +62,6 @@
             {
               "group-name": "superspine",
               "admin-state": "enable",
-              "peer-as": 65000,
               "send-community": {
                 "standard": true,
                 "large": true
@@ -73,15 +72,15 @@
             {%- for peer_name, peer in peers.items() %}
             {
               "description" : "{{peer_name}}",
-              "admin-state": "enable",
-              {%- if "l" in peer_name %}
+              {%- if peer.role == "leaf" %}
               "peer-address": "{{peer.primary_ip4.split('/')[0]}}",
-              "peer-group": "leaf-{{device.location.slug}}"
-              {%- endif %}
-              {%- if "ss" in peer_name %}
+              "peer-group": "leaf-{{fabric}}",
+              {%- elif peer.role == "superspine" %}
               "peer-address": "{{peer.remote_ip.split('/')[0]}}",
-              "peer-group": "superspine"
+              "peer-group": "superspine",
+              "peer-as": {{peer.asn}},
               {%- endif %}
+              "admin-state": "enable"
             }{{ ", " if not loop.last else "" }}
             {%- endfor %}
           ]

@@ -16,7 +16,7 @@ topology:
             labels:
                 graph-hide: yes
 
-        syd1-pd1-sp1:
+        dc1-sp1:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -30,7 +30,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd1-l1:
+        dc1-l1:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -44,7 +44,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd1-l2:
+        dc1-l2:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -58,7 +58,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd1-l3:
+        dc1-l3:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -72,7 +72,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd1-l4:
+        dc1-l4:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -86,7 +86,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd1-l5:
+        dc1-l5:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -100,7 +100,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd1-l6:
+        dc1-l6:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -114,7 +114,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd1-sp2:
+        dc1-sp2:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -128,7 +128,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd2-sp1:
+        dc2-sp1:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -142,7 +142,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd2-l1:
+        dc2-l1:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -156,7 +156,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd2-l2:
+        dc2-l2:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -170,7 +170,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd2-l3:
+        dc2-l3:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -184,7 +184,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd2-l4:
+        dc2-l4:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -198,7 +198,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd2-l5:
+        dc2-l5:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -212,7 +212,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd2-l6:
+        dc2-l6:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -226,7 +226,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        syd1-pd2-sp2:
+        dc2-sp2:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
@@ -325,40 +325,40 @@ topology:
                 model: 7220 IXR-D3L 32*100GE
 
     links:
-        - endpoints: ["syd1-pd1-sp1:e1-1", "syd1-pd1-l1:e1-28"]
-        - endpoints: ["syd1-pd1-sp1:e1-2", "syd1-pd1-l2:e1-28"]
-        - endpoints: ["syd1-pd1-sp1:e1-3", "syd1-pd1-l3:e1-28"]
-        - endpoints: ["syd1-pd1-sp1:e1-4", "syd1-pd1-l4:e1-28"]
-        - endpoints: ["syd1-pd1-sp1:e1-5", "syd1-pd1-l5:e1-28"]
-        - endpoints: ["syd1-pd1-sp1:e1-6", "syd1-pd1-l6:e1-28"]
-        - endpoints: ["syd1-pd1-sp2:e1-1", "syd1-pd1-l1:e1-27"]
-        - endpoints: ["syd1-pd1-sp2:e1-2", "syd1-pd1-l2:e1-27"]
-        - endpoints: ["syd1-pd1-sp2:e1-3", "syd1-pd1-l3:e1-27"]
-        - endpoints: ["syd1-pd1-sp2:e1-4", "syd1-pd1-l4:e1-27"]
-        - endpoints: ["syd1-pd1-sp2:e1-5", "syd1-pd1-l5:e1-27"]
-        - endpoints: ["syd1-pd1-sp2:e1-6", "syd1-pd1-l6:e1-27"]
-        - endpoints: ["syd1-pd2-sp1:e1-1", "syd1-pd2-l1:e1-28"]
-        - endpoints: ["syd1-pd2-sp1:e1-2", "syd1-pd2-l2:e1-28"]
-        - endpoints: ["syd1-pd2-sp1:e1-3", "syd1-pd2-l3:e1-28"]
-        - endpoints: ["syd1-pd2-sp1:e1-4", "syd1-pd2-l4:e1-28"]
-        - endpoints: ["syd1-pd2-sp1:e1-5", "syd1-pd2-l5:e1-28"]
-        - endpoints: ["syd1-pd2-sp1:e1-6", "syd1-pd2-l6:e1-28"]
-        - endpoints: ["syd1-pd2-sp2:e1-1", "syd1-pd2-l1:e1-27"]
-        - endpoints: ["syd1-pd2-sp2:e1-2", "syd1-pd2-l2:e1-27"]
-        - endpoints: ["syd1-pd2-sp2:e1-3", "syd1-pd2-l3:e1-27"]
-        - endpoints: ["syd1-pd2-sp2:e1-4", "syd1-pd2-l4:e1-27"]
-        - endpoints: ["syd1-pd2-sp2:e1-5", "syd1-pd2-l5:e1-27"]
-        - endpoints: ["syd1-pd2-sp2:e1-6", "syd1-pd2-l6:e1-27"]
-        - endpoints: ["syd1-pd1-sp1:e1-7", "dc1-ss1:e1-1"]
-        - endpoints: ["syd1-pd1-sp1:e1-8", "dc1-ss2:e1-1"]
-        - endpoints: ["syd1-pd1-sp2:e1-7", "dc1-ss1:e1-2"]
-        - endpoints: ["syd1-pd1-sp2:e1-8", "dc1-ss2:e1-2"]
+        - endpoints: ["dc1-sp1:e1-1", "dc1-l1:e1-28"]
+        - endpoints: ["dc1-sp1:e1-2", "dc1-l2:e1-28"]
+        - endpoints: ["dc1-sp1:e1-3", "dc1-l3:e1-28"]
+        - endpoints: ["dc1-sp1:e1-4", "dc1-l4:e1-28"]
+        - endpoints: ["dc1-sp1:e1-5", "dc1-l5:e1-28"]
+        - endpoints: ["dc1-sp1:e1-6", "dc1-l6:e1-28"]
+        - endpoints: ["dc1-sp2:e1-1", "dc1-l1:e1-27"]
+        - endpoints: ["dc1-sp2:e1-2", "dc1-l2:e1-27"]
+        - endpoints: ["dc1-sp2:e1-3", "dc1-l3:e1-27"]
+        - endpoints: ["dc1-sp2:e1-4", "dc1-l4:e1-27"]
+        - endpoints: ["dc1-sp2:e1-5", "dc1-l5:e1-27"]
+        - endpoints: ["dc1-sp2:e1-6", "dc1-l6:e1-27"]
+        - endpoints: ["dc2-sp1:e1-1", "dc2-l1:e1-28"]
+        - endpoints: ["dc2-sp1:e1-2", "dc2-l2:e1-28"]
+        - endpoints: ["dc2-sp1:e1-3", "dc2-l3:e1-28"]
+        - endpoints: ["dc2-sp1:e1-4", "dc2-l4:e1-28"]
+        - endpoints: ["dc2-sp1:e1-5", "dc2-l5:e1-28"]
+        - endpoints: ["dc2-sp1:e1-6", "dc2-l6:e1-28"]
+        - endpoints: ["dc2-sp2:e1-1", "dc2-l1:e1-27"]
+        - endpoints: ["dc2-sp2:e1-2", "dc2-l2:e1-27"]
+        - endpoints: ["dc2-sp2:e1-3", "dc2-l3:e1-27"]
+        - endpoints: ["dc2-sp2:e1-4", "dc2-l4:e1-27"]
+        - endpoints: ["dc2-sp2:e1-5", "dc2-l5:e1-27"]
+        - endpoints: ["dc2-sp2:e1-6", "dc2-l6:e1-27"]
+        - endpoints: ["dc1-sp1:e1-7", "dc1-ss1:e1-1"]
+        - endpoints: ["dc1-sp1:e1-8", "dc1-ss2:e1-1"]
+        - endpoints: ["dc1-sp2:e1-7", "dc1-ss1:e1-2"]
+        - endpoints: ["dc1-sp2:e1-8", "dc1-ss2:e1-2"]
         - endpoints: ["dc1-ss1:e1-3", "dc1-dci-r1:e1-1"]
         - endpoints: ["dc1-ss2:e1-3", "dc1-dci-r1:e1-2"]
-        - endpoints: ["syd1-pd2-sp1:e1-7", "dc2-ss1:e1-1"]
-        - endpoints: ["syd1-pd2-sp1:e1-8", "dc2-ss2:e1-1"]
-        - endpoints: ["syd1-pd2-sp2:e1-7", "dc2-ss1:e1-2"]
-        - endpoints: ["syd1-pd2-sp2:e1-8", "dc2-ss2:e1-2"]
+        - endpoints: ["dc2-sp1:e1-7", "dc2-ss1:e1-1"]
+        - endpoints: ["dc2-sp1:e1-8", "dc2-ss2:e1-1"]
+        - endpoints: ["dc2-sp2:e1-7", "dc2-ss1:e1-2"]
+        - endpoints: ["dc2-sp2:e1-8", "dc2-ss2:e1-2"]
         - endpoints: ["dc2-ss1:e1-3", "dc2-dci-r1:e1-1"]
         - endpoints: ["dc2-ss2:e1-3", "dc2-dci-r1:e1-2"]
         - endpoints: ["dc1-dci-r1:e1-3", "dc2-dci-r1:e1-3"]

@@ -34,7 +34,7 @@
     "nokia-conf:router": [
         {
             "router-name": "Base",
-            "autonomous-system": 65535,
+            "autonomous-system": {{asn}},
             "interface": [
                 {
                     "interface-name": "loopback0",
@@ -69,7 +69,14 @@
                     {
                         "group-name": "superspine",
                         "admin-state": "enable",
-                        "peer-as": 65000,
+                        "family": {
+                            "ipv4": true,
+                            "ipv6": true
+                        }
+                    },
+                    {
+                        "group-name": "dci",
+                        "admin-state": "enable",
                         "family": {
                             "ipv4": true,
                             "ipv6": true
@@ -82,7 +89,8 @@
                         "ip-address": "{{peer.remote_ip.split('/')[0]}}",
                         "admin-state": "enable",
                         "description": "{{peer_name}}",
-                        "group": "superspine"
+                        "peer-as": {{peer.asn}},
+                        "group": "{{ "dci" if peer.is_dci else "superspine" }}"
                     }{{ ", " if not loop.last else "" }}
                     {%- endfor %}
                 ]
@@ -96,7 +104,7 @@
                         {
                             "area-id": "0.0.0.0",
                             "interface": [
-                                {%- for interface_name, interface in interfaces.items() %}
+                                {%- for interface_name, interface in interfaces.items() if not interface.is_dci %}
                                 {
                                     "interface-name": "to-{{interface.link_peers[0].device.name}}",
                                     "admin-state": "enable",
