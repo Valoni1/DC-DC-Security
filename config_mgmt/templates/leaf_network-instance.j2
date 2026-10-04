@@ -1,4 +1,4 @@
-{%- set autonomous_system = "6500" + device.location.name.split(' ')[1] %}
+{%- set autonomous_system = asn %}
 {
   "network-instance": [
     {
@@ -49,7 +49,7 @@
           ],
           "group": [
             {
-              "group-name": "spine-{{device.location.slug}}",
+              "group-name": "spine-{{fabric}}",
               "admin-state": "enable",
               "peer-as": {{autonomous_system}},
               "afi-safi": [
@@ -80,7 +80,7 @@
               "description" : "{{peer_name}}",
               "peer-address": "{{peer.primary_ip4.split('/')[0]}}",
               "admin-state": "enable",
-              "peer-group": "spine-{{device.location.slug}}"
+              "peer-group": "spine-{{fabric}}"
             }{{ ", " if not loop.last else "" }}
             {%- endfor %}
           ]

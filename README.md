@@ -223,3 +223,22 @@ Now run the configuration management again:
 You should see diffs indicating OSPF is being removed. Once again, login to your device of choice - you should see only IS-IS routes in the routing table and the BGP neighbours should show a consistent uptime. This is because the OSPF routes have been withdrawn and the IS-IS routes have taken over as active - the process was entirely hitless to overlay traffic signalled with BGP for this pod.
 
 Test success!!
+
+## DC1/DC2 topology
+The dissertation lab splits the fabric into two independent data centres, DC1 and DC2, joined by a single DCI link between `dc1-dci-r1` and `dc2-dci-r1`. NetBox is prepared with these scripts, in order (each supports `--dry-run`):
+
+```
+> export NETBOX_URL="http://localhost:8000" NETBOX_TOKEN="<token>"
+> python3 restructure_dc1_dc2.py   # Sites DC1/DC2, per-DC superspines, DCI routers
+> python3 cable_dc1_dc2.py         # cabling, including the DCI link
+> python3 set_role_platforms.py    # per-role platforms for nrx memory sizing
+> python3 rename_dc1_dc2.py        # syd1-pdN-* leaves/spines -> dcN-*
+> python3 assign_ips_dc1_dc2.py    # makes NetBox match ip_plan_dc1_dc2.yaml
+> ./4_run_nrx.sh                   # regenerates DC1-DC2.clab.yaml
+> sudo -E clab dep -t DC1-DC2.clab.yaml
+> ./5_run_config_mgmt.sh           # configures every DC1/DC2 device
+```
+
+All lab addressing (loopbacks, fabric /31s, the DCI link) is defined in `ip_plan_dc1_dc2.yaml`; edit it and re-run `assign_ips_dc1_dc2.py` to change an address.
+
+`configure.py` picks templates by device role, including the DC gateways (`dc_gateway_*.j2` on SR Linux, `dc_gateway_complete.j2` on SR OS). BGP AS numbers per DC N are 6500N for leaves and spines, 6510N for superspines and 6520N for DC gateways, so the DCs exchange routes over eBGP on the DCI link while OSPF stays inside each DC. Add `--configs-only true` to `configure.py` to only render the configs into `config_mgmt/configs`.

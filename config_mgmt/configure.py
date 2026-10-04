@@ -1,9 +1,22 @@
-import json, logging, os, argparse
+import json, logging, os, re, argparse
 import pynetbox
 import jinja2, requests
 from pysros.management import connect
 
 logger = logging.getLogger("device_configurator")
+
+# BGP AS numbers per role, keyed by DC number. Leaves and spines of a DC share
+# one AS (iBGP, spines as route reflectors); superspines and DC gateways get
+# their own AS per DC so the two DCs stay independent and DC1 <-> DC2 routes
+# are exchanged over eBGP on the DCI link without AS-path loops.
+ASN_BASE = {
+    "leaf": 65000,
+    "spine": 65000,
+    "superspine": 65100,
+    "dc-gateway": 65200,
+}
+# Used for a device with no DC/pod number (e.g. the shared SYD1 superspines).
+LEGACY_ASN = {"superspine": 65000, "dc-gateway": 65535}
 
 def main():
     parser = argparse.ArgumentParser(prog="Network Configurator")
@@ -18,6 +31,14 @@ def main():
 
     # Configurator paths
     parser.add_argument("-p", dest="dev_host_prefix", default="")
+    parser.add_argument(
+        "-s",
+        "--site",
+        dest="sites",
+        action="append",
+        default=[],
+        help="Only configure devices in this NetBox site (repeatable)",
+    )
     parser.add_argument("-T", dest="template_path", default="./templates")
     parser.add_argument("-c", dest="config_path", default="./configs")
 
@@ -29,7 +50,7 @@ def main():
 
     args = parser.parse_args()
 
-    log_level = logger.DEBUG if args.debug else logging.INFO
+    log_level = logging.DEBUG if args.debug else logging.INFO
 
     logging.basicConfig(
         format="%(asctime)s %(levelname)s %(message)s",
@@ -51,17 +72,40 @@ def main():
     template_loader = jinja2.FileSystemLoader(searchpath=args.template_path)
     template_env = jinja2.Environment(loader=template_loader)
 
-    devices = [d for d in nb.dcim.devices.filter(tag="demo")]
+    device_filter = {"tag": "demo"}
+    if args.sites:
+        device_filter["site"] = [s.lower() for s in args.sites]
+    devices = [d for d in nb.dcim.devices.filter(**device_filter)]
 
     for d in devices:
-        supported_templates = None
-        if d.platform.slug == "sr-linux":
+        os_type = get_os_type(d)
+        if os_type == "srl":
             supported_templates = ["interface", "network-instance"]
-        elif d.platform.slug == "sros":
+            # Roles that need routing policies (the DC gateways) ship a template for them
+            policy_templ = f"{d.role.slug.replace('-', '_')}_routing-policy.j2"
+            if os.path.exists(os.path.join(args.template_path, policy_templ)):
+                supported_templates.insert(1, "routing-policy")
+        elif os_type == "sros":
             supported_templates = ["complete"]
+        else:
+            log_for_device(
+                d,
+                f"unsupported platform: {d.platform.slug if d.platform else None}",
+                level=logging.ERROR,
+            )
+            continue
 
         configs = []
         templ_vars = build_template_vars(nb, d)
+
+        missing = check_template_vars(templ_vars)
+        if missing:
+            log_for_device(
+                d,
+                "missing data in Netbox, skipping: " + "; ".join(missing),
+                level=logging.ERROR,
+            )
+            continue
 
         # Locate and render templates
         log_for_device(d, "Rendering config")
@@ -72,9 +116,9 @@ def main():
             templ_path = os.path.join(args.template_path, templ_name)
             if not os.path.exists(templ_path):
                 log_for_device(
-                    d, "can't locate template: {templ_path}", level=logging.ERROR
+                    d, f"can't locate template: {templ_path}", level=logging.ERROR
                 )
-                return
+                break
 
             template = template_env.get_template(templ_name)
 
@@ -94,12 +138,15 @@ def main():
 
             configs.append({"path": supp_templ, "config": config})
 
+        if len(configs) != len(supported_templates):
+            continue
+
         if args.configs_only:
             log_for_device(d, "Config written, not deploying.", level=logging.DEBUG)
             continue
 
         # Deploy to devices
-        if d.platform.slug == "sr-linux":
+        if os_type == "srl":
             log_for_device(d, "Deploying SR-Linux configuration")
             deploy_jsonrpc_config(
                 configs,
@@ -109,8 +156,8 @@ def main():
                 password=args.srl_password,
                 prefix=args.dev_host_prefix,
             )
-        elif d.platform.slug == "sros":
-            (d, "Deploying SR-OS configuration")
+        elif os_type == "sros":
+            log_for_device(d, "Deploying SR-OS configuration")
             deploy_sros_config(
                 configs,
                 d,
@@ -142,24 +189,89 @@ def print_params_summary(args):
     log_from_global(f"Diff: {args.diff}")
 
 
+def get_os_type(device):
+    """Map the Netbox platform to the OS the device runs.
+
+    The DC1/DC2 fabric uses per-role SR Linux platforms (srl-leaf, srl-spine,
+    srl-superspine, srl-gateway) so nrx can size each node differently; they
+    all run SR Linux."""
+    slug = device.platform.slug if device.platform else ""
+    if slug == "sr-linux" or slug.startswith("srl-"):
+        return "srl"
+    if slug == "sros":
+        return "sros"
+    return None
+
+
+def get_dc_id(device):
+    """The DC (or legacy pod) number a device belongs to, as a string.
+
+    DC1/DC2 devices are placed directly in Sites "DC1"/"DC2"; the original
+    SYD1 topology used Locations "Pod 1"/"Pod 2" instead."""
+    return get_fabric(device)[0]
+
+
+def get_fabric(device):
+    """(number, name) of the DC or pod a device belongs to; the name is used
+    in BGP group names. (None, None) for devices outside any DC or pod."""
+    site = device["site"]["name"] if device["site"] else ""
+    m = re.fullmatch(r"DC\s*(\d+)", site, re.IGNORECASE)
+    if m:
+        return m.group(1), f"dc{m.group(1)}"
+    location = device["location"]
+    m = re.fullmatch(r"Pod\s*(\d+)", location["name"] if location else "", re.IGNORECASE)
+    if m:
+        return m.group(1), location["slug"]
+    return None, None
+
+
+def get_asn(role, dc_id):
+    """BGP AS number for a role in a DC, see ASN_BASE."""
+    if dc_id is None:
+        return LEGACY_ASN.get(role, ASN_BASE.get(role))
+    return ASN_BASE[role] + int(dc_id)
+
+
 def build_template_vars(nb, device):
     """Query Netbox for the data needed to fill the templates"""
     log_for_device(device, "Building template variables")
 
+    dc_id = get_dc_id(device)
     interfaces = get_nb_interfaces(nb, device)
-    peers = get_link_peer_devices(nb, interfaces)
-    pods = [i.name.split(" ")[1] for i in nb.dcim.locations.all() if "Pod" in i.name]
-    isis_address = generate_isis_iso_addr(device)
+    peers = get_link_peer_devices(nb, device, interfaces)
+    isis_address = (
+        generate_isis_iso_addr(device) if device["primary_ip4"] else None
+    )
     device_tags = [t["name"] for t in device["tags"]]
 
     return {
         "device": device,
         "interfaces": interfaces,
         "peers": peers,
-        "pods": pods,
+        "dc_id": dc_id,
+        "fabric": get_fabric(device)[1],
+        "asn": get_asn(device.role.slug, dc_id),
         "isis_address": isis_address,
         "device_tags": device_tags,
     }
+
+
+def check_template_vars(templ_vars):
+    """List the Netbox data the templates need but the device doesn't have."""
+    missing = []
+    if not templ_vars["device"]["primary_ip4"]:
+        missing.append("no primary IPv4 (loopback) address")
+    for name, interface in templ_vars["interfaces"].items():
+        if not interface["ip_addresses"]:
+            missing.append(f"no IP address on {name}")
+        if not interface["link_peers"]:
+            missing.append(f"{name} is not connected to another interface")
+    for name, peer in templ_vars["peers"].items():
+        if not peer["remote_ip"]:
+            missing.append(f"no IP address on the link to {name}")
+        if not peer["primary_ip4"]:
+            missing.append(f"peer {name} has no primary IPv4 address")
+    return missing
 
 
 def get_nb_interfaces(nb, device):
@@ -181,11 +293,13 @@ def get_nb_interfaces(nb, device):
     return interfaces
 
 
-def get_link_peer_devices(nb, interfaces):
+def get_link_peer_devices(nb, device, interfaces):
     """For generating BGP configs and description, discover the device on the other end of a link"""
     peers = {}
+    dc_id = get_dc_id(device)
 
     for _, interface in interfaces.items():
+        interface["is_dci"] = False
         if interface["link_peers"]:
             peer = [
                 p
@@ -193,17 +307,31 @@ def get_link_peer_devices(nb, interfaces):
                     name=interface["link_peers"][0]["device"]["name"]
                 )
             ][0]
-            peers[peer["name"]] = {}
-            peers[peer["name"]]["primary_ip4"] = peer["primary_ip4"]["address"]
-            peers[peer["name"]]["location"] = peer["location"]["name"]
-            ip = [
+            peer_dc_id = get_dc_id(peer)
+            peer_role = peer.role.slug
+            # The DCI link is the gateway-to-gateway link between two DCs
+            interface["is_dci"] = (
+                device.role.slug == "dc-gateway"
+                and peer_role == "dc-gateway"
+                and peer_dc_id != dc_id
+            )
+            ips = [
                 i
                 for i in nb.ipam.ip_addresses.filter(
                     interface=interface["link_peers"][0]["name"],
                     device=interface["link_peers"][0]["device"]["name"],
                 )
-            ][0]
-            peers[peer["name"]]["remote_ip"] = ip.address
+            ]
+            peers[peer["name"]] = {
+                "role": peer_role,
+                "dc_id": peer_dc_id,
+                "asn": get_asn(peer_role, peer_dc_id),
+                "is_dci": interface["is_dci"],
+                "primary_ip4": (
+                    peer["primary_ip4"]["address"] if peer["primary_ip4"] else None
+                ),
+                "remote_ip": ips[0].address if ips else None,
+            }
 
     return peers
 
