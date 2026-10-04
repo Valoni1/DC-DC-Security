@@ -81,6 +81,10 @@ def main():
         os_type = get_os_type(d)
         if os_type == "srl":
             supported_templates = ["interface", "network-instance"]
+            # Roles that need routing policies (the DC gateways) ship a template for them
+            policy_templ = f"{d.role.slug.replace('-', '_')}_routing-policy.j2"
+            if os.path.exists(os.path.join(args.template_path, policy_templ)):
+                supported_templates.insert(1, "routing-policy")
         elif os_type == "sros":
             supported_templates = ["complete"]
         else:

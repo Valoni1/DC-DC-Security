@@ -59,6 +59,9 @@
             {
               "group-name": "dci",
               "admin-state": "enable",
+              {#- Advertise this DC's loopbacks to the other DC, accept what it sends #}
+              "export-policy": ["dci-export"],
+              "import-policy": ["dci-import"],
               "send-community": {
                 "standard": true,
                 "large": true
@@ -83,6 +86,9 @@
               "name": "0",
               "admin-state": "enable",
               "version": "ospf-v2",
+              {#- Redistribute the other DC's routes learned over the DCI into this DC #}
+              "asbr": {},
+              "export-policy": "bgp-to-ospf",
               "area": [
                 {
                   "area-id": "0.0.0.0",
