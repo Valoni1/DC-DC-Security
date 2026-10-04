@@ -400,7 +400,9 @@ def deploy_jsonrpc_config(configs, device, **kwargs):
         if r.json().get("result"):
             log_for_device(device, f"Diff: \n{r.json()['result'][0]}")
         elif r.json().get("error"):
+            # The device rejected the config; nothing to commit
             log_for_device(device, f"Diff: \n{r.json()['error']}", level=logging.ERROR)
+            return False
         else:
             log_for_device(device, f"No diff, config aligned.")
             return True
@@ -412,8 +414,14 @@ def deploy_jsonrpc_config(configs, device, **kwargs):
         if r.status_code != 200:
             log_for_device(
                 device,
-                f"## JSON-RPC (Diff), status code: {r.status_code} - {r.json()['error']}",
+                f"## JSON-RPC (Set), status code: {r.status_code} - {r.json()['error']}",
                 level=logging.ERROR,
+            )
+            return False
+        elif r.json().get("error"):
+            # JSON-RPC reports a rejected commit with HTTP 200 and an error body
+            log_for_device(
+                device, f"Commit failed: \n{r.json()['error']}", level=logging.ERROR
             )
             return False
         else:
