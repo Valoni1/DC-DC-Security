@@ -43,6 +43,7 @@ USAGE:
 """
 
 import os
+import re
 import sys
 import argparse
 
@@ -94,6 +95,11 @@ def connect():
 
 def get_device(nb, name):
     dev = nb.dcim.devices.get(name=name)
+    if not dev:
+        # rename_dc1_dc2.py may already have renamed syd1-pdN-* to dcN-*
+        m = re.match(r"^syd1-pd(\d+)-(.+)$", name)
+        if m:
+            dev = nb.dcim.devices.get(name=f"dc{m.group(1)}-{m.group(2)}")
     if not dev:
         fail(f'Device "{name}" not found. Check the name is exactly right.')
     return dev
