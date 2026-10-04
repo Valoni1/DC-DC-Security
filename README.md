@@ -234,6 +234,7 @@ The dissertation lab splits the fabric into two independent data centres, DC1 an
 > python3 set_role_platforms.py    # per-role platforms for nrx memory sizing
 > python3 rename_dc1_dc2.py        # syd1-pdN-* leaves/spines -> dcN-*
 > python3 assign_ips_dc1_dc2.py    # makes NetBox match ip_plan_dc1_dc2.yaml
+> python3 tag_dc1_dc2.py           # tags every DC1/DC2 device "demo" so nrx and configure.py include it
 > ./4_run_nrx.sh                   # regenerates DC1-DC2.clab.yaml
 > sudo -E clab dep -t DC1-DC2.clab.yaml
 > ./5_run_config_mgmt.sh           # configures every DC1/DC2 device
