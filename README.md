@@ -233,10 +233,12 @@ The dissertation lab splits the fabric into two independent data centres, DC1 an
 > python3 cable_dc1_dc2.py         # cabling, including the DCI link
 > python3 set_role_platforms.py    # per-role platforms for nrx memory sizing
 > python3 rename_dc1_dc2.py        # syd1-pdN-* leaves/spines -> dcN-*
-> python3 assign_ips_dc1_dc2.py    # loopbacks and /31s the new devices and links lack
+> python3 assign_ips_dc1_dc2.py    # makes NetBox match ip_plan_dc1_dc2.yaml
 > ./4_run_nrx.sh                   # regenerates DC1-DC2.clab.yaml
 > sudo -E clab dep -t DC1-DC2.clab.yaml
 > ./5_run_config_mgmt.sh           # configures every DC1/DC2 device
 ```
+
+All lab addressing (loopbacks, fabric /31s, the DCI link) is defined in `ip_plan_dc1_dc2.yaml`; edit it and re-run `assign_ips_dc1_dc2.py` to change an address.
 
 `configure.py` picks templates by device role, including the DC gateways (`dc_gateway_*.j2` on SR Linux, `dc_gateway_complete.j2` on SR OS). BGP AS numbers per DC N are 6500N for leaves and spines, 6510N for superspines and 6520N for DC gateways, so the DCs exchange routes over eBGP on the DCI link while OSPF stays inside each DC. Add `--configs-only true` to `configure.py` to only render the configs into `config_mgmt/configs`.
