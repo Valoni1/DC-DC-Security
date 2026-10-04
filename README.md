@@ -50,28 +50,28 @@ Run the following:
 The output should show the NetReplica repo being cloned along with the nested templates repository.
 
 ### 3 - Install Netbox
-Install Netbox by running the following:
+Run this from the repo root:
 ```
 > ./3_deploy_netbox.sh
 ```
-This should take 2-3 minutes depending on your internet connection speed. If the script fails, run it again until it succeeds.
-You can check on the status of the Netbox install by running:
-```
-> cd ./netbox/
-> docker compose ps
-```
-All components should be in a `healthy` status.
+It starts NetBox with Docker Compose and waits until the UI answers at http://localhost:8000. The first run pulls the images and loads `netbox/netbox_seed.sql`, which takes a few minutes. To check the containers yourself, run `docker compose ps` from inside the `netbox` directory (from anywhere else it shows nothing). All of them should be `healthy`.
 
-You can login to the Netbox User Interface using the following credentials:
-Host: http://localhost:8000
-Username: admin
-Password: admin
+If nothing comes up:
+* Docker needs to be running and usable by your user (`docker info` should work without errors). Otherwise run the script with `sudo`, or add yourself to the `docker` group and log in again.
+* `cd netbox && docker compose logs netbox` shows why NetBox itself isn't starting.
+* The seed data only loads into an empty database. To start again from scratch, run `cd netbox && docker compose down -v` (this deletes all NetBox data), then rerun the script.
 
-The scripts in this repo read the NetBox API token from the environment rather than from files. Create a token in the NetBox UI (or use the one from your seed data) and export it before running steps 4 and 5, the `Makefile` targets, or the `*_dc1_dc2.py` / `set_*.py` helpers:
+Log in at http://localhost:8000 with username `admin` and password `admin`.
+
+The scripts in this repo read the NetBox URL and API token from the environment, never from files. Create your own token, because the one in the seed data is public:
+1. In NetBox, open the user menu at the top right (admin), then **API Tokens**, then **Add a Token**.
+2. Leave **Write enabled** ticked and save, then copy the key.
+3. In the terminal you'll run the next steps from:
 ```
-> export NETBOX_TOKEN='<your NetBox API token>'
 > export NETBOX_URL='http://localhost:8000'
+> export NETBOX_TOKEN='<the key you copied>'
 ```
+Then delete the old seed token (`69205bb4...`) from the same **API Tokens** page. Steps 4 and 5, the `Makefile` targets and the `*_dc1_dc2.py` / `set_*.py` helpers all use these two variables. Export them again in each new terminal.
 
 ### 4 - Run NetReplica 
 Now run the NetReplica tool, `nrx` with some parametres defined in `nrx.conf`. NRX will talk to Netbox via it's API, query the `SYD1` site and built a Containerlab topology file based on the devices that have the `demo` tag attached to them. The output will be the `SYD1.clab.yaml` file in the root directory.
