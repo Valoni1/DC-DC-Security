@@ -1,0 +1,60 @@
+{%- set loopback_prefix = device.primary_ip4.address.split('/')[0].rsplit('.', 1)[0] + ".0/24" %}
+{
+  "routing-policy": {
+    "prefix-set": [
+      {
+        "name": "dc-loopbacks",
+        "prefix": [
+          {
+            "ip-prefix": "{{loopback_prefix}}",
+            "mask-length-range": "24..32"
+          }
+        ]
+      }
+    ],
+    "policy": [
+      {
+        "name": "dci-export",
+        "default-action": {
+          "policy-result": "reject"
+        },
+        "statement": [
+          {
+            "name": "dc-loopbacks",
+            "match": {
+              "prefix": {
+                "prefix-set": "dc-loopbacks"
+              }
+            },
+            "action": {
+              "policy-result": "accept"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dci-import",
+        "default-action": {
+          "policy-result": "accept"
+        }
+      },
+      {
+        "name": "bgp-to-ospf",
+        "default-action": {
+          "policy-result": "reject"
+        },
+        "statement": [
+          {
+            "name": "bgp",
+            "match": {
+              "protocol": "bgp"
+            },
+            "action": {
+              "policy-result": "accept"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
