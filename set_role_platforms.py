@@ -114,6 +114,9 @@ def main():
 
     ref_dev = nb.dcim.devices.get(name=REFERENCE_DEVICE_NAME)
     if not ref_dev:
+        # rename_dc1_dc2.py may already have renamed it
+        ref_dev = nb.dcim.devices.get(name="dc1-l1")
+    if not ref_dev:
         fail(f'Reference device "{REFERENCE_DEVICE_NAME}" not found.')
     if not ref_dev.platform:
         fail(
