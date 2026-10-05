@@ -70,9 +70,9 @@ REFERENCE_DEVICE_NAME = "syd1-pd1-l1"
 # role slug -> (new platform name, new platform slug, memory value for
 # reference in the printed platform_map.yaml block at the end)
 ROLE_PLATFORM_PLAN = {
-    "leaf": ("SR Linux Leaf", "srl-leaf", "1Gb"),
-    "spine": ("SR Linux Spine", "srl-spine", "1.5Gb"),
-    "superspine": ("SR Linux Superspine", "srl-superspine", "1.5Gb"),
+    "leaf": ("SR Linux Leaf", "srl-leaf", "2Gb"),
+    "spine": ("SR Linux Spine", "srl-spine", "2Gb"),
+    "superspine": ("SR Linux Superspine", "srl-superspine", "2Gb"),
     "dc-gateway": ("SR Linux Gateway", "srl-gateway", "2Gb"),
 }
 
