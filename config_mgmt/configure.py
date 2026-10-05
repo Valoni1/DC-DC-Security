@@ -148,14 +148,18 @@ def main():
         # Deploy to devices
         if os_type == "srl":
             log_for_device(d, "Deploying SR-Linux configuration")
-            deploy_jsonrpc_config(
-                configs,
-                d,
-                commit=args.commit,
-                username=args.username,
-                password=args.srl_password,
-                prefix=args.dev_host_prefix,
-            )
+            try:
+                deploy_jsonrpc_config(
+                    configs,
+                    d,
+                    commit=args.commit,
+                    username=args.username,
+                    password=args.srl_password,
+                    prefix=args.dev_host_prefix,
+                )
+            except requests.exceptions.RequestException as e:
+                # One unreachable device (e.g. not in the running lab) must not stop the rest
+                log_for_device(d, f"Can't reach device, skipping: {e}", level=logging.ERROR)
         elif os_type == "sros":
             log_for_device(d, "Deploying SR-OS configuration")
             deploy_sros_config(
