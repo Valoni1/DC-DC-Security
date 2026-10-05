@@ -21,3 +21,7 @@ clab-*/
 # Local secrets
 .env
 *.local.env
+
+# Rendered by config_mgmt/configure.py on every run
+config_mgmt/configs/
+*.log
