@@ -20,7 +20,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1.5Gb
+            memory: 2Gb
             labels:
                 graph-icon: spine
                 graph-level: 10
@@ -34,7 +34,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -48,7 +48,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -62,7 +62,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -76,7 +76,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -90,7 +90,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -104,7 +104,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -118,7 +118,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1.5Gb
+            memory: 2Gb
             labels:
                 graph-icon: spine
                 graph-level: 10
@@ -132,7 +132,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1.5Gb
+            memory: 2Gb
             labels:
                 graph-icon: spine
                 graph-level: 10
@@ -146,7 +146,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -160,7 +160,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -174,7 +174,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -188,7 +188,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -202,7 +202,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -216,7 +216,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1Gb
+            memory: 2Gb
             labels:
                 graph-icon: leaf
                 graph-level: 10
@@ -230,7 +230,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1.5Gb
+            memory: 2Gb
             labels:
                 graph-icon: spine
                 graph-level: 10
@@ -244,7 +244,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1.5Gb
+            memory: 2Gb
             labels:
                 graph-icon: superspine
                 graph-level: 10
@@ -258,7 +258,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1.5Gb
+            memory: 2Gb
             labels:
                 graph-icon: superspine
                 graph-level: 10
@@ -286,7 +286,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1.5Gb
+            memory: 2Gb
             labels:
                 graph-icon: superspine
                 graph-level: 10
@@ -300,7 +300,7 @@ topology:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:latest
-            memory: 1.5Gb
+            memory: 2Gb
             labels:
                 graph-icon: superspine
                 graph-level: 10

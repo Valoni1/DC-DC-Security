@@ -49,21 +49,21 @@ kinds:
       nodes:
         template: clab/nodes/srl.j2
         type: ixrh4
-        memory: 1Gb
+        memory: 2Gb
       interface_names:
         template: clab/interface_names/srl.j2
     srl-spine:
       nodes:
         template: clab/nodes/srl.j2
         type: ixrh4
-        memory: 1.5Gb
+        memory: 2Gb
       interface_names:
         template: clab/interface_names/srl.j2
     srl-superspine:
       nodes:
         template: clab/nodes/srl.j2
         type: ixrh4
-        memory: 1.5Gb
+        memory: 2Gb
       interface_names:
         template: clab/interface_names/srl.j2
     srl-gateway:
