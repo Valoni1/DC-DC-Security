@@ -24,6 +24,8 @@ platforms:
       clab: srl-gateway
 kinds:
   clab:
+    # SR Linux is pinned to the release the dissertation baseline was verified on
+    # (v26.7.2, 12 Oct 2026). Change it deliberately, never by pulling :latest.
     linux:
       nodes:
         template: clab/nodes/default.j2
@@ -36,6 +38,7 @@ kinds:
     srl:
       nodes:
         template: clab/nodes/srl.j2
+        image: ghcr.io/nokia/srlinux:26.7.2
         type: ixrh4
       interface_names:
         template: clab/interface_names/srl.j2
@@ -48,6 +51,7 @@ kinds:
     srl-leaf:
       nodes:
         template: clab/nodes/srl.j2
+        image: ghcr.io/nokia/srlinux:26.7.2
         type: ixrh4
         memory: 2Gb
       interface_names:
@@ -55,6 +59,7 @@ kinds:
     srl-spine:
       nodes:
         template: clab/nodes/srl.j2
+        image: ghcr.io/nokia/srlinux:26.7.2
         type: ixrh4
         memory: 2Gb
       interface_names:
@@ -62,6 +67,7 @@ kinds:
     srl-superspine:
       nodes:
         template: clab/nodes/srl.j2
+        image: ghcr.io/nokia/srlinux:26.7.2
         type: ixrh4
         memory: 2Gb
       interface_names:
@@ -69,6 +75,7 @@ kinds:
     srl-gateway:
       nodes:
         template: clab/nodes/srl.j2
+        image: ghcr.io/nokia/srlinux:26.7.2
         type: ixrh4
         memory: 2Gb
       interface_names:
