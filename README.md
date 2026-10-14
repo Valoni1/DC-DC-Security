@@ -233,13 +233,25 @@ The dissertation lab splits the fabric into two independent data centres, DC1 an
 > python3 cable_dc1_dc2.py         # cabling, including the DCI link
 > python3 set_role_platforms.py    # per-role platforms for nrx memory sizing
 > python3 rename_dc1_dc2.py        # syd1-pdN-* leaves/spines -> dcN-*
+> python3 add_hosts_dc1_dc2.py     # Linux and Windows end hosts, cabled to their leaves
 > python3 assign_ips_dc1_dc2.py    # makes NetBox match ip_plan_dc1_dc2.yaml
 > python3 tag_dc1_dc2.py           # tags every DC1/DC2 device "demo" so nrx and configure.py include it
 > ./4_run_nrx.sh                   # regenerates DC1-DC2.clab.yaml
 > sudo -E clab dep -t DC1-DC2.clab.yaml
-> ./5_run_config_mgmt.sh           # configures every DC1/DC2 device
+> ./5_run_config_mgmt.sh           # configures every DC1/DC2 router
+> python3 configure_hosts_dc1_dc2.py  # host addresses and routes (docker exec)
 ```
 
-All lab addressing (loopbacks, fabric /31s, the DCI link) is defined in `ip_plan_dc1_dc2.yaml`; edit it and re-run `assign_ips_dc1_dc2.py` to change an address.
+All lab addressing (loopbacks, fabric /31s, the DCI link, host /28s) is defined in `ip_plan_dc1_dc2.yaml`; edit it and re-run `assign_ips_dc1_dc2.py` to change an address.
 
 `configure.py` picks templates by device role, including the DC gateways (`dc_gateway_*.j2` on SR Linux, `dc_gateway_complete.j2` on SR OS). BGP AS numbers per DC N are 6500N for leaves and spines, 6510N for superspines and 6520N for DC gateways, so the DCs exchange routes over eBGP on the DCI link while OSPF stays inside each DC. Add `--configs-only true` to `configure.py` to only render the configs into `config_mgmt/configs`.
+
+### End hosts
+Each leaf has a Linux host on `ethernet-1/1` (`dcN-h1` to `dcN-h6`, containerlab kind `linux`, image `netreplica/ubuntu-host`), and `dcN-l1` also has a Windows host on `ethernet-1/2` (`dcN-w1`). Every host sits in its own /28 from `172.30.N.0/24` with the leaf as its gateway (see `hosts:` in `ip_plan_dc1_dc2.yaml`). Leaves advertise the /28s into OSPF as passive interfaces, and the DC gateways export `172.30.N.0/24` over the DCI next to the loopbacks, so hosts in DC1 reach hosts in DC2:
+
+```
+> docker exec clab-DC1-DC2-dc1-h1 ping -c 3 172.30.2.2
+```
+
+The Windows hosts run Windows Server 2022 (evaluation) as a QEMU VM inside a `dockurr/windows` container. They need `/dev/kvm` on the lab host and about 5 GB of RAM each. The first deploy downloads the installer and installs Windows, which takes a while; follow it with `docker logs -f clab-DC1-DC2-dc1-w1` or in a browser at `http://<container mgmt IP>:8006`. The disk is kept under `windows/<host>/` next to the topology file (ignored by git), so later deploys boot straight into the installed system. Default login: `Docker` / `admin`. The VM sits behind NAT in its container: traffic to the container's `172.30.N.98` address is forwarded to Windows, and Windows' own traffic leaves from that address. Windows' firewall blocks inbound ping until you allow it (for example `netsh advfirewall firewall add rule name=ICMPv4 protocol=icmpv4:8,any dir=in action=allow`).
+

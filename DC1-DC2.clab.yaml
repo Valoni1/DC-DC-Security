@@ -324,6 +324,236 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
+        dc1-h1:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC1
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc1-h2:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC1
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc1-h3:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC1
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc1-h4:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC1
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc1-h5:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC1
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc1-h6:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC1
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc1-w1:
+            kind: linux
+            image: dockurr/windows:6.05
+            env:
+                VERSION: "2022"
+                RAM_SIZE: 4G
+                CPU_CORES: "2"
+                DISK_SIZE: 64G
+            devices:
+                - /dev/kvm
+                - /dev/net/tun
+            cap-add:
+                - NET_ADMIN
+            binds:
+                - windows/dc1-w1:/storage
+            memory: 5Gb
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC1
+                platform: Windows
+                vendor: Generic
+                model: Windows Host
+
+        dc2-h1:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC2
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc2-h2:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC2
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc2-h3:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC2
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc2-h4:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC2
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc2-h5:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC2
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc2-h6:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC2
+                platform: Ubuntu
+                vendor: Generic
+                model: Linux Host
+
+        dc2-w1:
+            kind: linux
+            image: dockurr/windows:6.05
+            env:
+                VERSION: "2022"
+                RAM_SIZE: 4G
+                CPU_CORES: "2"
+                DISK_SIZE: 64G
+            devices:
+                - /dev/kvm
+                - /dev/net/tun
+            cap-add:
+                - NET_ADMIN
+            binds:
+                - windows/dc2-w1:/storage
+            memory: 5Gb
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Server
+                group: DC2
+                platform: Windows
+                vendor: Generic
+                model: Windows Host
+
     links:
         - endpoints: ["dc1-sp1:e1-1", "dc1-l1:e1-28"]
         - endpoints: ["dc1-sp1:e1-2", "dc1-l2:e1-28"]
@@ -362,3 +592,17 @@ topology:
         - endpoints: ["dc2-ss1:e1-3", "dc2-dci-r1:e1-1"]
         - endpoints: ["dc2-ss2:e1-3", "dc2-dci-r1:e1-2"]
         - endpoints: ["dc1-dci-r1:e1-3", "dc2-dci-r1:e1-3"]
+        - endpoints: ["dc1-l1:e1-1", "dc1-h1:eth1"]
+        - endpoints: ["dc1-l2:e1-1", "dc1-h2:eth1"]
+        - endpoints: ["dc1-l3:e1-1", "dc1-h3:eth1"]
+        - endpoints: ["dc1-l4:e1-1", "dc1-h4:eth1"]
+        - endpoints: ["dc1-l5:e1-1", "dc1-h5:eth1"]
+        - endpoints: ["dc1-l6:e1-1", "dc1-h6:eth1"]
+        - endpoints: ["dc1-l1:e1-2", "dc1-w1:eth1"]
+        - endpoints: ["dc2-l1:e1-1", "dc2-h1:eth1"]
+        - endpoints: ["dc2-l2:e1-1", "dc2-h2:eth1"]
+        - endpoints: ["dc2-l3:e1-1", "dc2-h3:eth1"]
+        - endpoints: ["dc2-l4:e1-1", "dc2-h4:eth1"]
+        - endpoints: ["dc2-l5:e1-1", "dc2-h5:eth1"]
+        - endpoints: ["dc2-l6:e1-1", "dc2-h6:eth1"]
+        - endpoints: ["dc2-l1:e1-2", "dc2-w1:eth1"]
