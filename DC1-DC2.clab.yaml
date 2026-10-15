@@ -429,6 +429,7 @@ topology:
                 - NET_ADMIN
             binds:
                 - windows/dc1-w1:/storage
+                - windows/win2022.iso:/custom.iso:ro
             memory: 5Gb
             labels:
                 graph-icon: server
@@ -544,6 +545,7 @@ topology:
                 - NET_ADMIN
             binds:
                 - windows/dc2-w1:/storage
+                - windows/win2022.iso:/custom.iso:ro
             memory: 5Gb
             labels:
                 graph-icon: server

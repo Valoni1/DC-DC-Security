@@ -16,5 +16,6 @@
                 - NET_ADMIN
             binds:
                 - windows/{{ name }}:/storage
+                - windows/win2022.iso:/custom.iso:ro
             memory: 5Gb
             {% include 'clab/labels.j2' %}

@@ -31,3 +31,4 @@ config_mgmt/configs/
 # source is missing.
 windows/*/*
 !windows/*/.gitkeep
+windows/*.iso
