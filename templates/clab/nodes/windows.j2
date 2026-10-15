@@ -1,0 +1,21 @@
+        {{ name }}:
+            kind: linux
+            {% if image is not defined %}
+            {% set image = "dockurr/windows:6.05" %}
+            {% endif %}
+            image: {{ image }}
+            env:
+                VERSION: "2022"
+                RAM_SIZE: 4G
+                CPU_CORES: "2"
+                DISK_SIZE: 64G
+            devices:
+                - /dev/kvm
+                - /dev/net/tun
+            cap-add:
+                - NET_ADMIN
+            binds:
+                - windows/{{ name }}:/storage
+                - windows/win2022.iso:/custom.iso:ro
+            memory: 5Gb
+            {% include 'clab/labels.j2' %}

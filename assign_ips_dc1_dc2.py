@@ -17,7 +17,8 @@ For every loopback and link end in the plan:
 Loopbacks go on interface lo0 (created if missing) and become the device's
 primary IPv4.
 
-Run it after rename_dc1_dc2.py: the plan uses the dcN-* device names.
+Run it after rename_dc1_dc2.py (the plan uses the dcN-* device names) and
+after add_hosts_dc1_dc2.py (the hosts must exist before they get addresses).
 
 REQUIREMENTS:
   pip install pynetbox pyyaml   (already in your venv)
@@ -78,6 +79,9 @@ def load_plan(path):
     for link in plan["links"]:
         entries.append((link["a"], link["a_if"], link["a_ip"], False))
         entries.append((link["b"], link["b_if"], link["b_ip"], False))
+    for host in plan.get("hosts", []):
+        entries.append((host["leaf"], host["leaf_if"], host["leaf_ip"], False))
+        entries.append((host["name"], host["host_if"], host["host_ip"], False))
 
     # Catch typos before touching NetBox: every address must be valid and unique
     seen = {}

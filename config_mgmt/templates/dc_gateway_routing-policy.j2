@@ -10,6 +10,15 @@
             "mask-length-range": "24..32"
           }
         ]
+      },
+      {
+        "name": "dc-hosts",
+        "prefix": [
+          {
+            "ip-prefix": "172.30.{{dc_id}}.0/24",
+            "mask-length-range": "24..32"
+          }
+        ]
       }
     ],
     "policy": [
@@ -24,6 +33,17 @@
             "match": {
               "prefix": {
                 "prefix-set": "dc-loopbacks"
+              }
+            },
+            "action": {
+              "policy-result": "accept"
+            }
+          },
+          {
+            "name": "dc-hosts",
+            "match": {
+              "prefix": {
+                "prefix-set": "dc-hosts"
               }
             },
             "action": {

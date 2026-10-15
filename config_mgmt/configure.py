@@ -17,6 +17,9 @@ ASN_BASE = {
 }
 # Used for a device with no DC/pod number (e.g. the shared SYD1 superspines).
 LEGACY_ASN = {"superspine": 65000, "dc-gateway": 65535}
+# End hosts are not configured here (configure_hosts_dc1_dc2.py sets their
+# addresses); a leaf only needs to know which of its ports face a host.
+HOST_ROLES = {"server"}
 
 def main():
     parser = argparse.ArgumentParser(prog="Network Configurator")
@@ -78,6 +81,9 @@ def main():
     devices = [d for d in nb.dcim.devices.filter(**device_filter)]
 
     for d in devices:
+        if d.role.slug in HOST_ROLES:
+            log_for_device(d, "end host, not configured here", level=logging.DEBUG)
+            continue
         os_type = get_os_type(d)
         if os_type == "srl":
             supported_templates = ["interface", "network-instance"]
@@ -304,6 +310,7 @@ def get_link_peer_devices(nb, device, interfaces):
 
     for _, interface in interfaces.items():
         interface["is_dci"] = False
+        interface["to_host"] = False
         if interface["link_peers"]:
             peer = [
                 p
@@ -313,6 +320,10 @@ def get_link_peer_devices(nb, device, interfaces):
             ][0]
             peer_dc_id = get_dc_id(peer)
             peer_role = peer.role.slug
+            # A host LAN: advertised into OSPF as a passive interface, no BGP peer
+            if peer_role in HOST_ROLES:
+                interface["to_host"] = True
+                continue
             # The DCI link is the gateway-to-gateway link between two DCs
             interface["is_dci"] = (
                 device.role.slug == "dc-gateway"
