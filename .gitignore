@@ -26,5 +26,8 @@ clab-*/
 config_mgmt/configs/
 *.log
 
-# Windows host disks (dockurr/windows /storage binds, tens of GB each)
-windows/
+# Windows host disks (dockurr/windows /storage binds, tens of GB each). The
+# per-host folders stay tracked: containerlab refuses to deploy if a bind
+# source is missing.
+windows/*/*
+!windows/*/.gitkeep
