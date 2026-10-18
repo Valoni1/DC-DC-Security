@@ -439,8 +439,10 @@ def deploy_jsonrpc_config(configs, device, **kwargs):
             log_for_device(device, f"Diff: \n{r.json()['error']}", level=logging.ERROR)
             return False
         else:
-            log_for_device(device, f"No diff, config aligned.")
-            return True
+            # An empty diff is not proof the device has the config: SR Linux
+            # 26.x has answered "no diff" to routers with no config at all.
+            # The set below is idempotent, so commit anyway.
+            log_for_device(device, f"Diff reported nothing ({r.text[:120]}), committing anyway.")
 
     if kwargs["commit"]:
         r_data["method"] = "set"

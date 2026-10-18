@@ -133,7 +133,7 @@ def check_leaf(h):
 
 
 def route_on(router, prefix):
-    out = srl(router, "show network-instance default route-table ipv4-unicast summary")
+    out = srl(router, "show network-instance default route-table")
     lines = [l for l in out.splitlines() if prefix in l]
     return lines
 
