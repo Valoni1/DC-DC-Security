@@ -32,3 +32,4 @@ config_mgmt/configs/
 windows/*/*
 !windows/*/.gitkeep
 windows/*.iso
+srl_diag.txt
