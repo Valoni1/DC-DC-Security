@@ -33,3 +33,4 @@ windows/*/*
 !windows/*/.gitkeep
 windows/*.iso
 srl_diag.txt
+host_check.txt
