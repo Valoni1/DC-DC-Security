@@ -1,4 +1,4 @@
-import json, logging, os, re, argparse
+import json, logging, os, re, argparse, subprocess
 import pynetbox
 import jinja2, requests
 from pysros.management import connect
@@ -360,6 +360,26 @@ def generate_isis_iso_addr(device):
     return iso_top + "." + iso_a[:4] + "." + iso_a[4:8] + "." + iso_a[8:] + iso_bottom
 
 
+def mgmt_address(container):
+    """The container's current management IP, straight from Docker.
+
+    Looking the name up in /etc/hosts can return a stale address: a failed or
+    interrupted containerlab deploy leaves old entries behind, and the config
+    then goes to whichever container now has that IP (or nowhere). Falls back
+    to the name when Docker can't be asked.
+    """
+    try:
+        r = subprocess.run(
+            ["docker", "inspect", "-f",
+             "{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}", container],
+            capture_output=True, text=True, timeout=10,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return container
+    ips = r.stdout.split() if r.returncode == 0 else []
+    return ips[0] if ips else container
+
+
 def deploy_jsonrpc_config(configs, device, **kwargs):
     """Use the SR Linux JSONRPC interface, deploy configuration"""
 
@@ -383,7 +403,7 @@ def deploy_jsonrpc_config(configs, device, **kwargs):
         },
     }
 
-    r_url = "http://" + kwargs["prefix"] + device.name + "/jsonrpc"
+    r_url = "http://" + mgmt_address(kwargs["prefix"] + device.name) + "/jsonrpc"
     r_auth = requests.auth.HTTPBasicAuth(kwargs["username"], kwargs["password"])
     r_data = JRPC_REQUEST_BASE.copy()
 
