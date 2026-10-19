@@ -142,12 +142,14 @@ docker exec "$R" sr_cli "show system application" 2>/dev/null | grep -iE 'error|
 section "4. WHERE THE ARP REPLY IS LOST"
 ip neigh flush dev "$BR" to "$RIP" 2>/dev/null
 CAP=$(mktemp -d)
-timeout 6 tcpdump -lnei "$VETH" arp > "$CAP/veth" 2>/dev/null &
-docker exec "$R" timeout 6 tcpdump -lnei eth0 arp > "$CAP/eth0" 2>/dev/null &
-docker exec "$R" timeout 6 ip netns exec srbase-mgmt tcpdump -lnei any arp > "$CAP/mgmt" 2>/dev/null &
+# wait on these PIDs only: a bare "wait" also waits for the tee behind the
+# script's own output, which never exits
+timeout 8 tcpdump -lnei "$VETH" arp > "$CAP/veth" 2>/dev/null & P1=$!
+timeout 8 docker exec "$R" timeout 6 tcpdump -lnei eth0 arp > "$CAP/eth0" 2>/dev/null & P2=$!
+timeout 8 docker exec "$R" timeout 6 ip netns exec srbase-mgmt tcpdump -lnei any arp > "$CAP/mgmt" 2>/dev/null & P3=$!
 sleep 1
 ping -c3 -W1 "$RIP" >/dev/null 2>&1
-wait
+wait $P1 $P2 $P3
 for w in veth eth0 mgmt; do
     req=$(grep -c "Request who-has $RIP" "$CAP/$w"); rep=$(grep -c "Reply $RIP is-at" "$CAP/$w")
     printf '%-38s requests %s, replies %s\n' "$(case $w in veth) echo "ser10 side ($VETH)";; eth0) echo "router eth0";; mgmt) echo "router srbase-mgmt";; esac)" "$req" "$rep"
