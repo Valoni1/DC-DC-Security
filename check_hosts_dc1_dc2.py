@@ -60,7 +60,7 @@ def run(container, cmd):
 
 def srl(router, cli):
     """Run an sr_cli command on an SR Linux router."""
-    return run(router, f'/opt/srlinux/bin/sr_cli -d "{cli}"')[1]
+    return run(router, f'/opt/srlinux/bin/sr_cli "{cli}"')[1]
 
 
 def network(prefix_cidr):
@@ -107,10 +107,10 @@ def check_leaf(h):
     say(f"\n--- leaf {leaf} {port} (gateway for {h['name']}) ---")
     oper = srl(leaf, f"info from state interface {port} oper-state")
     say(oper)
-    addr = srl(leaf, f"info flat interface {port} subinterface 0 ipv4")
+    addr = srl(leaf, f"info interface {port} subinterface 0 ipv4")
     say(addr)
-    ni = srl(leaf, "info flat network-instance default interface")
-    in_ni = f"{port}.0" in ni
+    ni = srl(leaf, "info network-instance default")
+    in_ni = f"interface {port}.0" in ni
     say(f"{port}.0 in network-instance default: {in_ni}")
     arp = srl(leaf, f"show arpnd arp-entries interface {port}")
     say(arp)
