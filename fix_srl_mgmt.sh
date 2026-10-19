@@ -92,6 +92,13 @@ for p in $PROFILES; do
 done
 [ -z "$PROFILES" ] && echo "no host profile denied anything since the lab started"
 
+section "1b. MEMORY (sr_xdp_lc OOM-killed = mgmt0 dead while the container stays Up)"
+free -h | head -2
+OOM=$(journalctl -k --utc --since "$STARTED" 2>/dev/null | grep -iE 'oom-kill|Killed process' | grep -ciE 'sr_|srlinux')
+echo "SR Linux processes OOM-killed since the lab started: $OOM"
+journalctl -k --utc --since "$STARTED" 2>/dev/null | grep -iE 'Killed process' | tail -5
+echo "sr_xdp_lc running: $(pgrep -c sr_xdp_lc) (one per router: $(routers | wc -l))"
+
 section "2. SER10 SIDE"
 IFL=$(in_r 'cat /sys/class/net/eth0/iflink')
 VETH=$(ip -o link | awk -F': ' -v i="$IFL" '$1 == i {print $2}' | cut -d@ -f1)
@@ -178,6 +185,7 @@ else
     section "VERDICT"
     [ -n "$CHANGED" ] && echo "AppArmor profiles changed:$CHANGED, routers still do not answer."
     echo "WHERE IT BREAKS: ${LOST:-unknown}"
+    [ "${OOM:-0}" -gt 0 ] && echo "ALSO: $OOM SR Linux processes were OOM-killed; ser10 is out of memory for this lab."
     echo "Paste srl_mgmt_fix.txt back."
 fi
 echo
