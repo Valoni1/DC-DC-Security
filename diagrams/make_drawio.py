@@ -256,9 +256,10 @@ def main():
         "as passive interfaces. Hosts route 172.20/16, 172.30/16 and 10.1/16 via the leaf "
         "(configure_hosts_dc1_dc2.py); their default route stays on management. Windows hosts "
         "are a VM behind NAT in their container, which holds the planned address.</li>"
-        "</ul>Note: config_mgmt/configs/ holds no rendered DC1/DC2 configs yet, "
-        "so this is the intended configuration, not one captured from a running lab.",
-        0, py, 1400, 250, panel + "fillColor=#ffffff;strokeColor=#666666;",
+        "</ul>The single-DCI version was applied with 5_run_config_mgmt.sh and checked on the lab on "
+        "19 October 2026 (all 22 routers configured, dc1-h1 reaches dc2-h1). The backup DCI link "
+        "and BFD shown here are not yet tested. Rendered configs in config_mgmt/configs/ are not committed.",
+        0, py, 1400, 280, panel + "fillColor=#ffffff;strokeColor=#666666;",
     )
     d.box(
         "<b>Out-of-band management and tooling</b><ul>"
@@ -269,10 +270,14 @@ def main():
         "topology viewer.</li>"
         "<li><b>NetBox</b> (docker compose, host port 8000 → 8080) is the source of truth. "
         "nrx exports sites DC1, DC2 to containerlab; configure.py pushes configs over "
-        "JSON-RPC to http://clab-DC1-DC2-&lt;node&gt;/jsonrpc.</li></ul>",
-        1500, py, 1400, 250, panel + "fillColor=#f5f5f5;strokeColor=#999999;dashed=1;",
+        "JSON-RPC to http://clab-DC1-DC2-&lt;node&gt;/jsonrpc.</li>"
+        "<li><b>Lab host ser10</b>: containers run under the Docker snap package (29.8.0). "
+        "The apt docker-ce daemon that held the 6-12 October lab is stopped and masked "
+        "(tools/host/). The Windows hosts are left out of routine deployments because "
+        "of host memory.</li></ul>",
+        1500, py, 1400, 280, panel + "fillColor=#f5f5f5;strokeColor=#999999;dashed=1;",
     )
-    legend_y = py + 280
+    legend_y = py + 310
     d.box(
         "<b>Legend</b>", 0, legend_y, 2900, 110,
         panel + "fillColor=#ffffff;strokeColor=#666666;",
