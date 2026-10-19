@@ -225,7 +225,7 @@ You should see diffs indicating OSPF is being removed. Once again, login to your
 Test success!!
 
 ## DC1/DC2 topology
-The dissertation lab splits the fabric into two independent data centres, DC1 and DC2, joined by a single DCI link between `dc1-dci-r1` and `dc2-dci-r1`. NetBox is prepared with these scripts, in order (each supports `--dry-run`):
+The dissertation lab splits the fabric into two independent data centres, DC1 and DC2, joined by two DCI links between `dc1-dci-r1` and `dc2-dci-r1` (`ethernet-1/3` primary, `ethernet-1/4` backup). NetBox is prepared with these scripts, in order (each supports `--dry-run`):
 
 ```
 > export NETBOX_URL="http://localhost:8000" NETBOX_TOKEN="<token>"
@@ -234,17 +234,29 @@ The dissertation lab splits the fabric into two independent data centres, DC1 an
 > python3 set_role_platforms.py    # per-role platforms for nrx memory sizing
 > python3 rename_dc1_dc2.py        # syd1-pdN-* leaves/spines -> dcN-*
 > python3 add_hosts_dc1_dc2.py     # Linux and Windows end hosts, cabled to their leaves
+> python3 cable_from_plan_dc1_dc2.py  # cables any plan link NetBox lacks (e.g. the second DCI link)
 > python3 assign_ips_dc1_dc2.py    # makes NetBox match ip_plan_dc1_dc2.yaml
 > python3 tag_dc1_dc2.py           # tags every DC1/DC2 device "demo" so nrx and configure.py include it
 > ./4_run_nrx.sh                   # regenerates DC1-DC2.clab.yaml
-> sudo -E clab dep -t DC1-DC2.clab.yaml
-> ./5_run_config_mgmt.sh           # configures every DC1/DC2 router
-> python3 configure_hosts_dc1_dc2.py  # host addresses and routes (docker exec)
+> ./deploy_lab.sh                 # redeploys the lab, configures routers and hosts, checks dc1-h1 -> dc2-h1
 ```
+
+`deploy_lab.sh` leaves the Windows hosts out, because with them the lab does not fit in the lab host's 61 GB; add `--with-windows` to include them. It runs `sudo clab dep`, `./5_run_config_mgmt.sh`, `configure_hosts_dc1_dc2.py` and `check_hosts_dc1_dc2.py` in turn.
 
 All lab addressing (loopbacks, fabric /31s, the DCI link, host /28s) is defined in `ip_plan_dc1_dc2.yaml`; edit it and re-run `assign_ips_dc1_dc2.py` to change an address.
 
 `configure.py` picks templates by device role, including the DC gateways (`dc_gateway_*.j2` on SR Linux, `dc_gateway_complete.j2` on SR OS). BGP AS numbers per DC N are 6500N for leaves and spines, 6510N for superspines and 6520N for DC gateways, so the DCs exchange routes over eBGP on the DCI link while OSPF stays inside each DC. Add `--configs-only true` to `configure.py` to only render the configs into `config_mgmt/configs`.
+
+### DCI failover
+The two DCI links run eBGP side by side. On the primary (`ethernet-1/3`) the import policy `dci-import-primary` sets local preference 200, so both DCs send traffic over it while it is up; the backup (`ethernet-1/4`) takes over when the primary's BGP session drops. BFD runs on both DCI sessions with fast-failover. SR Linux in a container will not run BFD faster than 1 s, so a silent failure is detected in about 3 s (1 s x 3) instead of the 90 s BGP hold timer.
+
+`measure_failover.py` measures it: it sends 100 pings a second from `dc1-h1` to `dc2-h1`, breaks the primary link part-way through, and reports lost packets, the outage, how long BGP took to notice, and how many packets crossed each DCI link. It then repairs the link and appends a row to `results/failover_results.csv`.
+
+```
+> sudo python3 measure_failover.py               # silent failure: link up, carries nothing (tc netem, both ends)
+> sudo python3 measure_failover.py --fail down   # primary port shut on dc1-dci-r1
+> sudo python3 measure_failover.py --fail none   # baseline, no failure
+```
 
 ### End hosts
 Each leaf has a Linux host on `ethernet-1/1` (`dcN-h1` to `dcN-h6`, containerlab kind `linux`, image `netreplica/ubuntu-host`), and `dcN-l1` also has a Windows host on `ethernet-1/2` (`dcN-w1`). Every host sits in its own /28 from `172.30.N.0/24` with the leaf as its gateway (see `hosts:` in `ip_plan_dc1_dc2.yaml`). Leaves advertise the /28s into OSPF as passive interfaces, and the DC gateways export `172.30.N.0/24` over the DCI next to the loopbacks, so hosts in DC1 reach hosts in DC2:

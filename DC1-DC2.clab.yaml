@@ -594,6 +594,7 @@ topology:
         - endpoints: ["dc2-ss1:e1-3", "dc2-dci-r1:e1-1"]
         - endpoints: ["dc2-ss2:e1-3", "dc2-dci-r1:e1-2"]
         - endpoints: ["dc1-dci-r1:e1-3", "dc2-dci-r1:e1-3"]
+        - endpoints: ["dc1-dci-r1:e1-4", "dc2-dci-r1:e1-4"]
         - endpoints: ["dc1-l1:e1-1", "dc1-h1:eth1"]
         - endpoints: ["dc1-l2:e1-1", "dc1-h2:eth1"]
         - endpoints: ["dc1-l3:e1-1", "dc1-h3:eth1"]
