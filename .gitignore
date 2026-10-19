@@ -34,3 +34,4 @@ windows/*/*
 windows/*.iso
 srl_diag.txt
 host_check.txt
+mgmt_fix.txt
