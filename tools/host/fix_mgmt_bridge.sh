@@ -21,7 +21,7 @@
 #   5. retests every router's JSON-RPC
 #
 # USAGE (on the lab host, from the repo folder, with the lab deployed):
-#   sudo bash fix_mgmt_bridge.sh
+#   sudo bash tools/host/fix_mgmt_bridge.sh
 # Output is also saved to mgmt_bridge_fix.txt.
 
 LAB="clab-DC1-DC2-"

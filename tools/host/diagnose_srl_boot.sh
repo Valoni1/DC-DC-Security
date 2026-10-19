@@ -14,8 +14,8 @@
 #   - a verdict naming the cause
 #
 # USAGE (on the lab host, from the repo folder):
-#   sudo bash diagnose_srl_boot.sh          # diagnose only, changes nothing
-#   sudo bash diagnose_srl_boot.sh --fix    # diagnose, fix if the cause is
+#   sudo bash tools/host/diagnose_srl_boot.sh          # diagnose only, changes nothing
+#   sudo bash tools/host/diagnose_srl_boot.sh --fix    # diagnose, fix if the cause is
 #                                           # the AppArmor unix-chkpwd profile,
 #                                           # then re-test
 # Then paste srl_diag.txt (or its VERDICT section) back.

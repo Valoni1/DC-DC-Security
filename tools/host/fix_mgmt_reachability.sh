@@ -16,7 +16,7 @@
 # Everything is saved to mgmt_fix.txt.
 #
 # USAGE (on the lab host, from the repo folder):
-#   sudo bash fix_mgmt_reachability.sh
+#   sudo bash tools/host/fix_mgmt_reachability.sh
 # Then: ./5_run_config_mgmt.sh
 
 LAB="clab-DC1-DC2-"

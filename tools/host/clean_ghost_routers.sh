@@ -15,7 +15,7 @@
 #
 # USAGE (on the lab host, from the repo folder):
 #   sudo clab des -t DC1-DC2.clab.yaml --cleanup
-#   sudo bash clean_ghost_routers.sh
+#   sudo bash tools/host/clean_ghost_routers.sh
 # Output is also saved to ghost_cleanup.txt.
 
 OUT="$(dirname "$(readlink -f "$0")")/ghost_cleanup.txt"

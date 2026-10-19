@@ -22,8 +22,8 @@
 # lab is redeployed (without the Windows hosts) and every router is retested.
 #
 # USAGE (on the lab host, from the repo folder, with the lab deployed):
-#   sudo bash fix_srl_mgmt.sh            # diagnose, fix, redeploy if needed, retest
-#   sudo bash fix_srl_mgmt.sh --no-redeploy
+#   sudo bash tools/host/fix_srl_mgmt.sh            # diagnose, fix, redeploy if needed, retest
+#   sudo bash tools/host/fix_srl_mgmt.sh --no-redeploy
 # Output is also saved to srl_mgmt_fix.txt.
 
 LAB="clab-DC1-DC2-"
@@ -37,7 +37,7 @@ if [ "$(id -u)" -ne 0 ]; then
     echo "Run with sudo: sudo bash $0 $*"
     exit 1
 fi
-cd "$HERE" || exit 1
+cd "$HERE/../.." || exit 1  # repo root, where the topology file is
 exec > >(tee "$OUT") 2>&1
 
 section() { printf '\n===== %s =====\n' "$1"; }

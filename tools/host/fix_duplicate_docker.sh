@@ -25,7 +25,7 @@
 #       sudo systemctl enable --now docker.service
 #
 # USAGE (on the lab host, from the repo folder; the lab can stay up):
-#   sudo bash fix_duplicate_docker.sh
+#   sudo bash tools/host/fix_duplicate_docker.sh
 # Output is also saved to duplicate_docker_fix.txt.
 
 LAB="clab-DC1-DC2-"
