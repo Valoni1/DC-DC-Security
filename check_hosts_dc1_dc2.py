@@ -73,7 +73,7 @@ def dc_of(name):
 
 
 def leaf_loopback(leaf):
-    out = srl(leaf, "info from state interface lo0 subinterface 0 ipv4 address")
+    out = srl(leaf, "info interface lo0 subinterface 0 ipv4")
     m = re.search(r"(172\.20\.\d+\.\d+)/32", out)
     return m.group(1) if m else None
 
@@ -133,9 +133,18 @@ def check_leaf(h):
 
 
 def route_on(router, prefix):
-    out = srl(router, "show network-instance default route-table")
-    lines = [l for l in out.splitlines() if prefix in l]
-    return lines
+    """Route-table lines for prefix, or None if the table could not be read."""
+    for cli in (
+        "show network-instance default route-table",
+        "show network-instance default route-table ipv4-unicast summary",
+        "info from state network-instance default route-table ipv4-unicast",
+    ):
+        out = srl(router, cli)
+        if "route-table" in out.lower() or "prefix" in out.lower() or "/" in out:
+            if "error" not in out.lower()[:200]:
+                return [l for l in out.splitlines() if prefix in l]
+    say(f"      could not read {router}'s route table: {out.splitlines()[0] if out else 'no output'}")
+    return None
 
 
 def main():
@@ -187,6 +196,9 @@ def main():
     missing_routes = []
     for router, prefix in route_table:
         lines = route_on(router, prefix)
+        if lines is None:
+            say(f"  {router:12} {prefix:16} unknown")
+            continue
         say(f"  {router:12} {prefix:16} {'present' if lines else 'MISSING'}")
         for l in lines:
             say("      " + l.strip())
