@@ -4,6 +4,9 @@ platforms:
   ubuntu:
     kinds:
       clab: linux
+  windows:
+    kinds:
+      clab: windows
   sr-linux:
     kinds:
       clab: srl
@@ -29,7 +32,7 @@ kinds:
     linux:
       nodes:
         template: clab/nodes/default.j2
-        image: netreplica/ubuntu-host:latest
+        image: netreplica/ubuntu-host:1.4
         cmd: /start.sh -sS
         exec:
           - bash -c "echo root:root | chpasswd"
@@ -80,3 +83,11 @@ kinds:
         memory: 2Gb
       interface_names:
         template: clab/interface_names/srl.j2
+    # Windows end hosts: a Windows VM in QEMU inside a container (dockur/windows),
+    # in NAT mode, so traffic to the container's eth1 address reaches the VM.
+    windows:
+      nodes:
+        template: clab/nodes/windows.j2
+        image: dockurr/windows:6.05
+      interface_names:
+        template: clab/interface_names/default.j2

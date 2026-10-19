@@ -1,4 +1,4 @@
-import json, logging, os, re, argparse
+import json, logging, os, re, argparse, subprocess
 import pynetbox
 import jinja2, requests
 from pysros.management import connect
@@ -17,6 +17,9 @@ ASN_BASE = {
 }
 # Used for a device with no DC/pod number (e.g. the shared SYD1 superspines).
 LEGACY_ASN = {"superspine": 65000, "dc-gateway": 65535}
+# End hosts are not configured here (configure_hosts_dc1_dc2.py sets their
+# addresses); a leaf only needs to know which of its ports face a host.
+HOST_ROLES = {"server"}
 
 def main():
     parser = argparse.ArgumentParser(prog="Network Configurator")
@@ -78,6 +81,9 @@ def main():
     devices = [d for d in nb.dcim.devices.filter(**device_filter)]
 
     for d in devices:
+        if d.role.slug in HOST_ROLES:
+            log_for_device(d, "end host, not configured here", level=logging.DEBUG)
+            continue
         os_type = get_os_type(d)
         if os_type == "srl":
             supported_templates = ["interface", "network-instance"]
@@ -304,6 +310,7 @@ def get_link_peer_devices(nb, device, interfaces):
 
     for _, interface in interfaces.items():
         interface["is_dci"] = False
+        interface["to_host"] = False
         if interface["link_peers"]:
             peer = [
                 p
@@ -313,6 +320,10 @@ def get_link_peer_devices(nb, device, interfaces):
             ][0]
             peer_dc_id = get_dc_id(peer)
             peer_role = peer.role.slug
+            # A host LAN: advertised into OSPF as a passive interface, no BGP peer
+            if peer_role in HOST_ROLES:
+                interface["to_host"] = True
+                continue
             # The DCI link is the gateway-to-gateway link between two DCs
             interface["is_dci"] = (
                 device.role.slug == "dc-gateway"
@@ -349,6 +360,26 @@ def generate_isis_iso_addr(device):
     return iso_top + "." + iso_a[:4] + "." + iso_a[4:8] + "." + iso_a[8:] + iso_bottom
 
 
+def mgmt_address(container):
+    """The container's current management IP, straight from Docker.
+
+    Looking the name up in /etc/hosts can return a stale address: a failed or
+    interrupted containerlab deploy leaves old entries behind, and the config
+    then goes to whichever container now has that IP (or nowhere). Falls back
+    to the name when Docker can't be asked.
+    """
+    try:
+        r = subprocess.run(
+            ["docker", "inspect", "-f",
+             "{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}", container],
+            capture_output=True, text=True, timeout=10,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return container
+    ips = r.stdout.split() if r.returncode == 0 else []
+    return ips[0] if ips else container
+
+
 def deploy_jsonrpc_config(configs, device, **kwargs):
     """Use the SR Linux JSONRPC interface, deploy configuration"""
 
@@ -372,7 +403,7 @@ def deploy_jsonrpc_config(configs, device, **kwargs):
         },
     }
 
-    r_url = "http://" + kwargs["prefix"] + device.name + "/jsonrpc"
+    r_url = "http://" + mgmt_address(kwargs["prefix"] + device.name) + "/jsonrpc"
     r_auth = requests.auth.HTTPBasicAuth(kwargs["username"], kwargs["password"])
     r_data = JRPC_REQUEST_BASE.copy()
 
@@ -408,8 +439,10 @@ def deploy_jsonrpc_config(configs, device, **kwargs):
             log_for_device(device, f"Diff: \n{r.json()['error']}", level=logging.ERROR)
             return False
         else:
-            log_for_device(device, f"No diff, config aligned.")
-            return True
+            # An empty diff is not proof the device has the config: SR Linux
+            # 26.x has answered "no diff" to routers with no config at all.
+            # The set below is idempotent, so commit anyway.
+            log_for_device(device, f"Diff reported nothing ({r.text[:120]}), committing anyway.")
 
     if kwargs["commit"]:
         r_data["method"] = "set"

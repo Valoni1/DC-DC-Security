@@ -2,7 +2,7 @@
 
 Sources:
   DC1-DC2.clab.yaml        nodes, roles, memory, cabling (containerlab names e1-N)
-  ip_plan_dc1_dc2.yaml     loopbacks and link /31s (NetBox names ethernet-1/N)
+  ip_plan_dc1_dc2.yaml     loopbacks, link /31s and host /28s (NetBox names ethernet-1/N)
   config_mgmt/configure.py ASN_BASE (AS per role and DC)
 
 The script checks that the containerlab cabling and the IP plan describe the
@@ -31,6 +31,8 @@ STYLE = {
     "superspine": "fillColor=#f8cecc;strokeColor=#b85450;",
     "spine": "fillColor=#ffe6cc;strokeColor=#d79b00;",
     "leaf": "fillColor=#d5e8d4;strokeColor=#82b366;",
+    "linux": "fillColor=#dae8fc;strokeColor=#6c8ebf;",
+    "windows": "fillColor=#fff2cc;strokeColor=#d6b656;",
 }
 
 
@@ -47,20 +49,24 @@ def load():
 
 
 def nb_if(clab_if):
-    """e1-27 -> ethernet-1/27"""
+    """e1-27 -> ethernet-1/27; host interfaces (eth1) keep their name"""
     m = re.fullmatch(r"e(\d+)-(\d+)", clab_if)
-    return f"ethernet-{m.group(1)}/{m.group(2)}"
+    return f"ethernet-{m.group(1)}/{m.group(2)}" if m else clab_if
 
 
 def check(clab, plan):
     nodes = {n: v for n, v in clab["topology"]["nodes"].items() if v["kind"] == "srl"}
+    hosts = plan.get("hosts", [])
     clab_links = set()
     for link in clab["topology"]["links"]:
         (a, ai), (b, bi) = (e.split(":") for e in link["endpoints"])
         clab_links.add(frozenset([(a, nb_if(ai)), (b, nb_if(bi))]))
     plan_links = {frozenset([(l["a"], l["a_if"]), (l["b"], l["b_if"])]) for l in plan["links"]}
+    plan_links |= {frozenset([(h["leaf"], h["leaf_if"]), (h["name"], h["host_if"])]) for h in hosts}
     assert clab_links == plan_links, clab_links ^ plan_links
     assert set(nodes) == set(plan["loopbacks"]), set(nodes) ^ set(plan["loopbacks"])
+    host_nodes = set(clab["topology"]["nodes"]) - set(nodes) - {"graphite"}
+    assert host_nodes == {h["name"] for h in hosts}, host_nodes ^ {h["name"] for h in hosts}
     return nodes
 
 
@@ -136,13 +142,15 @@ def main():
         "spine": (440, [W / 2 - 330, W / 2 + 330]),
         "leaf": (640, [W / 2 + (i - 2.5) * 225 for i in range(6)]),
     }
-    TABLE_Y, TABLE_H = 760, 440
+    HOST_Y, HW, HH = 760, 110, 50
+    TABLE_Y, TABLE_H = 860, 560
     BOX_H = TABLE_Y + TABLE_H + 20
 
     for dc in (1, 2):  # both site boxes first so they sit behind everything else
         d.box(
             f"<b>DC{dc}</b> &nbsp;(NetBox site DC{dc}, containerlab group DC{dc})<br>"
             f"loopbacks 172.20.{dc}.0/24 &nbsp;·&nbsp; fabric links /31s from 10.1.{dc}.0/24 "
+            f"&nbsp;·&nbsp; host LANs /28s from 172.30.{dc}.0/24 "
             f"&nbsp;·&nbsp; OSPFv2 area 0.0.0.0 inside the DC",
             dc_x[dc], 0, W, BOX_H,
             "rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#666666;"
@@ -167,12 +175,32 @@ def main():
                 )
         for l in plan_links:
             d.edge(l["a"], l["b"], "endArrow=none;html=1;strokeColor=#555555;strokeWidth=1.5;")
+        # End hosts in a row under their leaves, side by side when a leaf has several
+        dc_hosts = [h for h in plan.get("hosts", []) if dc_of(h["name"]) == dc]
+        leaf_x = dict(zip(sorted(n for n in nodes if dc_of(n) == dc
+                                 and nodes[n]["labels"]["role"] == "Leaf"), tiers["leaf"][1]))
+        for leaf, cx in leaf_x.items():
+            on_leaf = [h for h in dc_hosts if h["leaf"] == leaf]
+            for i, h in enumerate(on_leaf):
+                hx = cx + (i - (len(on_leaf) - 1) / 2) * (HW + 10)
+                d.box(
+                    f"<b>{h['name']}</b> ({h['os'].capitalize()})<br>{h['host_ip']}",
+                    dc_x[dc] + hx - HW / 2, HOST_Y, HW, HH,
+                    "rounded=1;whiteSpace=wrap;html=1;fontSize=10;" + STYLE[h["os"]],
+                    cid=h["name"],
+                )
+                d.edge(h["name"], leaf, "endArrow=none;html=1;strokeColor=#6c8ebf;strokeWidth=1;")
         rows = [
             [i + 1, l["a"], l["a_if"], l["a_ip"], l["b"], l["b_if"], l["b_ip"]]
             for i, l in enumerate(plan_links)
+        ] + [
+            [len(plan_links) + i + 1, h["leaf"], h["leaf_if"], h["leaf_ip"],
+             h["name"], h["host_if"], h["host_ip"]]
+            for i, h in enumerate(dc_hosts)
         ]
         d.box(
-            f"<b>DC{dc} fabric links ({len(rows)})</b> &nbsp;— from ip_plan_dc1_dc2.yaml; "
+            f"<b>DC{dc} links ({len(rows)}: {len(plan_links)} fabric, {len(dc_hosts)} host)</b> "
+            "&nbsp;— from ip_plan_dc1_dc2.yaml; "
             "containerlab name e1-N = ethernet-1/N<br>"
             + table(rows, ["#", "A end", "interface", "IPv4", "B end", "interface", "IPv4"]),
             dc_x[dc] + 20, TABLE_Y, W - 40, TABLE_H,
@@ -213,11 +241,16 @@ def main():
         "<li><b>eBGP</b> spine (6500N) ↔ superspine (6510N) and superspine (6510N) ↔ "
         "DC gateway (6520N), on the link /31s.</li>"
         "<li><b>eBGP over DCI</b> dc1-dci-r1 (65201) ↔ dc2-dci-r1 (65202). "
-        "Export policy dci-export sends only the local 172.20.N.0/24 loopbacks (mask 24..32); "
+        "Export policy dci-export sends only the local 172.20.N.0/24 loopbacks and 172.30.N.0/24 "
+        "host LANs (mask 24..32); "
         "dci-import accepts all; bgp-to-ospf redistributes them into the DC's OSPF (gateway is ASBR).</li>"
+        "<li><b>Host LANs</b>: each leaf is the gateway of its hosts' /28s, advertised into OSPF "
+        "as passive interfaces. Hosts route 172.20/16, 172.30/16 and 10.1/16 via the leaf "
+        "(configure_hosts_dc1_dc2.py); their default route stays on management. Windows hosts "
+        "are a VM behind NAT in their container, which holds the planned address.</li>"
         "</ul>Note: config_mgmt/configs/ holds no rendered DC1/DC2 configs yet, "
         "so this is the intended configuration, not one captured from a running lab.",
-        0, py, 1400, 190, panel + "fillColor=#ffffff;strokeColor=#666666;",
+        0, py, 1400, 250, panel + "fillColor=#ffffff;strokeColor=#666666;",
     )
     d.box(
         "<b>Out-of-band management and tooling</b><ul>"
@@ -229,9 +262,9 @@ def main():
         "<li><b>NetBox</b> (docker compose, host port 8000 → 8080) is the source of truth. "
         "nrx exports sites DC1, DC2 to containerlab; configure.py pushes configs over "
         "JSON-RPC to http://clab-DC1-DC2-&lt;node&gt;/jsonrpc.</li></ul>",
-        1500, py, 1400, 190, panel + "fillColor=#f5f5f5;strokeColor=#999999;dashed=1;",
+        1500, py, 1400, 250, panel + "fillColor=#f5f5f5;strokeColor=#999999;dashed=1;",
     )
-    legend_y = py + 220
+    legend_y = py + 280
     d.box(
         "<b>Legend</b>", 0, legend_y, 2900, 110,
         panel + "fillColor=#ffffff;strokeColor=#666666;",
@@ -240,22 +273,26 @@ def main():
     for role, label in [("dc-gateway", "DC Gateway (AS 6520N)"),
                         ("superspine", "Superspine (AS 6510N)"),
                         ("spine", "Spine (AS 6500N)"),
-                        ("leaf", "Leaf (AS 6500N)")]:
-        d.box(label, lx, legend_y + 40, 190, 40,
+                        ("leaf", "Leaf (AS 6500N)"),
+                        ("linux", "Linux host"),
+                        ("windows", "Windows host")]:
+        d.box(label, lx, legend_y + 40, 170, 40,
               "rounded=1;whiteSpace=wrap;html=1;fontSize=11;" + STYLE[role])
-        lx += 210
+        lx += 185
     d.box(
         f"All {len(nodes)} routers: Nokia SR Linux (kind {ex['kind']}, type {ex['type'].strip()}, "
         f"image {ex['image']}), 7220 IXR-D3L. Memory: {mem_txt}.<br>"
         f"Grey line = intra-DC fabric link ({len(plan['links']) - 1}); "
-        f"thick blue = DCI link (1). Total {len(plan['links'])} links. N = DC number.",
+        f"thick blue = DCI link (1); thin blue = host link ({len(plan.get('hosts', []))}). "
+        f"N = DC number. Hosts: Linux netreplica/ubuntu-host, Windows Server 2022 in dockurr/windows.",
         lx + 20, legend_y + 30, 2900 - lx - 40, 60,
         "text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontSize=12;",
     )
 
     with open(OUT, "w") as f:
         f.write(d.xml())
-    print(f"wrote {OUT}: {len(nodes)} nodes, {len(plan['links'])} links")
+    n_hosts = len(plan.get("hosts", []))
+    print(f"wrote {OUT}: {len(nodes)} routers, {n_hosts} hosts, {len(plan['links']) + n_hosts} links")
 
 
 if __name__ == "__main__":

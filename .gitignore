@@ -25,3 +25,17 @@ clab-*/
 # Rendered by config_mgmt/configure.py on every run
 config_mgmt/configs/
 *.log
+
+# Windows host disks (dockurr/windows /storage binds, tens of GB each). The
+# per-host folders stay tracked: containerlab refuses to deploy if a bind
+# source is missing.
+windows/*/*
+!windows/*/.gitkeep
+windows/*.iso
+srl_diag.txt
+host_check.txt
+mgmt_fix.txt
+ghost_cleanup.txt
+srl_mgmt_fix.txt
+mgmt_bridge_fix.txt
+duplicate_docker_fix.txt

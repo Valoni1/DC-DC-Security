@@ -95,7 +95,11 @@
                 {%- for interface_name, interface in interfaces.items() %}
                 {
                   "interface-name": "{{interface_name}}.0",
+                  {%- if interface.to_host %}
+                  "passive": true
+                  {%- else %}
                   "circuit-type": "point-to-point"
+                  {%- endif %}
                 },
                 {%- endfor %}
                 {
@@ -127,7 +131,11 @@
                     {%- for interface_name, interface in interfaces.items() %}
                     {
                       "interface-name": "{{interface_name}}.0",
+                      {%- if interface.to_host %}
+                      "passive": true
+                      {%- else %}
                       "interface-type": "point-to-point"
+                      {%- endif %}
                     },
                     {%- endfor %}
                     {
