@@ -38,3 +38,4 @@ mgmt_fix.txt
 ghost_cleanup.txt
 srl_mgmt_fix.txt
 mgmt_bridge_fix.txt
+duplicate_docker_fix.txt
