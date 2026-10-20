@@ -124,7 +124,7 @@ def main():
                   f"CHANGE MASTER TO MASTER_HOST='{PRIMARY_IP}', MASTER_PORT=3306, "
                   f"MASTER_USER='{REPL_USER}', MASTER_PASSWORD='{REPL_PW}', "
                   f"MASTER_LOG_FILE='{log_file}', MASTER_LOG_POS={log_pos}, MASTER_USE_GTID=no, "
-                  "MASTER_CONNECT_RETRY=5;"
+                  "MASTER_CONNECT_RETRY=5, MASTER_SSL=1, MASTER_SSL_VERIFY_SERVER_CERT=0;"
                   "START SLAVE;")
     if rc != 0:
         fail(out)
@@ -156,7 +156,8 @@ def main():
     io = re.search(r"Slave_IO_Running: (\w+)", status)
     sq = re.search(r"Slave_SQL_Running: (\w+)", status)
     lag = re.search(r"Seconds_Behind_Master: (\w+)", status)
-    err = re.search(r"Last_(?:IO_)?Error: (.+)", status)
+    errs = [f"{k}: {m.group(1).strip()}" for k in ("Last_IO_Error", "Last_SQL_Error")
+            for m in [re.search(k + r": (.*)", status)] if m and m.group(1).strip()]
     counts = {}
     for h in (PRIMARY, STANDBY):
         rc, out = sql(h, "SELECT COUNT(*) FROM dvwa.users; SELECT COUNT(*) FROM information_schema.tables "
@@ -173,8 +174,18 @@ def main():
         print("DVWA is up in DC1 and its database is replicated to DC2 over the DCI.")
     else:
         print("DVWA replication is NOT working.")
-        if err and err.group(1).strip():
-            print(f"  {err.group(1).strip()}")
+        for e in errs:
+            print(f"  {e}")
+        # Can DC2 reach DC1's database over the fabric at all?
+        r = subprocess.run(
+            ["docker", "exec", PREFIX + STANDBY, "bash", "-c",
+             f"timeout 3 bash -c '</dev/tcp/{PRIMARY_IP}/3306' && echo open || echo closed; "
+             f"ip route get {PRIMARY_IP}"],
+            capture_output=True, text=True)
+        print(f"  {STANDBY} -> {PRIMARY_IP}:3306: {(r.stdout + r.stderr).strip()}")
+        if not io or io.group(1) != "Yes" or not sq or sq.group(1) != "Yes":
+            print("  Full replica status:")
+            print("\n".join("    " + l.strip() for l in status.splitlines() if l.strip()))
         sys.exit(1)
 
 
