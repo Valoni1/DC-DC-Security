@@ -42,11 +42,12 @@ ROOT_PW = "dvwa-root"
 REPL_USER, REPL_PW = "repl", "repl-dvwa"
 
 
-def sql(host, query):
-    """Run SQL as root in a host's database container; return (rc, output)."""
+def sql(host, query, names=False):
+    """Run SQL as root in a host's database container; return (rc, output).
+    Column names are left out unless names=True (SHOW ... \\G needs them)."""
     r = subprocess.run(
         ["docker", "exec", PREFIX + host + "-db", "mariadb", "-uroot", f"-p{ROOT_PW}",
-         "-N", "-B", "-e", query],
+         *([] if names else ["-N"]), "-B", "-e", query],
         capture_output=True, text=True,
     )
     return r.returncode, (r.stdout + r.stderr).strip()
@@ -148,7 +149,7 @@ def main():
 
     print("4. checking (waits up to 2 minutes for the DC2 database to connect over the DCI)")
     for _ in range(40):
-        rc, status = sql(STANDBY, "SHOW SLAVE STATUS\\G")
+        rc, status = sql(STANDBY, "SHOW SLAVE STATUS\\G", names=True)
         if "Slave_IO_Running: Yes" in status and "Slave_SQL_Running: Yes" in status:
             time.sleep(2)  # let it apply what DC1 has written
             break
