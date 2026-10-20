@@ -11,6 +11,8 @@
 #   Host LANs in DC N               /28s from 172.30.N.0/24, one per host
 #     Linux host on leaf lL: 172.30.N.(16*(L-1))/28   Windows host: 172.30.N.96/28
 #     the leaf is the first address, the host the second
+#   dcN-h6 (os: dvwa) is a Linux host that also runs DVWA and its MariaDB
+#     database on the same address (templates/clab/nodes/dvwa.j2)
 #
 # Interface names are NetBox names (ethernet-1/N), not containerlab ones (e1-N).
 
@@ -79,8 +81,10 @@ links:
   - {a: dc2-sp2, a_if: ethernet-1/8, a_ip: 10.1.2.30/31, b: dc2-ss2, b_if: ethernet-1/2, b_ip: 10.1.2.31/31}
   - {a: dc2-ss1, a_if: ethernet-1/3, a_ip: 10.1.2.32/31, b: dc2-dci-r1, b_if: ethernet-1/1, b_ip: 10.1.2.33/31}
   - {a: dc2-ss2, a_if: ethernet-1/3, a_ip: 10.1.2.34/31, b: dc2-dci-r1, b_if: ethernet-1/2, b_ip: 10.1.2.35/31}
-  # DCI
+  # DCI: two links between the gateways. ethernet-1/3 is the primary (higher
+  # BGP local preference), ethernet-1/4 the backup; BFD runs on both.
   - {a: dc1-dci-r1, a_if: ethernet-1/3, a_ip: 10.1.0.0/31, b: dc2-dci-r1, b_if: ethernet-1/3, b_ip: 10.1.0.1/31}
+  - {a: dc1-dci-r1, a_if: ethernet-1/4, a_ip: 10.1.0.2/31, b: dc2-dci-r1, b_if: ethernet-1/4, b_ip: 10.1.0.3/31}
 
 # End hosts. A Linux host on every leaf's ethernet-1/1 (uplinks use
 # 1/27-1/28) and one Windows host per DC on dcN-l1's ethernet-1/2, each in its
@@ -93,7 +97,7 @@ hosts:
   - {name: dc1-h3, os: linux, leaf: dc1-l3, leaf_if: ethernet-1/1, leaf_ip: 172.30.1.33/28, host_if: eth1, host_ip: 172.30.1.34/28}
   - {name: dc1-h4, os: linux, leaf: dc1-l4, leaf_if: ethernet-1/1, leaf_ip: 172.30.1.49/28, host_if: eth1, host_ip: 172.30.1.50/28}
   - {name: dc1-h5, os: linux, leaf: dc1-l5, leaf_if: ethernet-1/1, leaf_ip: 172.30.1.65/28, host_if: eth1, host_ip: 172.30.1.66/28}
-  - {name: dc1-h6, os: linux, leaf: dc1-l6, leaf_if: ethernet-1/1, leaf_ip: 172.30.1.81/28, host_if: eth1, host_ip: 172.30.1.82/28}
+  - {name: dc1-h6, os: dvwa, leaf: dc1-l6, leaf_if: ethernet-1/1, leaf_ip: 172.30.1.81/28, host_if: eth1, host_ip: 172.30.1.82/28}
   - {name: dc1-w1, os: windows, leaf: dc1-l1, leaf_if: ethernet-1/2, leaf_ip: 172.30.1.97/28, host_if: eth1, host_ip: 172.30.1.98/28}
   # DC2
   - {name: dc2-h1, os: linux, leaf: dc2-l1, leaf_if: ethernet-1/1, leaf_ip: 172.30.2.1/28, host_if: eth1, host_ip: 172.30.2.2/28}
@@ -101,5 +105,5 @@ hosts:
   - {name: dc2-h3, os: linux, leaf: dc2-l3, leaf_if: ethernet-1/1, leaf_ip: 172.30.2.33/28, host_if: eth1, host_ip: 172.30.2.34/28}
   - {name: dc2-h4, os: linux, leaf: dc2-l4, leaf_if: ethernet-1/1, leaf_ip: 172.30.2.49/28, host_if: eth1, host_ip: 172.30.2.50/28}
   - {name: dc2-h5, os: linux, leaf: dc2-l5, leaf_if: ethernet-1/1, leaf_ip: 172.30.2.65/28, host_if: eth1, host_ip: 172.30.2.66/28}
-  - {name: dc2-h6, os: linux, leaf: dc2-l6, leaf_if: ethernet-1/1, leaf_ip: 172.30.2.81/28, host_if: eth1, host_ip: 172.30.2.82/28}
+  - {name: dc2-h6, os: dvwa, leaf: dc2-l6, leaf_if: ethernet-1/1, leaf_ip: 172.30.2.81/28, host_if: eth1, host_ip: 172.30.2.82/28}
   - {name: dc2-w1, os: windows, leaf: dc2-l1, leaf_if: ethernet-1/2, leaf_ip: 172.30.2.97/28, host_if: eth1, host_ip: 172.30.2.98/28}
