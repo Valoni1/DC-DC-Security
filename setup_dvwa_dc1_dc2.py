@@ -123,7 +123,8 @@ def main():
                   "STOP SLAVE; RESET SLAVE ALL;"
                   f"CHANGE MASTER TO MASTER_HOST='{PRIMARY_IP}', MASTER_PORT=3306, "
                   f"MASTER_USER='{REPL_USER}', MASTER_PASSWORD='{REPL_PW}', "
-                  f"MASTER_LOG_FILE='{log_file}', MASTER_LOG_POS={log_pos}, MASTER_USE_GTID=no;"
+                  f"MASTER_LOG_FILE='{log_file}', MASTER_LOG_POS={log_pos}, MASTER_USE_GTID=no, "
+                  "MASTER_CONNECT_RETRY=5;"
                   "START SLAVE;")
     if rc != 0:
         fail(out)
@@ -145,9 +146,13 @@ def main():
     if "successfully" not in page.lower() and "setup successful" not in page.lower():
         print("   DVWA did not report success; check http://%s/setup.php" % ip)
 
-    print("4. checking")
-    time.sleep(3)
-    rc, status = sql(STANDBY, "SHOW SLAVE STATUS\\G")
+    print("4. checking (waits up to 2 minutes for the DC2 database to connect over the DCI)")
+    for _ in range(40):
+        rc, status = sql(STANDBY, "SHOW SLAVE STATUS\\G")
+        if "Slave_IO_Running: Yes" in status and "Slave_SQL_Running: Yes" in status:
+            time.sleep(2)  # let it apply what DC1 has written
+            break
+        time.sleep(3)
     io = re.search(r"Slave_IO_Running: (\w+)", status)
     sq = re.search(r"Slave_SQL_Running: (\w+)", status)
     lag = re.search(r"Seconds_Behind_Master: (\w+)", status)
