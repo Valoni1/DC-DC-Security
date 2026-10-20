@@ -140,16 +140,17 @@ def main():
             note(f"  {r:12} NOT RUNNING")
             problems.append(f"{r} is not running")
             continue
-        # Table rows read "| ... | full | ..."; the header's "Rx/Active/Tx" must not count
-        ospf_full = len(re.findall(r"\|\s*full\s*\|", res[ROUTER_CMDS[2]]))
+        # SR Linux tables separate columns with spaces, not "|"; the state is the
+        # lower-case word "full" (the header says "State", so it never matches)
+        ospf_full = len(re.findall(r"\sfull\s", res[ROUTER_CMDS[2]]))
         bgp_text = res[ROUTER_CMDS[3]]
         m = re.search(r"(\d+) configured neighbors, (\d+) configured sessions are established", bgp_text)
         if m:
             bgp_total, bgp_est = int(m.group(1)), int(m.group(2))
         else:
-            bgp_est = len(re.findall(r"\|\s*established\s*\|", bgp_text))
+            bgp_est = len(re.findall(r"\sestablished\s", bgp_text))
             bgp_total = bgp_est + len(re.findall(
-                r"\|\s*(idle|active|connect|opensent|openconfirm)\s*\|", bgp_text))
+                r"\s(idle|active|connect|opensent|openconfirm)\s", bgp_text))
         bgp_other = bgp_total - bgp_est
         flag = ""
         if ospf_full != expected_ospf[r]:
