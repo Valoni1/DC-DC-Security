@@ -159,7 +159,12 @@ def main():
         if bgp_other:
             flag += "  <-- BGP"
             problems.append(f"{r}: {bgp_other} BGP session(s) not established")
-        note(f"  {r:12} OSPF {ospf_full}/{expected_ospf[r]}   BGP {bgp_est}/{bgp_total}{flag}")
+        dci_txt = ""
+        if "dci" in r:
+            # The DCI peer's row carries "ipv4-unicast [Rx/Active/Tx]"
+            m = re.search(r"\|\s*dci\s*\|.*?ipv4-unicast \[(\d+/\d+/\d+)\]", bgp_text, re.S)
+            dci_txt = f"   DCI ipv4 Rx/Active/Tx {m.group(1)}" if m else "   DCI prefixes: not found"
+        note(f"  {r:12} OSPF {ospf_full}/{expected_ospf[r]}   BGP {bgp_est}/{bgp_total}{dci_txt}{flag}")
 
     note("\nPINGS")
     ping_log = []
