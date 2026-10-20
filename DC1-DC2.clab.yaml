@@ -410,9 +410,38 @@ topology:
                 graph-level: 10
                 role: Server
                 group: DC1
-                platform: Ubuntu
+                platform: DVWA
                 vendor: Generic
-                model: Linux Host
+                model: DVWA Host
+
+        dc1-h6-db:
+            kind: linux
+            image: mariadb:11.4.13
+            network-mode: container:dc1-h6
+            env:
+                MARIADB_ROOT_PASSWORD: dvwa-root
+                MARIADB_DATABASE: dvwa
+                MARIADB_USER: dvwa
+                MARIADB_PASSWORD: p@ssw0rd
+            cmd: --server-id=1 --log-bin=mysql-bin --binlog-format=ROW --bind-address=0.0.0.0
+            memory: 512Mb
+            labels:
+                graph-hide: yes
+                group: DC1
+
+        dc1-h6-web:
+            kind: linux
+            image: ghcr.io/digininja/dvwa@sha256:8029450682bd70e2e8cd1ffe8e46dd1885ff2a913296091cebfa8ba0a7d36498
+            network-mode: container:dc1-h6
+            env:
+                DB_SERVER: 127.0.0.1
+                DB_DATABASE: dvwa
+                DB_USER: dvwa
+                DB_PASSWORD: p@ssw0rd
+            memory: 512Mb
+            labels:
+                graph-hide: yes
+                group: DC1
 
         dc1-w1:
             kind: linux
@@ -526,9 +555,38 @@ topology:
                 graph-level: 10
                 role: Server
                 group: DC2
-                platform: Ubuntu
+                platform: DVWA
                 vendor: Generic
-                model: Linux Host
+                model: DVWA Host
+
+        dc2-h6-db:
+            kind: linux
+            image: mariadb:11.4.13
+            network-mode: container:dc2-h6
+            env:
+                MARIADB_ROOT_PASSWORD: dvwa-root
+                MARIADB_DATABASE: dvwa
+                MARIADB_USER: dvwa
+                MARIADB_PASSWORD: p@ssw0rd
+            cmd: --server-id=2 --relay-log=relay-bin --read-only=ON --bind-address=0.0.0.0
+            memory: 512Mb
+            labels:
+                graph-hide: yes
+                group: DC2
+
+        dc2-h6-web:
+            kind: linux
+            image: ghcr.io/digininja/dvwa@sha256:8029450682bd70e2e8cd1ffe8e46dd1885ff2a913296091cebfa8ba0a7d36498
+            network-mode: container:dc2-h6
+            env:
+                DB_SERVER: 127.0.0.1
+                DB_DATABASE: dvwa
+                DB_USER: dvwa
+                DB_PASSWORD: p@ssw0rd
+            memory: 512Mb
+            labels:
+                graph-hide: yes
+                group: DC2
 
         dc2-w1:
             kind: linux

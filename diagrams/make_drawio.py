@@ -33,6 +33,7 @@ STYLE = {
     "leaf": "fillColor=#d5e8d4;strokeColor=#82b366;",
     "linux": "fillColor=#dae8fc;strokeColor=#6c8ebf;",
     "windows": "fillColor=#fff2cc;strokeColor=#d6b656;",
+    "dvwa": "fillColor=#f8cecc;strokeColor=#b85450;",
 }
 
 
@@ -65,7 +66,10 @@ def check(clab, plan):
     plan_links |= {frozenset([(h["leaf"], h["leaf_if"]), (h["name"], h["host_if"])]) for h in hosts}
     assert clab_links == plan_links, clab_links ^ plan_links
     assert set(nodes) == set(plan["loopbacks"]), set(nodes) ^ set(plan["loopbacks"])
-    host_nodes = set(clab["topology"]["nodes"]) - set(nodes) - {"graphite"}
+    # Containers sharing a host's network namespace (DVWA's -db and -web) are part of that host
+    host_nodes = {n for n, v in clab["topology"]["nodes"].items()
+                  if n not in nodes and n != "graphite"
+                  and not str(v.get("network-mode", "")).startswith("container:")}
     assert host_nodes == {h["name"] for h in hosts}, host_nodes ^ {h["name"] for h in hosts}
     return nodes
 
@@ -184,7 +188,7 @@ def main():
             for i, h in enumerate(on_leaf):
                 hx = cx + (i - (len(on_leaf) - 1) / 2) * (HW + 10)
                 d.box(
-                    f"<b>{h['name']}</b> ({h['os'].capitalize()})<br>{h['host_ip']}",
+                    f"<b>{h['name']}</b> ({'DVWA' if h['os'] == 'dvwa' else h['os'].capitalize()})<br>{h['host_ip']}",
                     dc_x[dc] + hx - HW / 2, HOST_Y, HW, HH,
                     "rounded=1;whiteSpace=wrap;html=1;fontSize=10;" + STYLE[h["os"]],
                     cid=h["name"],
@@ -288,7 +292,8 @@ def main():
                         ("spine", "Spine (AS 6500N)"),
                         ("leaf", "Leaf (AS 6500N)"),
                         ("linux", "Linux host"),
-                        ("windows", "Windows host")]:
+                        ("windows", "Windows host"),
+                        ("dvwa", "DVWA host")]:
         d.box(label, lx, legend_y + 40, 170, 40,
               "rounded=1;whiteSpace=wrap;html=1;fontSize=11;" + STYLE[role])
         lx += 185
@@ -297,7 +302,8 @@ def main():
         f"image {ex['image']}), 7220 IXR-D3L. Memory: {mem_txt}.<br>"
         f"Grey line = intra-DC fabric link ({len(plan['links']) - 1}); "
         f"thick blue = DCI link (1); thin blue = host link ({len(plan.get('hosts', []))}). "
-        f"N = DC number. Hosts: Linux netreplica/ubuntu-host, Windows Server 2022 in dockurr/windows.",
+        f"N = DC number. Hosts: Linux netreplica/ubuntu-host, Windows Server 2022 in dockurr/windows; "
+        f"dcN-h6 also runs DVWA with MariaDB, replicated DC1 to DC2 over the DCI.",
         lx + 20, legend_y + 30, 2900 - lx - 40, 60,
         "text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontSize=12;",
     )

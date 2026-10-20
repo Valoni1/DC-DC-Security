@@ -8,6 +8,7 @@
 #   3. pushes the router configs (./5_run_config_mgmt.sh)
 #   4. sets the host addresses and routes (configure_hosts_dc1_dc2.py)
 #   5. checks that dc1-h1 reaches dc2-h1 (check_hosts_dc1_dc2.py)
+#   6. sets up DVWA on dc1-h6/dc2-h6, replicated DC1 -> DC2 (setup_dvwa_dc1_dc2.py)
 #
 # Steps 3-5 need NetBox: export NETBOX_TOKEN (and NETBOX_URL if it is not
 # http://localhost:8000) first. Run it as your normal user; it uses sudo for
@@ -46,3 +47,6 @@ python3 configure_hosts_dc1_dc2.py   # the Windows hosts fail when they are not 
 
 echo "===== 5. check ====="
 python3 check_hosts_dc1_dc2.py | sed -n '/===== VERDICT =====/,$p'
+
+echo "===== 6. DVWA ====="
+python3 setup_dvwa_dc1_dc2.py | sed -n '/===== VERDICT =====/,$p'

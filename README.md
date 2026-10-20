@@ -267,3 +267,15 @@ Each leaf has a Linux host on `ethernet-1/1` (`dcN-h1` to `dcN-h6`, containerlab
 
 The Windows hosts run Windows Server 2022 (evaluation) as a QEMU VM inside a `dockurr/windows` container. They need `/dev/kvm` on the lab host and about 5 GB of RAM each. Both VMs install from one ISO on the lab host, so download the Windows Server 2022 evaluation ISO (free for 180 days) once from the [Microsoft Evaluation Center](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022) and save it as `windows/win2022.iso` before deploying; containerlab refuses to deploy without it. The first deploy installs Windows, which takes a while; follow it with `docker logs -f clab-DC1-DC2-dc1-w1` or in a browser at `http://<container mgmt IP>:8006`. The disk is kept under `windows/<host>/` next to the topology file (ignored by git), so later deploys boot straight into the installed system. Default login: `Docker` / `admin`. The VM sits behind NAT in its container: traffic to the container's `172.30.N.98` address is forwarded to Windows, and Windows' own traffic leaves from that address. Windows' firewall blocks inbound ping until you allow it (for example `netsh advfirewall firewall add rule name=ICMPv4 protocol=icmpv4:8,any dir=in action=allow`).
 
+### DVWA hosts
+`dc1-h6` and `dc2-h6` (`os: dvwa` in the plan, platform `dvwa` in NetBox) are the same Linux hosts as the others, plus two containers in each one's network namespace: `dcN-h6-db` (MariaDB 11.4) and `dcN-h6-web` ([DVWA](https://github.com/digininja/DVWA), pinned by digest). DVWA therefore answers on the host's own address (`172.30.N.82`, port 80) and reaches its database on `127.0.0.1`; addresses, cabling and routing are unchanged. DC1 is the live site; the DC2 database is a read-only replica of DC1's over the DCI. `templates/clab/nodes/dvwa.j2` generates the three nodes from NetBox.
+
+```
+python3 add_hosts_dc1_dc2.py                 # switches dc1-h6/dc2-h6 to the dvwa platform in NetBox
+./4_run_nrx.sh                               # or use the committed DC1-DC2.clab.yaml
+./deploy_lab.sh                              # deploys, configures, then runs setup_dvwa_dc1_dc2.py
+python3 setup_dvwa_dc1_dc2.py --promote      # fail DVWA over to DC2 (DC2 database becomes writable)
+```
+
+DVWA is deliberately vulnerable. No port is published on the lab host; reach it from another machine through SSH (`ssh -L 8080:<dc1-h6 mgmt IP>:80 <lab host>`, then `http://localhost:8080`, login `admin` / `password`).
+

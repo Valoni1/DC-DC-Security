@@ -96,7 +96,7 @@ def main():
         plan = yaml.safe_load(f)
 
     routers = sorted(plan["loopbacks"])
-    hosts = [h for h in plan.get("hosts", []) if h["os"] == "linux"]
+    hosts = [h for h in plan.get("hosts", []) if h["os"] != "windows"]  # Linux and DVWA hosts
 
     # Expected OSPF adjacencies: every link inside one DC (the DCI is not in OSPF)
     expected_ospf = {r: 0 for r in routers}

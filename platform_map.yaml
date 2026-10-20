@@ -7,6 +7,9 @@ platforms:
   windows:
     kinds:
       clab: windows
+  dvwa:
+    kinds:
+      clab: dvwa
   sr-linux:
     kinds:
       clab: srl
@@ -89,5 +92,13 @@ kinds:
       nodes:
         template: clab/nodes/windows.j2
         image: dockurr/windows:6.05
+      interface_names:
+        template: clab/interface_names/default.j2
+    # DVWA hosts (dcN-h6): the Linux host plus a MariaDB and a DVWA container in
+    # its network namespace; see templates/clab/nodes/dvwa.j2
+    dvwa:
+      nodes:
+        template: clab/nodes/dvwa.j2
+        image: netreplica/ubuntu-host:1.4
       interface_names:
         template: clab/interface_names/default.j2
