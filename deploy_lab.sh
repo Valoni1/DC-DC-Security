@@ -45,6 +45,19 @@ echo "===== 4. hosts ====="
 source ./venv/bin/activate
 python3 configure_hosts_dc1_dc2.py   # the Windows hosts fail when they are not deployed
 
+echo "===== 4b. waiting for routes between the DCs ====="
+# BGP over the DCI and the redistribution into OSPF take a while after the
+# configs are pushed; checking straight away reports missing routes.
+for i in $(seq 1 36); do
+    if docker exec clab-DC1-DC2-dc1-l1 /opt/srlinux/bin/sr_cli \
+        "show network-instance default route-table ipv4-unicast prefix 172.30.2.0/28" 2>/dev/null \
+        | grep -q "172.30.2.0/28"; then
+        echo "dc1-l1 has a route to DC2's hosts after $((i * 5)) s"
+        break
+    fi
+    sleep 5
+done
+
 echo "===== 5. check ====="
 python3 check_hosts_dc1_dc2.py | sed -n '/===== VERDICT =====/,$p'
 
