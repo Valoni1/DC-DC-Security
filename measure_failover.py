@@ -99,25 +99,29 @@ def bgp_state(router, peer):
     return state(router, f"/network-instance[name=default]/protocols/bgp/neighbor[peer-address={peer}]/session-state")
 
 
-def srl_cli(router, command):
-    """Run a show command on a router's CLI and return its text output."""
-    r = subprocess.run(
-        ["docker", "exec", PREFIX + router, "/opt/srlinux/bin/sr_cli", command],
-        capture_output=True, text=True)
-    return (r.stdout + r.stderr).strip()
+def bfd_peer(router, peer):
+    """The router's BFD session state for peer (a dict), or None if it has none.
+    Read over JSON-RPC: the SR Linux CLI has no top-level "show bfd" command."""
+    def sessions(node):  # every dict carrying a remote-address, however it is nested
+        if isinstance(node, dict):
+            if "remote-address" in node:
+                yield node
+            for v in node.values():
+                yield from sessions(v)
+        elif isinstance(node, list):
+            for v in node:
+                yield from sessions(v)
+    return next((p for p in sessions(state(router, "/bfd/network-instance[name=default]/peer"))
+                 if p["remote-address"] == peer), None)
 
 
 def bfd_up(router, peer):
-    """True while the BFD session to peer reads UP. Reads the CLI peer table,
-    which lists one row per session with its remote address and state."""
-    for line in srl_cli(router, "show bfd network-instance default peer").splitlines():
-        if peer in line:
-            low = line.lower()
-            if "down" in low:
-                return False
-            if re.search(r"\bup\b", low):
-                return True
-    return None  # no BFD session for this peer (BFD not running)
+    """True while the BFD session to peer is UP, False once it leaves UP,
+    None if there is no session at all (BFD not running)."""
+    p = bfd_peer(router, peer)
+    if p is None:
+        return None
+    return p.get("session-state") == "UP"
 
 
 def pid_of(node):
@@ -167,9 +171,11 @@ def run_once(args, dst_ip, primary_peer):
           f"{args.duration}s at {1 / args.interval:.0f} pkt/s, failure at {args.at}s ===")
     before = {i: out_packets(GATEWAYS[0], i) for i in (PRIMARY_IF, BACKUP_IF)}
     print(f"BGP to {primary_peer} (primary): {bgp_state(GATEWAYS[0], primary_peer)}")
-    bfd0 = bfd_up(GATEWAYS[0], primary_peer)
-    print(f"BFD to {primary_peer} (primary): "
-          f"{'up' if bfd0 else 'down' if bfd0 is False else 'no session (BFD not running)'}")
+    p0 = bfd_peer(GATEWAYS[0], primary_peer)
+    print(f"BFD to {primary_peer} (primary): " + (
+        f"{p0.get('session-state')}, transmit interval {p0.get('active-transmit-interval')} us, "
+        f"remote minimum receive {p0.get('remote-minimum-receive-interval')} us" if p0
+        else "no session (BFD not running)"))
 
     ping = subprocess.Popen(
         ["docker", "exec", PREFIX + args.src, "ping", "-D", "-n", "-i", str(args.interval),
@@ -199,11 +205,17 @@ def run_once(args, dst_ip, primary_peer):
             time.sleep(0.1)
         # One snapshot of the BFD peer table for the record
         snap = os.path.join(os.path.dirname(RESULTS),
-                            f"bfd_{args.fail}_{datetime.datetime.now():%Y%m%d_%H%M%S}.txt")
+                            f"bfd_{args.fail}_{datetime.datetime.now():%Y%m%d_%H%M%S}.json")
         os.makedirs(os.path.dirname(snap), exist_ok=True)
+        # The router's own timestamps (last-failure-time, last-state-transition)
+        # are more exact than this script's polling
         with open(snap, "w") as f:
-            f.write(srl_cli(GATEWAYS[0], "show bfd network-instance default peer"))
-        print(f"BFD peer table saved to {os.path.relpath(snap, HERE)}")
+            json.dump({"bfd_sessions": state(GATEWAYS[0], "/bfd/network-instance[name=default]/peer"),
+                       "bgp_neighbor": state(GATEWAYS[0], "/network-instance[name=default]/protocols/bgp/"
+                                                          f"neighbor[peer-address={primary_peer}]"),
+                       "link_broken_at": datetime.datetime.fromtimestamp(t_fail).astimezone().isoformat()},
+                      f, indent=2, default=str)
+        print(f"BFD and BGP state saved to {os.path.relpath(snap, HERE)}")
     else:
         mid = before
 
