@@ -20,6 +20,9 @@
 
 TOPO="DC1-DC2.clab.yaml"
 cd "$(dirname "$(readlink -f "$0")")" || exit 1
+mkdir -p results
+LOG="results/deploy_$(date +%Y%m%d_%H%M%S).txt"
+exec > >(tee "$LOG") 2>&1   # everything below is also saved, to push instead of paste
 
 if [ -z "$NETBOX_TOKEN" ]; then
     echo "NETBOX_TOKEN is not set; export it first (steps 3-5 need NetBox)." >&2
@@ -63,3 +66,6 @@ python3 check_hosts_dc1_dc2.py | sed -n '/===== VERDICT =====/,$p'
 
 echo "===== 6. DVWA ====="
 python3 setup_dvwa_dc1_dc2.py | sed -n '/===== VERDICT =====/,$p'
+
+echo
+echo "Log saved to $LOG. Push it: git add results && git commit -m 'deploy log' && git push"
