@@ -12,7 +12,11 @@ dc1-dci-r1 and dc2-dci-r1) part-way through, and reports:
     replies)
   - how long BGP took to drop the session on the primary link (detection)
   - how many packets crossed each DCI link, before and during the test
-It then repairs the link, and appends a row to results/failover_results.csv.
+It then repairs the link, and appends a row to results/failover_results.csv and
+to results/failover_results_v2.csv. The v2 file adds the BFD detection time
+from the router's own log, the BFD diagnostic, and whether the run is valid:
+a silent failure must end in "Control Detection Time Expired", a port shutdown
+in "Path Down".
 
 Failure modes (--fail):
   silent  the link stays up but carries nothing (100% loss in both directions
@@ -35,6 +39,7 @@ import argparse
 import base64
 import csv
 import datetime
+import fcntl
 import io
 import json
 import os
@@ -124,6 +129,41 @@ def bfd_up(router, peer):
     return p.get("session-state") == "UP"
 
 
+def router_bfd_event(router, t_fail):
+    """The first BFD down event the router logged after the failure, from its
+    own log (microsecond timestamps): (seconds after the failure, diagnostic)."""
+    out = sh(["docker", "exec", PREFIX + router, "sh", "-c",
+              "find /var/log/srlinux -type f -mmin -3 2>/dev/null | xargs grep -h bfdDownEvent 2>/dev/null"])
+    events = []
+    for line in out.splitlines():
+        m = re.match(r"(\S+) .*Session from \S+ to (\S+) has transitioned to the Down state "
+                     r"with local-diagnostic code: ([^(]+)", line)
+        if not m:
+            continue
+        try:
+            t = datetime.datetime.fromisoformat(m.group(1)).timestamp()
+        except ValueError:
+            continue
+        if t >= t_fail - 1:
+            events.append((t - t_fail, m.group(3).strip(), m.group(2)))
+    return min(events) if events else None
+
+
+def link_snapshot(router):
+    """State of the primary DCI port as SR Linux and the kernel see it."""
+    st = state(router, f"/interface[name={PRIMARY_IF}]")
+    keep = {}
+    if isinstance(st, dict):
+        keep = {k: st.get(k) for k in ("admin-state", "oper-state", "oper-down-reason", "last-change")}
+        sub = next((x for x in st.get("subinterface", []) if x.get("index") == 0), {})
+        keep["subinterface-oper-state"] = sub.get("oper-state")
+        keep["subinterface-last-change"] = sub.get("last-change")
+        keep["arp"] = sub.get("ipv4", {}).get("arp", {}).get("neighbor")
+    dev = kernel_if(PRIMARY_IF)
+    keep["kernel"] = sh(f"nsenter -t {pid_of(router)} -n sh -c 'ip -d -s link show {dev}; tc qdisc show dev {dev}'")
+    return keep
+
+
 def pid_of(node):
     return sh(["docker", "inspect", "-f", "{{.State.Pid}}", PREFIX + node])
 
@@ -189,17 +229,29 @@ def run_once(args, dst_ip, primary_peer):
     if args.fail != "none":
         time.sleep(args.at)
         mid = {i: out_packets(GATEWAYS[0], i) for i in (PRIMARY_IF, BACKUP_IF)}
+        links_before = {gw: link_snapshot(gw) for gw in GATEWAYS}
         t_fail = time.time()
         break_link(args.fail)
+        links_after = {}  # taken 0.3 s after the break, beside the polling below so it is not delayed
+
+        def snap_after():
+            time.sleep(0.3)
+            links_after.update({gw: link_snapshot(gw) for gw in GATEWAYS})
+        snapper = threading.Thread(target=snap_after, daemon=True)
+        snapper.start()
         print(f"link broken ({args.fail}) at {datetime.datetime.fromtimestamp(t_fail):%H:%M:%S.%f}"[:-3])
         # Watch BFD and BGP separately. SR Linux deletes the BFD session as soon
         # as BGP (its only client) lets go of it, so "gone" counts as down too.
         last_bfd = None  # the primary's BFD session as last seen UP
+        bfd_trace = []   # (seconds after the failure, BFD packets received, sent) while it stayed UP
         while ping.poll() is None and time.time() - t_fail < args.duration:
             if t_bfd is None:
                 p = bfd_peer(GATEWAYS[0], primary_peer)
                 if p is not None and p.get("session-state") == "UP":
                     last_bfd = p
+                    a = p.get("async", {})
+                    bfd_trace.append((round(time.time() - t_fail, 3), a.get("received-packets"),
+                                      a.get("transmitted-packets")))
                 else:
                     t_bfd = time.time()
                     print(f"BFD to {primary_peer} went down after {t_bfd - t_fail:.2f}s (seen by polling)")
@@ -226,6 +278,31 @@ def run_once(args, dst_ip, primary_peer):
                       f"(router clock), cause {nb.get('last-establish-exit-event')}")
             except (TypeError, KeyError, ValueError):
                 print(f"{gw}: no router timestamp for BGP to {peer}")
+        snapper.join(timeout=10)
+        record["primary_bfd_packet_trace"] = bfd_trace
+        rx = [(t, int(r)) for t, r, _ in bfd_trace if r is not None]
+        if rx and rx[-1][1] > rx[0][1]:
+            t_last = next(t for t, r in rx if r == rx[-1][1])  # first poll that saw the final count
+            print(f"primary BFD still received {rx[-1][1] - rx[0][1]} packet(s) after the failure, "
+                  f"the last by {t_last:.2f}s")
+        record["primary_link_before"], record["primary_link_after_0.3s"] = links_before, links_after
+        ev = router_bfd_event(GATEWAYS[0], t_fail)
+        exit_event = (record[GATEWAYS[0]]["bgp_neighbor"] or {}).get("last-establish-exit-event") \
+            if isinstance(record[GATEWAYS[0]]["bgp_neighbor"], dict) else None
+        router_detect, bfd_diag = (ev[0], ev[1]) if ev else (None, None)
+        expected = {"silent": "Control Detection Time Expired", "down": "Path Down"}[args.fail]
+        valid = bfd_diag == expected
+        record["router_detect_s"], record["bfd_diag"], record["valid"] = router_detect, bfd_diag, valid
+        if ev:
+            print(f"{GATEWAYS[0]} log: BFD went down {router_detect:.3f}s after the failure, "
+                  f"diagnostic '{bfd_diag}'; BGP exit event {exit_event}")
+        print(f"RUN VALID: BFD diagnostic is '{bfd_diag}' as a {args.fail} failure should give" if valid else
+              f"RUN NOT VALID as a {args.fail} failure: expected BFD diagnostic '{expected}', got '{bfd_diag}'")
+        for gw in GATEWAYS:
+            b, a = links_before[gw], links_after.get(gw, {})
+            print(f"{gw} {PRIMARY_IF}: oper-state {b.get('oper-state')} -> {a.get('oper-state')}, "
+                  f"subinterface {b.get('subinterface-oper-state')} -> {a.get('subinterface-oper-state')}"
+                  + (f", down reason {a.get('oper-down-reason')}" if a.get("oper-down-reason") else ""))
         if last_bfd:
             rx = last_bfd.get("async", {}).get("last-packet-received")
             print(f"primary BFD last packet received (router clock): {rx}")
@@ -274,6 +351,24 @@ def run_once(args, dst_ip, primary_peer):
         print(f"link repaired; BGP on the primary " +
               (f"re-established after {back:.0f}s" if back is not None else "NOT back after 180s"))
 
+    if args.fail != "none":
+        # Second results file with the router-measured detection and a validity
+        # flag (failover_results.csv keeps its original columns)
+        v2 = RESULTS.replace(".csv", "_v2.csv")
+        first = not os.path.exists(v2)
+        with open(v2, "a", newline="") as f:
+            w = csv.writer(f)
+            if first:
+                w.writerow(["time", "fail", "src", "dst", "sent", "received", "lost", "outage_s",
+                            "poll_bgp_detect_s", "router_bfd_detect_s", "bfd_diag", "bgp_exit_event",
+                            "valid", "primary_pkts_after", "backup_pkts_after", "recovery_s"])
+            w.writerow([datetime.datetime.now().isoformat(timespec="seconds"), args.fail, args.src, args.dst,
+                        sent, received, sent - received, f"{outage:.3f}" if outage is not None else "",
+                        f"{t_detect - t_fail:.2f}" if t_detect else "",
+                        f"{router_detect:.3f}" if router_detect is not None else "", bfd_diag or "",
+                        exit_event or "", valid, delta(mid, after, PRIMARY_IF), delta(mid, after, BACKUP_IF),
+                        f"{back:.0f}" if back is not None else ""])
+
     os.makedirs(os.path.dirname(RESULTS), exist_ok=True)
     new = not os.path.exists(RESULTS)
     with open(RESULTS, "a", newline="") as f:
@@ -298,6 +393,15 @@ def main():
     p.add_argument("--interval", type=float, default=0.01, help="seconds between pings (default 0.01)")
     p.add_argument("--repeat", type=int, default=1, help="run the test this many times")
     args = p.parse_args()
+
+    # Two runs at once break the same link twice and spoil both: the 26 October
+    # batch lost 23 silent runs that way (the port shutdown of a parallel
+    # "down" run turned them into Path Down failures)
+    lock = open("/tmp/measure_failover.lock", "w")
+    try:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        sys.exit("Another measure_failover.py is running. Run the batches one after the other.")
 
     if args.fail == "silent" and os.geteuid() != 0:
         sys.exit("The silent failure needs root: sudo python3 measure_failover.py")
