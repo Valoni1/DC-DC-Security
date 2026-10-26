@@ -57,7 +57,13 @@
               "admin-state": "enable",
               {#- Advertise this DC's loopbacks to the other DC, accept what it sends #}
               "export-policy": ["dci-export"],
-              "import-policy": ["dci-import"]
+              "import-policy": ["dci-import"],
+              {#- BFD takes a DCI session down within seconds of a silent failure
+                  instead of the 90 s hold timer; fast-failover on interface down #}
+              "failure-detection": {
+                "enable-bfd": true,
+                "fast-failover": true
+              }
             }
           ],
           "neighbor": [
@@ -67,6 +73,10 @@
               "peer-address": "{{peer.remote_ip.split('/')[0]}}",
               "peer-group": "{{ "dci" if peer.is_dci else "superspine" }}",
               "peer-as": {{peer.asn}},
+              {%- if peer.is_dci and peer.dci_primary %}
+              {#- The primary DCI link wins on local preference; backups take over when it fails #}
+              "import-policy": ["dci-import-primary"],
+              {%- endif %}
               "admin-state": "enable"
             }{{ ", " if not loop.last else "" }}
             {%- endfor %}

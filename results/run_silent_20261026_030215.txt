@@ -1,0 +1,15 @@
+
+=== silent failure: dc1-h1 -> dc2-h1 (172.30.2.2), 40s at 100 pkt/s, failure at 10s ===
+BGP to 10.1.0.1 (primary): established
+BFD to 10.1.0.1 (primary): UP, transmit interval 1000000 us, remote minimum receive 1000000 us
+link broken (silent) at 03:01:32.045
+BGP to 10.1.0.1 dropped after 7.07s
+BFD and BGP state saved to results/bfd_silent_20261026_030139.json
+
+sent 3481, received 2872, lost 609 (17.5%)
+outage (longest gap between replies): 7.033s
+BFD did not go down (BFD not running, or the failure did not block it)
+BGP detection time: 7.07s
+dc1-dci-r1 ethernet-1/3 packets out: before failure 879, after 633
+dc1-dci-r1 ethernet-1/4 packets out: before failure 7, after 2012
+link repaired; BGP on the primary re-established after 14s

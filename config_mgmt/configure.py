@@ -87,10 +87,11 @@ def main():
         os_type = get_os_type(d)
         if os_type == "srl":
             supported_templates = ["interface", "network-instance"]
-            # Roles that need routing policies (the DC gateways) ship a template for them
-            policy_templ = f"{d.role.slug.replace('-', '_')}_routing-policy.j2"
-            if os.path.exists(os.path.join(args.template_path, policy_templ)):
-                supported_templates.insert(1, "routing-policy")
+            # Roles that need routing policies or BFD (the DC gateways) ship a template for them
+            for extra in ("routing-policy", "bfd"):
+                extra_templ = f"{d.role.slug.replace('-', '_')}_{extra}.j2"
+                if os.path.exists(os.path.join(args.template_path, extra_templ)):
+                    supported_templates.insert(-1, extra)
         elif os_type == "sros":
             supported_templates = ["complete"]
         else:
@@ -308,7 +309,7 @@ def get_link_peer_devices(nb, device, interfaces):
     peers = {}
     dc_id = get_dc_id(device)
 
-    for _, interface in interfaces.items():
+    for if_name, interface in interfaces.items():
         interface["is_dci"] = False
         interface["to_host"] = False
         if interface["link_peers"]:
@@ -337,7 +338,10 @@ def get_link_peer_devices(nb, device, interfaces):
                     device=interface["link_peers"][0]["device"]["name"],
                 )
             ]
-            peers[peer["name"]] = {
+            # Two links to the same device (the two DCI links) need a peer each
+            key = peer["name"] if peer["name"] not in peers else f'{peer["name"]} {if_name}'
+            peers[key] = {
+                "local_if": if_name,
                 "role": peer_role,
                 "dc_id": peer_dc_id,
                 "asn": get_asn(peer_role, peer_dc_id),
@@ -346,7 +350,17 @@ def get_link_peer_devices(nb, device, interfaces):
                     peer["primary_ip4"]["address"] if peer["primary_ip4"] else None
                 ),
                 "remote_ip": ips[0].address if ips else None,
+                "dci_primary": False,
             }
+
+    # With more than one DCI link, the lowest-numbered port is the primary and
+    # the others are backups (see dci-import-primary in the routing policy)
+    dci = sorted(
+        (p for p in peers.values() if p["is_dci"]),
+        key=lambda p: [int(n) for n in re.findall(r"\d+", p["local_if"])],
+    )
+    if dci:
+        dci[0]["dci_primary"] = True
 
     return peers
 
@@ -422,7 +436,7 @@ def deploy_jsonrpc_config(configs, device, **kwargs):
     r_data["method"] = "diff"
     r_data["params"]["commands"] = r_commands
 
-    r = requests.post(r_url, auth=r_auth, json=r_data)
+    r = requests.post(r_url, auth=r_auth, json=r_data, timeout=(10, 120))
 
     if r.status_code != 200:
         log_for_device(
@@ -446,7 +460,7 @@ def deploy_jsonrpc_config(configs, device, **kwargs):
 
     if kwargs["commit"]:
         r_data["method"] = "set"
-        r = requests.post(r_url, auth=r_auth, json=r_data)
+        r = requests.post(r_url, auth=r_auth, json=r_data, timeout=(10, 120))
 
         if r.status_code != 200:
             log_for_device(

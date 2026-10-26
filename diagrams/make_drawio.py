@@ -33,6 +33,7 @@ STYLE = {
     "leaf": "fillColor=#d5e8d4;strokeColor=#82b366;",
     "linux": "fillColor=#dae8fc;strokeColor=#6c8ebf;",
     "windows": "fillColor=#fff2cc;strokeColor=#d6b656;",
+    "dvwa": "fillColor=#f8cecc;strokeColor=#b85450;",
 }
 
 
@@ -65,7 +66,10 @@ def check(clab, plan):
     plan_links |= {frozenset([(h["leaf"], h["leaf_if"]), (h["name"], h["host_if"])]) for h in hosts}
     assert clab_links == plan_links, clab_links ^ plan_links
     assert set(nodes) == set(plan["loopbacks"]), set(nodes) ^ set(plan["loopbacks"])
-    host_nodes = set(clab["topology"]["nodes"]) - set(nodes) - {"graphite"}
+    # Containers sharing a host's network namespace (DVWA's -db and -web) are part of that host
+    host_nodes = {n for n, v in clab["topology"]["nodes"].items()
+                  if n not in nodes and n != "graphite"
+                  and not str(v.get("network-mode", "")).startswith("container:")}
     assert host_nodes == {h["name"] for h in hosts}, host_nodes ^ {h["name"] for h in hosts}
     return nodes
 
@@ -184,7 +188,7 @@ def main():
             for i, h in enumerate(on_leaf):
                 hx = cx + (i - (len(on_leaf) - 1) / 2) * (HW + 10)
                 d.box(
-                    f"<b>{h['name']}</b> ({h['os'].capitalize()})<br>{h['host_ip']}",
+                    f"<b>{h['name']}</b> ({'DVWA' if h['os'] == 'dvwa' else h['os'].capitalize()})<br>{h['host_ip']}",
                     dc_x[dc] + hx - HW / 2, HOST_Y, HW, HH,
                     "rounded=1;whiteSpace=wrap;html=1;fontSize=10;" + STYLE[h["os"]],
                     cid=h["name"],
@@ -207,20 +211,25 @@ def main():
             "text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;overflow=fill;fontSize=12;",
         )
 
-    # DCI: the only link between the two sites
-    dci = [l for l in plan["links"] if dc_of(l["a"]) != dc_of(l["b"])]
-    assert len(dci) == 1, dci
-    l = dci[0]
-    d.edge(
-        l["a"], l["b"],
-        "endArrow=none;html=1;strokeColor=#1f5fbf;strokeWidth=4;fontSize=12;fontStyle=1;",
-        value=f"DCI link · eBGP AS {asn(l['a'])} ↔ AS {asn(l['b'])}",
-        labels=[
-            (f"{l['a']} {l['a_if']}<br>{l['a_ip']}", -0.75, 22),
-            (f"{l['b']} {l['b_if']}<br>{l['b_ip']}", 0.75, 22),
-            ("no OSPF on this link", 0, 22),
-        ],
-    )
+    # DCI: the links between the two sites. The first (lowest port) is the
+    # primary; the others are backups (dci-import-primary sets local-pref 200)
+    dci = sorted((l for l in plan["links"] if dc_of(l["a"]) != dc_of(l["b"])), key=lambda l: l["a_if"])
+    assert dci, "no DCI link in the plan"
+    for n, l in enumerate(dci):
+        role = "primary" if n == 0 else "backup"
+        # spread parallel links vertically so they don't overlap
+        y = 0.5 + (n - (len(dci) - 1) / 2) * 0.3
+        d.edge(
+            l["a"], l["b"],
+            f"endArrow=none;html=1;strokeColor=#1f5fbf;strokeWidth={4 if n == 0 else 2};"
+            f"{'dashed=1;' if n else ''}fontSize=12;fontStyle=1;"
+            f"exitX=1;exitY={y};entryX=0;entryY={y};",
+            value=f"DCI {role} · eBGP AS {asn(l['a'])} ↔ AS {asn(l['b'])} · BFD",
+            labels=[
+                (f"{l['a']} {l['a_if']}<br>{l['a_ip']}", -0.75, 22),
+                (f"{l['b']} {l['b_if']}<br>{l['b_ip']}", 0.75, 22),
+            ] + ([("no OSPF on the DCI links", 0, 22)] if n == len(dci) - 1 else []),
+        )
 
     # Routing, management and legend panels under the two DCs
     py = BOX_H + 40
@@ -243,14 +252,18 @@ def main():
         "<li><b>eBGP over DCI</b> dc1-dci-r1 (65201) ↔ dc2-dci-r1 (65202). "
         "Export policy dci-export sends only the local 172.20.N.0/24 loopbacks and 172.30.N.0/24 "
         "host LANs (mask 24..32); "
-        "dci-import accepts all; bgp-to-ospf redistributes them into the DC's OSPF (gateway is ASBR).</li>"
+        "dci-import accepts all; on the primary DCI link (ethernet-1/3) dci-import-primary also sets "
+        "local-preference 200, so the backup link (ethernet-1/4) carries traffic only when the primary "
+        "fails. BFD (1 s x 3, the vSRL minimum) with fast-failover on both DCI sessions. "
+        "bgp-to-ospf redistributes them into the DC's OSPF (gateway is ASBR).</li>"
         "<li><b>Host LANs</b>: each leaf is the gateway of its hosts' /28s, advertised into OSPF "
         "as passive interfaces. Hosts route 172.20/16, 172.30/16 and 10.1/16 via the leaf "
         "(configure_hosts_dc1_dc2.py); their default route stays on management. Windows hosts "
         "are a VM behind NAT in their container, which holds the planned address.</li>"
-        "</ul>Note: config_mgmt/configs/ holds no rendered DC1/DC2 configs yet, "
-        "so this is the intended configuration, not one captured from a running lab.",
-        0, py, 1400, 250, panel + "fillColor=#ffffff;strokeColor=#666666;",
+        "</ul>The single-DCI version was applied with 5_run_config_mgmt.sh and checked on the lab on "
+        "19 October 2026 (all 22 routers configured, dc1-h1 reaches dc2-h1). The backup DCI link "
+        "and BFD shown here are not yet tested. Rendered configs in config_mgmt/configs/ are not committed.",
+        0, py, 1400, 280, panel + "fillColor=#ffffff;strokeColor=#666666;",
     )
     d.box(
         "<b>Out-of-band management and tooling</b><ul>"
@@ -261,10 +274,14 @@ def main():
         "topology viewer.</li>"
         "<li><b>NetBox</b> (docker compose, host port 8000 → 8080) is the source of truth. "
         "nrx exports sites DC1, DC2 to containerlab; configure.py pushes configs over "
-        "JSON-RPC to http://clab-DC1-DC2-&lt;node&gt;/jsonrpc.</li></ul>",
-        1500, py, 1400, 250, panel + "fillColor=#f5f5f5;strokeColor=#999999;dashed=1;",
+        "JSON-RPC to http://clab-DC1-DC2-&lt;node&gt;/jsonrpc.</li>"
+        "<li><b>Lab host ser10</b>: containers run under the Docker snap package (29.8.0). "
+        "The apt docker-ce daemon that held the 6-12 October lab is stopped and masked "
+        "(tools/host/). The Windows hosts are left out of routine deployments because "
+        "of host memory.</li></ul>",
+        1500, py, 1400, 280, panel + "fillColor=#f5f5f5;strokeColor=#999999;dashed=1;",
     )
-    legend_y = py + 280
+    legend_y = py + 310
     d.box(
         "<b>Legend</b>", 0, legend_y, 2900, 110,
         panel + "fillColor=#ffffff;strokeColor=#666666;",
@@ -275,7 +292,8 @@ def main():
                         ("spine", "Spine (AS 6500N)"),
                         ("leaf", "Leaf (AS 6500N)"),
                         ("linux", "Linux host"),
-                        ("windows", "Windows host")]:
+                        ("windows", "Windows host"),
+                        ("dvwa", "DVWA host")]:
         d.box(label, lx, legend_y + 40, 170, 40,
               "rounded=1;whiteSpace=wrap;html=1;fontSize=11;" + STYLE[role])
         lx += 185
@@ -284,7 +302,8 @@ def main():
         f"image {ex['image']}), 7220 IXR-D3L. Memory: {mem_txt}.<br>"
         f"Grey line = intra-DC fabric link ({len(plan['links']) - 1}); "
         f"thick blue = DCI link (1); thin blue = host link ({len(plan.get('hosts', []))}). "
-        f"N = DC number. Hosts: Linux netreplica/ubuntu-host, Windows Server 2022 in dockurr/windows.",
+        f"N = DC number. Hosts: Linux netreplica/ubuntu-host, Windows Server 2022 in dockurr/windows; "
+        f"dcN-h6 also runs DVWA with MariaDB, replicated DC1 to DC2 over the DCI.",
         lx + 20, legend_y + 30, 2900 - lx - 40, 60,
         "text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontSize=12;",
     )

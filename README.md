@@ -225,7 +225,7 @@ You should see diffs indicating OSPF is being removed. Once again, login to your
 Test success!!
 
 ## DC1/DC2 topology
-The dissertation lab splits the fabric into two independent data centres, DC1 and DC2, joined by a single DCI link between `dc1-dci-r1` and `dc2-dci-r1`. NetBox is prepared with these scripts, in order (each supports `--dry-run`):
+The dissertation lab splits the fabric into two independent data centres, DC1 and DC2, joined by two DCI links between `dc1-dci-r1` and `dc2-dci-r1` (`ethernet-1/3` primary, `ethernet-1/4` backup). NetBox is prepared with these scripts, in order (each supports `--dry-run`):
 
 ```
 > export NETBOX_URL="http://localhost:8000" NETBOX_TOKEN="<token>"
@@ -234,17 +234,29 @@ The dissertation lab splits the fabric into two independent data centres, DC1 an
 > python3 set_role_platforms.py    # per-role platforms for nrx memory sizing
 > python3 rename_dc1_dc2.py        # syd1-pdN-* leaves/spines -> dcN-*
 > python3 add_hosts_dc1_dc2.py     # Linux and Windows end hosts, cabled to their leaves
+> python3 cable_from_plan_dc1_dc2.py  # cables any plan link NetBox lacks (e.g. the second DCI link)
 > python3 assign_ips_dc1_dc2.py    # makes NetBox match ip_plan_dc1_dc2.yaml
 > python3 tag_dc1_dc2.py           # tags every DC1/DC2 device "demo" so nrx and configure.py include it
 > ./4_run_nrx.sh                   # regenerates DC1-DC2.clab.yaml
-> sudo -E clab dep -t DC1-DC2.clab.yaml
-> ./5_run_config_mgmt.sh           # configures every DC1/DC2 router
-> python3 configure_hosts_dc1_dc2.py  # host addresses and routes (docker exec)
+> ./deploy_lab.sh                 # redeploys the lab, configures routers and hosts, checks dc1-h1 -> dc2-h1
 ```
+
+`deploy_lab.sh` leaves the Windows hosts out, because with them the lab does not fit in the lab host's 61 GB; add `--with-windows` to include them. It runs `sudo clab dep`, `./5_run_config_mgmt.sh`, `configure_hosts_dc1_dc2.py` and `check_hosts_dc1_dc2.py` in turn.
 
 All lab addressing (loopbacks, fabric /31s, the DCI link, host /28s) is defined in `ip_plan_dc1_dc2.yaml`; edit it and re-run `assign_ips_dc1_dc2.py` to change an address.
 
 `configure.py` picks templates by device role, including the DC gateways (`dc_gateway_*.j2` on SR Linux, `dc_gateway_complete.j2` on SR OS). BGP AS numbers per DC N are 6500N for leaves and spines, 6510N for superspines and 6520N for DC gateways, so the DCs exchange routes over eBGP on the DCI link while OSPF stays inside each DC. Add `--configs-only true` to `configure.py` to only render the configs into `config_mgmt/configs`.
+
+### DCI failover
+The two DCI links run eBGP side by side. On the primary (`ethernet-1/3`) the import policy `dci-import-primary` sets local preference 200, so both DCs send traffic over it while it is up; the backup (`ethernet-1/4`) takes over when the primary's BGP session drops. BFD runs on both DCI sessions with fast-failover. SR Linux in a container will not run BFD faster than 1 s, so a silent failure is detected in about 3 s (1 s x 3) instead of the 90 s BGP hold timer.
+
+`measure_failover.py` measures it: it sends 100 pings a second from `dc1-h1` to `dc2-h1`, breaks the primary link part-way through, and reports lost packets, the outage, how long BGP took to notice, and how many packets crossed each DCI link. It then repairs the link and appends a row to `results/failover_results.csv`.
+
+```
+> sudo python3 measure_failover.py               # silent failure: link up, carries nothing (tc netem, both ends)
+> sudo python3 measure_failover.py --fail down   # primary port shut on dc1-dci-r1
+> sudo python3 measure_failover.py --fail none   # baseline, no failure
+```
 
 ### End hosts
 Each leaf has a Linux host on `ethernet-1/1` (`dcN-h1` to `dcN-h6`, containerlab kind `linux`, image `netreplica/ubuntu-host`), and `dcN-l1` also has a Windows host on `ethernet-1/2` (`dcN-w1`). Every host sits in its own /28 from `172.30.N.0/24` with the leaf as its gateway (see `hosts:` in `ip_plan_dc1_dc2.yaml`). Leaves advertise the /28s into OSPF as passive interfaces, and the DC gateways export `172.30.N.0/24` over the DCI next to the loopbacks, so hosts in DC1 reach hosts in DC2:
@@ -254,4 +266,16 @@ Each leaf has a Linux host on `ethernet-1/1` (`dcN-h1` to `dcN-h6`, containerlab
 ```
 
 The Windows hosts run Windows Server 2022 (evaluation) as a QEMU VM inside a `dockurr/windows` container. They need `/dev/kvm` on the lab host and about 5 GB of RAM each. Both VMs install from one ISO on the lab host, so download the Windows Server 2022 evaluation ISO (free for 180 days) once from the [Microsoft Evaluation Center](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022) and save it as `windows/win2022.iso` before deploying; containerlab refuses to deploy without it. The first deploy installs Windows, which takes a while; follow it with `docker logs -f clab-DC1-DC2-dc1-w1` or in a browser at `http://<container mgmt IP>:8006`. The disk is kept under `windows/<host>/` next to the topology file (ignored by git), so later deploys boot straight into the installed system. Default login: `Docker` / `admin`. The VM sits behind NAT in its container: traffic to the container's `172.30.N.98` address is forwarded to Windows, and Windows' own traffic leaves from that address. Windows' firewall blocks inbound ping until you allow it (for example `netsh advfirewall firewall add rule name=ICMPv4 protocol=icmpv4:8,any dir=in action=allow`).
+
+### DVWA hosts
+`dc1-h6` and `dc2-h6` (`os: dvwa` in the plan, platform `dvwa` in NetBox) are the same Linux hosts as the others, plus two containers in each one's network namespace: `dcN-h6-db` (MariaDB 11.4) and `dcN-h6-web` ([DVWA](https://github.com/digininja/DVWA), pinned by digest). DVWA therefore answers on the host's own address (`172.30.N.82`, port 80) and reaches its database on `127.0.0.1`; addresses, cabling and routing are unchanged. DC1 is the live site; the DC2 database is a read-only replica of DC1's over the DCI. `templates/clab/nodes/dvwa.j2` generates the three nodes from NetBox.
+
+```
+python3 add_hosts_dc1_dc2.py                 # switches dc1-h6/dc2-h6 to the dvwa platform in NetBox
+./4_run_nrx.sh                               # or use the committed DC1-DC2.clab.yaml
+./deploy_lab.sh                              # deploys, configures, then runs setup_dvwa_dc1_dc2.py
+python3 setup_dvwa_dc1_dc2.py --promote      # fail DVWA over to DC2 (DC2 database becomes writable)
+```
+
+DVWA is deliberately vulnerable. No port is published on the lab host; reach it from another machine through SSH (`ssh -L 8080:<dc1-h6 mgmt IP>:80 <lab host>`, then `http://localhost:8080`, login `admin` / `password`).
 

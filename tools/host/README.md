@@ -13,6 +13,7 @@ saves its output next to itself as a git-ignored .txt file.
 | clean_ghost_routers.sh | SR Linux processes left over from earlier deploys answering for lab IPs |
 | fix_srl_mgmt.sh | Full check of why routers don't answer on mgmt0 (AppArmor, memory, bridge, router namespace, ARP capture) |
 | fix_mgmt_reachability.sh | Per-router MAC / ARP / JSON-RPC comparison and ARP flush |
+| fix_routers_boot.sh | Every router container is Up but SR Linux never finished booting (no JSON-RPC, sr_cli silent); checks inside the routers, applies the AppArmor fix, redeploys. Run as your normal user; log goes to results/ |
 
 Root cause of the October problems: a snap Docker installed on 12 Oct took over
 the Docker socket while the apt docker-ce kept running with the old lab.

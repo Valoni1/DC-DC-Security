@@ -1,0 +1,19 @@
+{#- BFD on the DCI links. SR Linux in a container (vSRL) will not go below
+    1 s intervals, so detection takes interval x multiplier = 3 s. #}
+{%- set bfd_interval_us = 1000000 %}
+{%- set bfd_multiplier = 3 %}
+{
+  "bfd": {
+    "subinterface": [
+      {%- for interface_name, interface in interfaces.items() if interface.is_dci %}
+      {
+        "id": "{{interface_name}}.0",
+        "admin-state": "enable",
+        "desired-minimum-transmit-interval": {{bfd_interval_us}},
+        "required-minimum-receive": {{bfd_interval_us}},
+        "detection-multiplier": {{bfd_multiplier}}
+      }{{ ", " if not loop.last else "" }}
+      {%- endfor %}
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+        {# A DVWA web server with its MariaDB database. The node itself is the
+           same Linux host as dcN-h1..h5 and holds the planned address on eth1;
+           the database and web containers share its network namespace, so
+           DVWA answers on the host's address (port 80) and reaches its database
+           on 127.0.0.1. The DC1 database is the primary and writes a binary
+           log; the others are read-only replicas, set up by
+           setup_dvwa_dc1_dc2.py over the DCI. No port is published. #}
+        {% set dc = name.split('-')[0][2:] %}
+        {{ name }}:
+            kind: linux
+            {% if image is not defined %}
+            {% set image = "netreplica/ubuntu-host:1.4" %}
+            {% endif %}
+            image: {{ image }}
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+            {% include 'clab/labels.j2' %}
+
+        {{ name }}-db:
+            kind: linux
+            image: mariadb:11.4.13
+            network-mode: container:{{ name }}
+            env:
+                MARIADB_ROOT_PASSWORD: dvwa-root
+                MARIADB_DATABASE: dvwa
+                MARIADB_USER: dvwa
+                MARIADB_PASSWORD: p@ssw0rd
+            {% if dc == "1" %}
+            cmd: --server-id=1 --log-bin=mysql-bin --binlog-format=ROW --bind-address=0.0.0.0
+            {% else %}
+            cmd: --server-id={{ dc }} --relay-log=relay-bin --read-only=ON --bind-address=0.0.0.0
+            {% endif %}
+            memory: 512Mb
+            labels:
+                graph-hide: yes
+                group: {{ site }}
+
+        {{ name }}-web:
+            kind: linux
+            image: ghcr.io/digininja/dvwa@sha256:8029450682bd70e2e8cd1ffe8e46dd1885ff2a913296091cebfa8ba0a7d36498
+            network-mode: container:{{ name }}
+            env:
+                DB_SERVER: 127.0.0.1
+                DB_DATABASE: dvwa
+                DB_USER: dvwa
+                DB_PASSWORD: p@ssw0rd
+            memory: 512Mb
+            labels:
+                graph-hide: yes
+                group: {{ site }}
