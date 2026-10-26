@@ -48,6 +48,7 @@ import subprocess
 import sys
 import threading
 import time
+import traceback
 import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -129,7 +130,7 @@ def bfd_up(router, peer):
     return p.get("session-state") == "UP"
 
 
-def router_bfd_event(router, t_fail):
+def router_bfd_event(router, t_fail, peer):
     """The first BFD down event the router logged after the failure, from its
     own log (microsecond timestamps): (seconds after the failure, diagnostic)."""
     out = sh(["docker", "exec", PREFIX + router, "sh", "-c",
@@ -144,7 +145,7 @@ def router_bfd_event(router, t_fail):
             t = datetime.datetime.fromisoformat(m.group(1)).timestamp()
         except ValueError:
             continue
-        if t >= t_fail - 1:
+        if t >= t_fail - 1 and m.group(2).split(":")[0] == peer:
             events.append((t - t_fail, m.group(3).strip(), m.group(2)))
     return min(events) if events else None
 
@@ -155,7 +156,7 @@ def link_snapshot(router):
     keep = {}
     if isinstance(st, dict):
         keep = {k: st.get(k) for k in ("admin-state", "oper-state", "oper-down-reason", "last-change")}
-        sub = next((x for x in st.get("subinterface", []) if x.get("index") == 0), {})
+        sub = next((x for x in st.get("subinterface", []) if str(x.get("index")) == "0"), {})
         keep["subinterface-oper-state"] = sub.get("oper-state")
         keep["subinterface-last-change"] = sub.get("last-change")
         keep["arp"] = sub.get("ipv4", {}).get("arp", {}).get("neighbor")
@@ -175,19 +176,40 @@ def kernel_if(iface):  # ethernet-1/3 -> e1-3
 def break_link(mode):
     if mode == "silent":
         for gw in GATEWAYS:
-            sh(f"nsenter -t {pid_of(gw)} -n tc qdisc replace dev {kernel_if(PRIMARY_IF)} root netem loss 100%", check=True)
+            dev = kernel_if(PRIMARY_IF)
+            r = subprocess.run(f"nsenter -t {pid_of(gw)} -n tc qdisc replace dev {dev} root netem loss 100%",
+                               shell=True, capture_output=True, text=True)
+            if r.returncode != 0:
+                raise RuntimeError(f"tc netem on {gw} {dev} failed: {r.stderr.strip()}")
     elif mode == "down":
         jsonrpc(GATEWAYS[0], "set", [{"action": "update",
                                        "path": f"/interface[name={PRIMARY_IF}]/admin-state", "value": "disable"}])
 
 
 def repair_link(mode):
-    if mode == "silent":
+    """Undo either kind of failure; safe to call when nothing is broken."""
+    if mode in ("silent", "all"):
         for gw in GATEWAYS:
-            sh(f"nsenter -t {pid_of(gw)} -n tc qdisc del dev {kernel_if(PRIMARY_IF)} root")
-    elif mode == "down":
-        jsonrpc(GATEWAYS[0], "set", [{"action": "update",
-                                       "path": f"/interface[name={PRIMARY_IF}]/admin-state", "value": "enable"}])
+            sh(f"nsenter -t {pid_of(gw)} -n tc qdisc del dev {kernel_if(PRIMARY_IF)} root 2>/dev/null")
+    if mode in ("down", "all"):
+        try:
+            jsonrpc(GATEWAYS[0], "set", [{"action": "update",
+                                           "path": f"/interface[name={PRIMARY_IF}]/admin-state", "value": "enable"}])
+        except Exception as e:
+            print(f"WARNING: could not re-enable {GATEWAYS[0]} {PRIMARY_IF}: {e}")
+
+
+def wait_ready(peer, timeout=180):
+    """Wait until BGP and BFD on the primary are both up, plus 5 s for the
+    primary routes to win again. Returns False if they never come up."""
+    t0 = time.time()
+    while time.time() - t0 < timeout:
+        p = bfd_peer(GATEWAYS[0], peer)
+        if bgp_state(GATEWAYS[0], peer) == "established" and p and p.get("session-state") == "UP":
+            time.sleep(5)
+            return True
+        time.sleep(1)
+    return False
 
 
 def dci_peer_ip(iface):
@@ -221,6 +243,7 @@ def run_once(args, dst_ip, primary_peer):
         ["docker", "exec", PREFIX + args.src, "ping", "-D", "-n", "-i", str(args.interval),
          "-W", "1", "-w", str(args.duration), dst_ip],
         stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    run_once.ping = ping  # so main() can stop it if this run fails part-way
     lines = []
     reader = threading.Thread(target=lambda: lines.extend(ping.stdout), daemon=True)
     reader.start()
@@ -247,7 +270,9 @@ def run_once(args, dst_ip, primary_peer):
         while ping.poll() is None and time.time() - t_fail < args.duration:
             if t_bfd is None:
                 p = bfd_peer(GATEWAYS[0], primary_peer)
-                if p is not None and p.get("session-state") == "UP":
+                if p is None and isinstance(state(GATEWAYS[0], "/bfd"), str):
+                    pass  # the router did not answer this poll; try again
+                elif p is not None and p.get("session-state") == "UP":
                     last_bfd = p
                     a = p.get("async", {})
                     bfd_trace.append((round(time.time() - t_fail, 3), a.get("received-packets"),
@@ -255,7 +280,8 @@ def run_once(args, dst_ip, primary_peer):
                 else:
                     t_bfd = time.time()
                     print(f"BFD to {primary_peer} went down after {t_bfd - t_fail:.2f}s (seen by polling)")
-            if bgp_state(GATEWAYS[0], primary_peer) != "established":
+            bgp = bgp_state(GATEWAYS[0], primary_peer)
+            if isinstance(bgp, str) and not bgp.startswith("error") and bgp != "established":
                 t_detect = time.time()
                 print(f"BGP to {primary_peer} dropped after {t_detect - t_fail:.2f}s (seen by polling)")
                 break
@@ -286,7 +312,7 @@ def run_once(args, dst_ip, primary_peer):
             print(f"primary BFD still received {rx[-1][1] - rx[0][1]} packet(s) after the failure, "
                   f"the last by {t_last:.2f}s")
         record["primary_link_before"], record["primary_link_after_0.3s"] = links_before, links_after
-        ev = router_bfd_event(GATEWAYS[0], t_fail)
+        ev = router_bfd_event(GATEWAYS[0], t_fail, primary_peer)
         exit_event = (record[GATEWAYS[0]]["bgp_neighbor"] or {}).get("last-establish-exit-event") \
             if isinstance(record[GATEWAYS[0]]["bgp_neighbor"], dict) else None
         router_detect, bfd_diag = (ev[0], ev[1]) if ev else (None, None)
@@ -397,7 +423,7 @@ def main():
     # Two runs at once break the same link twice and spoil both: the 26 October
     # batch lost 23 silent runs that way (the port shutdown of a parallel
     # "down" run turned them into Path Down failures)
-    lock = open("/tmp/measure_failover.lock", "w")
+    lock = open(os.path.abspath(__file__))
     try:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except OSError:
@@ -416,7 +442,12 @@ def main():
     print(f"primary DCI peer {primary_peer} ({bgp_state(GATEWAYS[0], primary_peer)}), "
           f"backup DCI peer {backup_peer} ({bgp_state(GATEWAYS[0], backup_peer)})")
 
-    for _ in range(args.repeat):
+    repair_link("all")  # start from a whole link, whatever an earlier run left behind
+    for n in range(1, args.repeat + 1):
+        if args.fail != "none" and not wait_ready(primary_peer):
+            print(f"run {n}: BGP/BFD on the primary did not come up within 180 s; skipping this run")
+            repair_link("all")
+            continue
         # Tee everything this run prints into a per-run report file, so the
         # full output (BFD and BGP timings included) is saved, not just stdout.
         report = io.StringIO()
@@ -432,7 +463,17 @@ def main():
 
         sys.stdout = Tee()
         try:
+            print(f"run {n} of {args.repeat}")
             run_once(args, dst_ip, primary_peer)
+        except Exception:
+            # One failed run must not end the batch or leave the link broken
+            print("RUN FAILED with an error; repairing the link and carrying on:")
+            print(traceback.format_exc())
+            ping = getattr(run_once, "ping", None)
+            if ping and ping.poll() is None:
+                ping.kill()
+                sh(["docker", "exec", PREFIX + args.src, "pkill", "ping"])  # the ping inside the host too
+            repair_link("all")
         finally:
             sys.stdout = real
         run_file = os.path.join(os.path.dirname(RESULTS),
