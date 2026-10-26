@@ -1,0 +1,88 @@
+Repair run 2026-10-26T02:10:19+00:00
+===== 1. containers =====
+clab-DC1-DC2-dc1-dci-r1	Up 8 minutes
+clab-DC1-DC2-dc1-h1	Up 8 minutes
+clab-DC1-DC2-dc1-h2	Up 8 minutes
+clab-DC1-DC2-dc1-h3	Up 8 minutes
+clab-DC1-DC2-dc1-h4	Up 8 minutes
+clab-DC1-DC2-dc1-h5	Up 8 minutes
+clab-DC1-DC2-dc1-h6-db	Up 8 minutes
+clab-DC1-DC2-dc1-h6	Up 8 minutes
+clab-DC1-DC2-dc1-h6-web	Up 8 minutes
+clab-DC1-DC2-dc1-l1	Up 8 minutes
+clab-DC1-DC2-dc1-l2	Up 8 minutes
+clab-DC1-DC2-dc1-l3	Up 8 minutes
+clab-DC1-DC2-dc1-l4	Up 8 minutes
+clab-DC1-DC2-dc1-l5	Up 8 minutes
+clab-DC1-DC2-dc1-l6	Up 8 minutes
+clab-DC1-DC2-dc1-sp1	Up 8 minutes
+clab-DC1-DC2-dc1-sp2	Up 8 minutes
+clab-DC1-DC2-dc1-ss1	Up 8 minutes
+clab-DC1-DC2-dc1-ss2	Up 8 minutes
+clab-DC1-DC2-dc2-dci-r1	Up 8 minutes
+clab-DC1-DC2-dc2-h1	Up 8 minutes
+clab-DC1-DC2-dc2-h2	Up 8 minutes
+clab-DC1-DC2-dc2-h3	Up 8 minutes
+clab-DC1-DC2-dc2-h4	Up 8 minutes
+clab-DC1-DC2-dc2-h5	Up 8 minutes
+clab-DC1-DC2-dc2-h6-db	Up 8 minutes
+clab-DC1-DC2-dc2-h6	Up 8 minutes
+clab-DC1-DC2-dc2-h6-web	Up 8 minutes
+clab-DC1-DC2-dc2-l1	Up 8 minutes
+clab-DC1-DC2-dc2-l2	Up 8 minutes
+clab-DC1-DC2-dc2-l3	Up 8 minutes
+clab-DC1-DC2-dc2-l4	Up 8 minutes
+clab-DC1-DC2-dc2-l5	Up 8 minutes
+clab-DC1-DC2-dc2-l6	Up 8 minutes
+clab-DC1-DC2-dc2-sp1	Up 8 minutes
+clab-DC1-DC2-dc2-sp2	Up 8 minutes
+clab-DC1-DC2-dc2-ss1	Up 8 minutes
+clab-DC1-DC2-dc2-ss2	Up 8 minutes
+clab-DC1-DC2-graphite	Up 8 minutes
+running: 39   not running: 0
+               total        used        free      shared  buff/cache   available
+Mem:              61          33          17           0          11          28
+Swap:             74           1          73
+===== 2. host interfaces =====
+  dc1-h1: eth1 present
+  dc1-h2: eth1 present
+  dc1-h3: eth1 present
+  dc1-h4: eth1 present
+  dc1-h5: eth1 present
+  dc1-h6: eth1 present
+  dc2-h1: eth1 present
+  dc2-h2: eth1 present
+  dc2-h3: eth1 present
+  dc2-h4: eth1 present
+  dc2-h5: eth1 present
+  dc2-h6: eth1 present
+===== 3. host addresses =====
+clab-DC1-DC2-dc1-h1: 172.30.1.2/28 via dc1-l1
+clab-DC1-DC2-dc1-h2: 172.30.1.18/28 via dc1-l2
+clab-DC1-DC2-dc1-h3: 172.30.1.34/28 via dc1-l3
+clab-DC1-DC2-dc1-h4: 172.30.1.50/28 via dc1-l4
+clab-DC1-DC2-dc1-h5: 172.30.1.66/28 via dc1-l5
+clab-DC1-DC2-dc1-h6: 172.30.1.82/28 via dc1-l6
+clab-DC1-DC2-dc2-h1: 172.30.2.2/28 via dc2-l1
+clab-DC1-DC2-dc2-h2: 172.30.2.18/28 via dc2-l2
+clab-DC1-DC2-dc2-h3: 172.30.2.34/28 via dc2-l3
+clab-DC1-DC2-dc2-h4: 172.30.2.50/28 via dc2-l4
+clab-DC1-DC2-dc2-h5: 172.30.2.66/28 via dc2-l5
+clab-DC1-DC2-dc2-h6: 172.30.2.82/28 via dc2-l6
+
+Configured: 12   Failed: 2
+  dc1-h1: 172.30.1.2/28 
+  dc1-h2: 172.30.1.18/28 
+  dc1-h3: 172.30.1.34/28 
+  dc1-h4: 172.30.1.50/28 
+  dc1-h5: 172.30.1.66/28 
+  dc1-h6: 172.30.1.82/28 
+  dc2-h1: 172.30.2.2/28 
+  dc2-h2: 172.30.2.18/28 
+  dc2-h3: 172.30.2.34/28 
+  dc2-h4: 172.30.2.50/28 
+  dc2-h5: 172.30.2.66/28 
+  dc2-h6: 172.30.2.82/28 
+===== 4. router configs =====
+  dc1-dci-r1: no BGP output
+  BGP is not up: pushing the router configs again
