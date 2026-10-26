@@ -99,6 +99,13 @@ if ! echo "$bgp" | grep -qE '^[1-9]'; then
     fi
 fi
 
+if [ -n "$dead" ]; then
+    echo
+    echo "Stopping here: the routers do not answer on management, so nothing after this can work."
+    echo "Log saved to $LOG. Push it: git add results && git commit -m 'repair log' && git push"
+    exit 1
+fi
+
 echo "===== 5. routes between the DCs ====="
 for i in $(seq 1 36); do
     if cli dc1-l1 "show network-instance default route-table ipv4-unicast prefix 172.30.2.0/28" | grep -q "172.30.2.0/28"; then
