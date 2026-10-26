@@ -192,29 +192,48 @@ def run_once(args, dst_ip, primary_peer):
         t_fail = time.time()
         break_link(args.fail)
         print(f"link broken ({args.fail}) at {datetime.datetime.fromtimestamp(t_fail):%H:%M:%S.%f}"[:-3])
-        # Watch BFD and BGP separately: BFD should declare the peer down first
-        # (interval x multiplier), then BGP drops the session on that event.
+        # Watch BFD and BGP separately. SR Linux deletes the BFD session as soon
+        # as BGP (its only client) lets go of it, so "gone" counts as down too.
+        last_bfd = None  # the primary's BFD session as last seen UP
         while ping.poll() is None and time.time() - t_fail < args.duration:
-            if t_bfd is None and bfd_up(GATEWAYS[0], primary_peer) is False:
-                t_bfd = time.time()
-                print(f"BFD to {primary_peer} went down after {t_bfd - t_fail:.2f}s")
+            if t_bfd is None:
+                p = bfd_peer(GATEWAYS[0], primary_peer)
+                if p is not None and p.get("session-state") == "UP":
+                    last_bfd = p
+                else:
+                    t_bfd = time.time()
+                    print(f"BFD to {primary_peer} went down after {t_bfd - t_fail:.2f}s (seen by polling)")
             if bgp_state(GATEWAYS[0], primary_peer) != "established":
                 t_detect = time.time()
-                print(f"BGP to {primary_peer} dropped after {t_detect - t_fail:.2f}s")
+                print(f"BGP to {primary_peer} dropped after {t_detect - t_fail:.2f}s (seen by polling)")
                 break
             time.sleep(0.1)
-        # One snapshot of the BFD peer table for the record
+        # The routers' own timestamps are more exact than polling: when BGP left
+        # established, why (last-event), and when the primary last heard BFD
+        far_peer = f"10.1.0.{int(primary_peer.rsplit('.', 1)[1]) ^ 1}"  # dc1's end of the primary link
+        record = {"link_broken_at": datetime.datetime.fromtimestamp(t_fail).astimezone().isoformat(),
+                  "primary_bfd_last_seen_up": last_bfd}
+        for gw, peer in ((GATEWAYS[0], primary_peer), (GATEWAYS[1], far_peer)):
+            nb = state(gw, f"/network-instance[name=default]/protocols/bgp/neighbor[peer-address={peer}]")
+            record[gw] = {"bgp_neighbor": nb,
+                          "bfd_sessions": state(gw, "/bfd/network-instance[name=default]/peer"),
+                          "router_log_bfd": sh(["docker", "exec", PREFIX + gw, "sh", "-c",
+                                                "find /var/log/srlinux -type f -mmin -3 2>/dev/null | "
+                                                "xargs grep -hiE 'bfd|neighbor 10\\.1\\.0' 2>/dev/null | tail -40"])}
+            try:
+                left = datetime.datetime.fromisoformat(nb["last-established"].replace("Z", "+00:00")).timestamp()
+                print(f"{gw}: BGP to {peer} left established {left - t_fail:.2f}s after the failure "
+                      f"(router clock), cause {nb.get('last-establish-exit-event')}")
+            except (TypeError, KeyError, ValueError):
+                print(f"{gw}: no router timestamp for BGP to {peer}")
+        if last_bfd:
+            rx = last_bfd.get("async", {}).get("last-packet-received")
+            print(f"primary BFD last packet received (router clock): {rx}")
         snap = os.path.join(os.path.dirname(RESULTS),
                             f"bfd_{args.fail}_{datetime.datetime.now():%Y%m%d_%H%M%S}.json")
         os.makedirs(os.path.dirname(snap), exist_ok=True)
-        # The router's own timestamps (last-failure-time, last-state-transition)
-        # are more exact than this script's polling
         with open(snap, "w") as f:
-            json.dump({"bfd_sessions": state(GATEWAYS[0], "/bfd/network-instance[name=default]/peer"),
-                       "bgp_neighbor": state(GATEWAYS[0], "/network-instance[name=default]/protocols/bgp/"
-                                                          f"neighbor[peer-address={primary_peer}]"),
-                       "link_broken_at": datetime.datetime.fromtimestamp(t_fail).astimezone().isoformat()},
-                      f, indent=2, default=str)
+            json.dump(record, f, indent=2, default=str)
         print(f"BFD and BGP state saved to {os.path.relpath(snap, HERE)}")
     else:
         mid = before
