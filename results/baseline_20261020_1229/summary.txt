@@ -1,0 +1,45 @@
+Baseline capture 2026-10-20T12:29:50
+Output folder: /home/samuel/DC-DC-Security/results/baseline_20261020_1229
+
+ROUTERS (OSPF full/expected, BGP established/total)
+  dc1-dci-r1   OSPF 2/2   BGP 3/3
+  dc1-l1       OSPF 2/2   BGP 2/2
+  dc1-l2       OSPF 2/2   BGP 2/2
+  dc1-l3       OSPF 2/2   BGP 2/2
+  dc1-l4       OSPF 2/2   BGP 2/2
+  dc1-l5       OSPF 2/2   BGP 2/2
+  dc1-l6       OSPF 2/2   BGP 2/2
+  dc1-sp1      OSPF 8/8   BGP 8/8
+  dc1-sp2      OSPF 8/8   BGP 8/8
+  dc1-ss1      OSPF 3/3   BGP 3/3
+  dc1-ss2      OSPF 3/3   BGP 3/3
+  dc2-dci-r1   OSPF 2/2   BGP 3/3
+  dc2-l1       OSPF 2/2   BGP 2/2
+  dc2-l2       OSPF 2/2   BGP 2/2
+  dc2-l3       OSPF 2/2   BGP 2/2
+  dc2-l4       OSPF 2/2   BGP 2/2
+  dc2-l5       OSPF 2/2   BGP 2/2
+  dc2-l6       OSPF 2/2   BGP 2/2
+  dc2-sp1      OSPF 8/8   BGP 8/8
+  dc2-sp2      OSPF 8/8   BGP 8/8
+  dc2-ss1      OSPF 3/3   BGP 3/3
+  dc2-ss2      OSPF 3/3   BGP 3/3
+
+PINGS
+  dc1-l1 lo0 -> dc2-l1 lo0: 10/10 received, rtt min/avg/max/mdev 3.588/4.065/4.747/0.452 ms, TTL 58
+  dc2-l1 lo0 -> dc1-l1 lo0: 10/10 received, rtt min/avg/max/mdev 3.750/3.924/4.757/0.287 ms, TTL 58
+  dc1-h1 -> dc2-h1: 20/20 received, rtt min/avg/max/mdev 1.248/1.580/4.457/0.666 ms, TTL 56
+  dc2-h1 -> dc1-h1: 20/20 received, rtt min/avg/max/mdev 1.336/1.448/1.623/0.081 ms, TTL 56
+  dc1-h2 -> dc2-h2: 20/20 received, rtt min/avg/max/mdev 1.195/1.540/5.021/0.802 ms, TTL 56
+  dc2-h2 -> dc1-h2: 20/20 received, rtt min/avg/max/mdev 1.173/1.399/1.716/0.147 ms, TTL 56
+  dc1-h3 -> dc2-h3: 20/20 received, rtt min/avg/max/mdev 1.353/1.603/4.025/0.561 ms, TTL 56
+  dc2-h3 -> dc1-h3: 20/20 received, rtt min/avg/max/mdev 1.227/1.387/1.607/0.096 ms, TTL 56
+  dc1-h4 -> dc2-h4: 20/20 received, rtt min/avg/max/mdev 1.242/1.575/4.582/0.693 ms, TTL 56
+  dc2-h4 -> dc1-h4: 20/20 received, rtt min/avg/max/mdev 1.261/1.427/1.656/0.081 ms, TTL 56
+  dc1-h5 -> dc2-h5: 20/20 received, rtt min/avg/max/mdev 1.212/1.538/4.718/0.737 ms, TTL 56
+  dc2-h5 -> dc1-h5: 20/20 received, rtt min/avg/max/mdev 1.259/1.567/5.320/0.863 ms, TTL 56
+  dc1-h6 -> dc2-h6: 20/20 received, rtt min/avg/max/mdev 1.233/1.630/5.564/0.905 ms, TTL 56
+  dc2-h6 -> dc1-h6: 20/20 received, rtt min/avg/max/mdev 1.364/1.497/1.751/0.099 ms, TTL 56
+
+===== VERDICT =====
+Baseline clean: every router has its expected OSPF neighbours, every BGP session is established, and all loopback and host pings succeed in both directions.

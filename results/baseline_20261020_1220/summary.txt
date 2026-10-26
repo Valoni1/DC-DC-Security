@@ -1,0 +1,49 @@
+Baseline capture 2026-10-20T12:20:29
+Output folder: /home/samuel/DC-DC-Security/results/baseline_20261020_1220
+
+ROUTERS (OSPF full/expected, BGP established/total)
+  dc1-dci-r1   OSPF 2/2   BGP 3/3
+  dc1-l1       OSPF 2/2   BGP 2/2
+  dc1-l2       OSPF 2/2   BGP 2/2
+  dc1-l3       OSPF 2/2   BGP 2/2
+  dc1-l4       OSPF 2/2   BGP 2/2
+  dc1-l5       OSPF 2/2   BGP 2/2
+  dc1-l6       OSPF 2/2   BGP 2/2
+  dc1-sp1      OSPF 8/8   BGP 8/10  <-- BGP
+  dc1-sp2      OSPF 8/8   BGP 8/10  <-- BGP
+  dc1-ss1      OSPF 3/3   BGP 3/3
+  dc1-ss2      OSPF 3/3   BGP 3/3
+  dc2-dci-r1   OSPF 2/2   BGP 3/3
+  dc2-l1       OSPF 2/2   BGP 2/2
+  dc2-l2       OSPF 2/2   BGP 2/2
+  dc2-l3       OSPF 2/2   BGP 2/2
+  dc2-l4       OSPF 2/2   BGP 2/2
+  dc2-l5       OSPF 2/2   BGP 2/2
+  dc2-l6       OSPF 2/2   BGP 2/2
+  dc2-sp1      OSPF 8/8   BGP 8/10  <-- BGP
+  dc2-sp2      OSPF 8/8   BGP 8/10  <-- BGP
+  dc2-ss1      OSPF 3/3   BGP 3/3
+  dc2-ss2      OSPF 3/3   BGP 3/3
+
+PINGS
+  dc1-l1 lo0 -> dc2-l1 lo0: 10/10 received, rtt min/avg/max/mdev 3.829/4.488/4.962/0.441 ms, TTL 58
+  dc2-l1 lo0 -> dc1-l1 lo0: 10/10 received, rtt min/avg/max/mdev 3.766/3.850/4.196/0.117 ms, TTL 58
+  dc1-h1 -> dc2-h1: 20/20 received, rtt min/avg/max/mdev 1.299/1.572/4.723/0.725 ms, TTL 56
+  dc2-h1 -> dc1-h1: 20/20 received, rtt min/avg/max/mdev 1.257/1.403/1.519/0.085 ms, TTL 56
+  dc1-h2 -> dc2-h2: 20/20 received, rtt min/avg/max/mdev 1.222/1.559/4.666/0.719 ms, TTL 56
+  dc2-h2 -> dc1-h2: 20/20 received, rtt min/avg/max/mdev 1.296/1.408/1.516/0.068 ms, TTL 56
+  dc1-h3 -> dc2-h3: 20/20 received, rtt min/avg/max/mdev 1.265/1.533/3.644/0.489 ms, TTL 56
+  dc2-h3 -> dc1-h3: 20/20 received, rtt min/avg/max/mdev 1.350/1.523/2.186/0.186 ms, TTL 56
+  dc1-h4 -> dc2-h4: 20/20 received, rtt min/avg/max/mdev 1.166/1.533/4.588/0.722 ms, TTL 56
+  dc2-h4 -> dc1-h4: 20/20 received, rtt min/avg/max/mdev 1.274/1.413/1.804/0.109 ms, TTL 56
+  dc1-h5 -> dc2-h5: 20/20 received, rtt min/avg/max/mdev 1.155/1.518/4.184/0.619 ms, TTL 56
+  dc2-h5 -> dc1-h5: 20/20 received, rtt min/avg/max/mdev 1.254/1.413/1.539/0.083 ms, TTL 56
+  dc1-h6 -> dc2-h6: 20/20 received, rtt min/avg/max/mdev 1.280/1.627/5.518/0.896 ms, TTL 56
+  dc2-h6 -> dc1-h6: 20/20 received, rtt min/avg/max/mdev 1.296/1.463/2.644/0.282 ms, TTL 56
+
+===== VERDICT =====
+Baseline NOT clean:
+  - dc1-sp1: 2 BGP session(s) not established
+  - dc1-sp2: 2 BGP session(s) not established
+  - dc2-sp1: 2 BGP session(s) not established
+  - dc2-sp2: 2 BGP session(s) not established

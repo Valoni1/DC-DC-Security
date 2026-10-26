@@ -1,0 +1,63 @@
+$ uname -a
+Linux ser10 7.0.0-34-generic #34~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 15:38:29 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+$ docker version --format '{{.Server.Version}}'
+29.8.0
+
+$ which docker
+/usr/bin/docker
+
+$ containerlab version
+⣴⡾⠛⠛⠖ ⢠⣶⠟⠛⢷⣦ ⢸⣿⣧  ⣿ ⠘⠛⢻⡟⠛⠛  ⣾⣿⡀  ⣿⡇ ⣿⣿⡄ ⢸⡇ ⣿⡟⠛⠛⠃⢸⣿⠛⠛⣷⡄ [38;2;0;201;255m⣿⡇[0m      [38;2;0;201;255m⣿⡇[0m    
+⢸⣿     ⣿⡇   ⣿⡇⢸⣿⠹⣧⡀⣿   ⢸⡇   ⣸⡏⢹⣧  ⣿⡇ ⣿⡏⢿⣄⢸⡇ ⣿⣧⣤⣤ ⢸⣿⣀⣀⣾⠇ [38;2;0;201;255m⣿⡇⠐⠟⠛⢿⡆[0m [38;2;0;201;255m⣿⡷⠛⢿⣆[0m 
+⠘⣿⣄  ⡀ ⢻⣧⡀ ⣠⣿⠃⢸⣿ ⠘⣷⣿   ⢸⡇  ⢠⣿⠷⠶⢿⡆ ⣿⡇ ⣿⡇ ⢻⣾⡇ ⣿⡇   ⢸⣿⠉⢻⣧⡀ [38;2;0;201;255m⣿⡇⢰⡟⠛⣻⡇[0m [38;2;0;201;255m⣿⡇[0m [38;2;0;201;255m⣸⡿[0m 
+ ⠈⠙⠛⠛⠉  ⠉⠛⠛⠋⠁ ⠘⠛  ⠈⠛   ⠘⠃  ⠚⠃  ⠘⠛ ⠛⠃ ⠛⠃  ⠙⠃ ⠛⠛⠛⠛⠃⠘⠛  ⠙⠓ [38;2;0;201;255m⠛⠃⠈⠛⠛⠙⠃[0m [38;2;0;201;255m⠛⠛⠛⠛⠁[0m 
+
+    version: 0.79.0
+     commit: 5ae50094a
+       date: 2026-08-21T12:00:52Z
+     source: https://github.com/srl-labs/containerlab
+ rel. notes: https://containerlab.dev/rn/0.79/
+
+$ docker ps --format '{{.Names}}	{{.Image}}	{{.Status}}' | grep clab-DC1-DC2-
+clab-DC1-DC2-dc1-ss2	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc2-l2	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc2-l6	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc2-l4	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc2-l3	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc2-ss1	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc2-sp1	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc1-h4	netreplica/ubuntu-host:1.4	Up 34 hours
+clab-DC1-DC2-dc2-sp2	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc1-h5	netreplica/ubuntu-host:1.4	Up 34 hours
+clab-DC1-DC2-dc2-h3	netreplica/ubuntu-host:1.4	Up 34 hours
+clab-DC1-DC2-dc1-dci-r1	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc2-ss2	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc1-l6	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc2-l5	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc1-l1	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc1-l3	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc1-l2	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc1-sp1	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc1-ss1	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc1-l5	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc1-sp2	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc1-l4	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc2-dci-r1	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-dc2-l1	ghcr.io/nokia/srlinux:26.7.2	Up 34 hours
+clab-DC1-DC2-graphite	netreplica/graphite:latest	Up 34 hours
+clab-DC1-DC2-dc2-h1	netreplica/ubuntu-host:1.4	Up 34 hours
+clab-DC1-DC2-dc1-h6	netreplica/ubuntu-host:1.4	Up 34 hours
+clab-DC1-DC2-dc1-h3	netreplica/ubuntu-host:1.4	Up 34 hours
+clab-DC1-DC2-dc2-h5	netreplica/ubuntu-host:1.4	Up 34 hours
+clab-DC1-DC2-dc1-h1	netreplica/ubuntu-host:1.4	Up 34 hours
+clab-DC1-DC2-dc2-h2	netreplica/ubuntu-host:1.4	Up 34 hours
+clab-DC1-DC2-dc2-h6	netreplica/ubuntu-host:1.4	Up 34 hours
+clab-DC1-DC2-dc2-h4	netreplica/ubuntu-host:1.4	Up 34 hours
+clab-DC1-DC2-dc1-h2	netreplica/ubuntu-host:1.4	Up 34 hours
+
+$ free -g
+total        used        free      shared  buff/cache   available
+Mem:              61          44          10           0           8          17
+Swap:             74           4          70
+
