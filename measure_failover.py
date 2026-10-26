@@ -35,6 +35,7 @@ import argparse
 import base64
 import csv
 import datetime
+import io
 import json
 import os
 import re
@@ -281,7 +282,30 @@ def main():
           f"backup DCI peer {backup_peer} ({bgp_state(GATEWAYS[0], backup_peer)})")
 
     for _ in range(args.repeat):
-        run_once(args, dst_ip, primary_peer)
+        # Tee everything this run prints into a per-run report file, so the
+        # full output (BFD and BGP timings included) is saved, not just stdout.
+        report = io.StringIO()
+        real = sys.stdout
+
+        class Tee:
+            def write(self, s):
+                real.write(s)
+                report.write(s)
+
+            def flush(self):
+                real.flush()
+
+        sys.stdout = Tee()
+        try:
+            run_once(args, dst_ip, primary_peer)
+        finally:
+            sys.stdout = real
+        run_file = os.path.join(os.path.dirname(RESULTS),
+                                f"run_{args.fail}_{datetime.datetime.now():%Y%m%d_%H%M%S}.txt")
+        os.makedirs(os.path.dirname(run_file), exist_ok=True)
+        with open(run_file, "w") as f:
+            f.write(report.getvalue())
+        print(f"full run report saved to {os.path.relpath(run_file, HERE)}")
     print(f"\nResults appended to {RESULTS}")
 
 
