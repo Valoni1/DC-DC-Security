@@ -98,6 +98,27 @@ def bgp_state(router, peer):
     return state(router, f"/network-instance[name=default]/protocols/bgp/neighbor[peer-address={peer}]/session-state")
 
 
+def srl_cli(router, command):
+    """Run a show command on a router's CLI and return its text output."""
+    r = subprocess.run(
+        ["docker", "exec", PREFIX + router, "/opt/srlinux/bin/sr_cli", command],
+        capture_output=True, text=True)
+    return (r.stdout + r.stderr).strip()
+
+
+def bfd_up(router, peer):
+    """True while the BFD session to peer reads UP. Reads the CLI peer table,
+    which lists one row per session with its remote address and state."""
+    for line in srl_cli(router, "show bfd network-instance default peer").splitlines():
+        if peer in line:
+            low = line.lower()
+            if "down" in low:
+                return False
+            if re.search(r"\bup\b", low):
+                return True
+    return None  # no BFD session for this peer (BFD not running)
+
+
 def pid_of(node):
     return sh(["docker", "inspect", "-f", "{{.State.Pid}}", PREFIX + node])
 
@@ -145,6 +166,9 @@ def run_once(args, dst_ip, primary_peer):
           f"{args.duration}s at {1 / args.interval:.0f} pkt/s, failure at {args.at}s ===")
     before = {i: out_packets(GATEWAYS[0], i) for i in (PRIMARY_IF, BACKUP_IF)}
     print(f"BGP to {primary_peer} (primary): {bgp_state(GATEWAYS[0], primary_peer)}")
+    bfd0 = bfd_up(GATEWAYS[0], primary_peer)
+    print(f"BFD to {primary_peer} (primary): "
+          f"{'up' if bfd0 else 'down' if bfd0 is False else 'no session (BFD not running)'}")
 
     ping = subprocess.Popen(
         ["docker", "exec", PREFIX + args.src, "ping", "-D", "-n", "-i", str(args.interval),
@@ -154,19 +178,31 @@ def run_once(args, dst_ip, primary_peer):
     reader = threading.Thread(target=lambda: lines.extend(ping.stdout), daemon=True)
     reader.start()
 
-    t_fail = t_detect = None
+    t_fail = t_detect = t_bfd = None
     if args.fail != "none":
         time.sleep(args.at)
         mid = {i: out_packets(GATEWAYS[0], i) for i in (PRIMARY_IF, BACKUP_IF)}
         t_fail = time.time()
         break_link(args.fail)
         print(f"link broken ({args.fail}) at {datetime.datetime.fromtimestamp(t_fail):%H:%M:%S.%f}"[:-3])
+        # Watch BFD and BGP separately: BFD should declare the peer down first
+        # (interval x multiplier), then BGP drops the session on that event.
         while ping.poll() is None and time.time() - t_fail < args.duration:
+            if t_bfd is None and bfd_up(GATEWAYS[0], primary_peer) is False:
+                t_bfd = time.time()
+                print(f"BFD to {primary_peer} went down after {t_bfd - t_fail:.2f}s")
             if bgp_state(GATEWAYS[0], primary_peer) != "established":
                 t_detect = time.time()
                 print(f"BGP to {primary_peer} dropped after {t_detect - t_fail:.2f}s")
                 break
-            time.sleep(0.2)
+            time.sleep(0.1)
+        # One snapshot of the BFD peer table for the record
+        snap = os.path.join(os.path.dirname(RESULTS),
+                            f"bfd_{args.fail}_{datetime.datetime.now():%Y%m%d_%H%M%S}.txt")
+        os.makedirs(os.path.dirname(snap), exist_ok=True)
+        with open(snap, "w") as f:
+            f.write(srl_cli(GATEWAYS[0], "show bfd network-instance default peer"))
+        print(f"BFD peer table saved to {os.path.relpath(snap, HERE)}")
     else:
         mid = before
 
@@ -187,8 +223,14 @@ def run_once(args, dst_ip, primary_peer):
     print(f"\nsent {sent}, received {received}, lost {sent - received}"
           f" ({(sent - received) / sent * 100 if sent else 0:.1f}%)")
     print(f"outage (longest gap between replies): {outage:.3f}s" if outage is not None else "outage: no replies")
+    if t_bfd:
+        print(f"BFD detection time: {t_bfd - t_fail:.2f}s")
+    elif args.fail != "none":
+        print("BFD did not go down (BFD not running, or the failure did not block it)")
     if t_detect:
         print(f"BGP detection time: {t_detect - t_fail:.2f}s")
+        if t_bfd:
+            print(f"  (BGP dropped {t_detect - t_bfd:.2f}s after BFD; the rest is reconvergence)")
     elif args.fail != "none":
         print(f"BGP session on the primary stayed up for the whole {args.duration}s run")
     for i in (PRIMARY_IF, BACKUP_IF):
