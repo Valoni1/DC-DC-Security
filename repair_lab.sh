@@ -61,14 +61,41 @@ for h in $HOSTS; do
 done
 
 echo "===== 4. router configs ====="
+routers() { docker ps --filter "name=^$P" --format '{{.Names}} {{.Image}}' | awk '/srlinux/ {print $1}' | sort; }
+ip_of() { docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}' "$1" | awk '{print $1}'; }
+dead_routers() {  # routers whose JSON-RPC does not answer from this host
+    for r in $(routers); do
+        code=$(curl -s -o /dev/null -m 3 -w '%{http_code}' "http://$(ip_of "$r")/jsonrpc")
+        [ "$code" = "000" ] && echo "$r"
+    done
+}
+echo "  routers running: $(routers | wc -l)"
+dead=$(dead_routers)
+for i in $(seq 1 12); do   # routers can take a few minutes to boot after a deploy
+    [ -z "$dead" ] && break
+    echo "  $(echo "$dead" | wc -l) router(s) not answering on management yet; waiting 15 s ($i/12)"
+    sleep 15; dead=$(dead_routers)
+done
+if [ -n "$dead" ]; then
+    echo "  still not answering: $(echo $dead)"
+    echo "  running the management-bridge fix (the same problem as on 19 October)"
+    sudo bash tools/host/fix_mgmt_bridge.sh | tail -30
+    dead=$(dead_routers)
+    echo "  after the fix, not answering: ${dead:-none}"
+fi
+NB="${NETBOX_URL:-http://localhost:8000}"
+echo "  NetBox at $NB: HTTP $(curl -s -o /dev/null -m 5 -w '%{http_code}' -H "Authorization: Token $NETBOX_TOKEN" "$NB/api/status/")"
+
 bgp=$(cli dc1-dci-r1 "show network-instance default protocols bgp neighbor" | grep -oE '[0-9]+ configured sessions are established')
 echo "  dc1-dci-r1: ${bgp:-no BGP output}"
 if ! echo "$bgp" | grep -qE '^[1-9]'; then
     if [ -z "$NETBOX_TOKEN" ]; then
         echo "  BGP is not up and NETBOX_TOKEN is not set: export it and run this script again."
+    elif [ -n "$dead" ]; then
+        echo "  BGP is not up, but routers do not answer on management, so the configs cannot be pushed."
     else
-        echo "  BGP is not up: pushing the router configs again"
-        ./5_run_config_mgmt.sh 2>&1 | grep -iE "deployed|skipping|error|failed"
+        echo "  BGP is not up: pushing the router configs again (stops after 10 minutes at most)"
+        timeout 600 ./5_run_config_mgmt.sh 2>&1 | grep -iE "deploying|deployed|skipping|error|failed|timed out"
     fi
 fi
 

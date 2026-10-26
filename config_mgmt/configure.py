@@ -436,7 +436,7 @@ def deploy_jsonrpc_config(configs, device, **kwargs):
     r_data["method"] = "diff"
     r_data["params"]["commands"] = r_commands
 
-    r = requests.post(r_url, auth=r_auth, json=r_data)
+    r = requests.post(r_url, auth=r_auth, json=r_data, timeout=(10, 120))
 
     if r.status_code != 200:
         log_for_device(
@@ -460,7 +460,7 @@ def deploy_jsonrpc_config(configs, device, **kwargs):
 
     if kwargs["commit"]:
         r_data["method"] = "set"
-        r = requests.post(r_url, auth=r_auth, json=r_data)
+        r = requests.post(r_url, auth=r_auth, json=r_data, timeout=(10, 120))
 
         if r.status_code != 200:
             log_for_device(
