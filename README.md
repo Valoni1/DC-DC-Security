@@ -233,6 +233,7 @@ The dissertation lab splits the fabric into two independent data centres, DC1 an
 > python3 cable_dc1_dc2.py         # cabling, including the DCI link
 > python3 set_role_platforms.py    # per-role platforms for nrx memory sizing
 > python3 rename_dc1_dc2.py        # syd1-pdN-* leaves/spines -> dcN-*
+> python3 prune_netbox_dc1_dc2.py  # deletes DC1/DC2 devices, cables and addresses the plan no longer has
 > python3 add_hosts_dc1_dc2.py     # Linux and Windows end hosts, cabled to their leaves
 > python3 cable_from_plan_dc1_dc2.py  # cables any plan link NetBox lacks (e.g. the second DCI link)
 > python3 assign_ips_dc1_dc2.py    # makes NetBox match ip_plan_dc1_dc2.yaml
@@ -241,7 +242,9 @@ The dissertation lab splits the fabric into two independent data centres, DC1 an
 > ./deploy_lab.sh                 # redeploys the lab, configures routers and hosts, checks dc1-h1 -> dc2-h1
 ```
 
-`deploy_lab.sh` leaves the Windows hosts out, because with them the lab does not fit in the lab host's 61 GB; add `--with-windows` to include them. It runs `sudo clab dep`, `./5_run_config_mgmt.sh`, `configure_hosts_dc1_dc2.py` and `check_hosts_dc1_dc2.py` in turn.
+Since November 2026 each DC has two leaves (`dcN-l1`, `dcN-l2`), two spines, two superspines and one DC gateway, 14 SR Linux routers in all (about 28 GB), and one Linux and one Windows host. The four other leaves per DC, the Linux hosts on them and DVWA were removed to free memory on the lab host for other simulations; `slim_lab.sh` made that change on the lab in one run. The addresses that remain are unchanged.
+
+`deploy_lab.sh` deploys the Windows hosts with the rest of the lab when `/dev/kvm` and `windows/win2022.iso` are present, and leaves them out with a warning otherwise; `--without-windows` leaves them out on purpose. It runs `sudo clab dep`, `./5_run_config_mgmt.sh`, `configure_hosts_dc1_dc2.py` and `check_hosts_dc1_dc2.py` in turn.
 
 All lab addressing (loopbacks, fabric /31s, the DCI link, host /28s) is defined in `ip_plan_dc1_dc2.yaml`; edit it and re-run `assign_ips_dc1_dc2.py` to change an address.
 
@@ -259,7 +262,7 @@ The two DCI links run eBGP side by side. On the primary (`ethernet-1/3`) the imp
 ```
 
 ### End hosts
-Each leaf has a Linux host on `ethernet-1/1` (`dcN-h1` to `dcN-h6`, containerlab kind `linux`, image `netreplica/ubuntu-host`), and `dcN-l1` also has a Windows host on `ethernet-1/2` (`dcN-w1`). Every host sits in its own /28 from `172.30.N.0/24` with the leaf as its gateway (see `hosts:` in `ip_plan_dc1_dc2.yaml`). Leaves advertise the /28s into OSPF as passive interfaces, and the DC gateways export `172.30.N.0/24` over the DCI next to the loopbacks, so hosts in DC1 reach hosts in DC2:
+Each DC has one Linux host, `dcN-h1` on `dcN-l1` `ethernet-1/1` (containerlab kind `linux`, image `netreplica/ubuntu-host`), and one Windows host, `dcN-w1` on `dcN-l2` `ethernet-1/1`, so traffic between the two crosses the spines. Every host sits in its own /28 from `172.30.N.0/24` with the leaf as its gateway (see `hosts:` in `ip_plan_dc1_dc2.yaml`). Leaves advertise the /28s into OSPF as passive interfaces, and the DC gateways export `172.30.N.0/24` over the DCI next to the loopbacks, so hosts in DC1 reach hosts in DC2:
 
 ```
 > docker exec clab-DC1-DC2-dc1-h1 ping -c 3 172.30.2.2
@@ -267,15 +270,4 @@ Each leaf has a Linux host on `ethernet-1/1` (`dcN-h1` to `dcN-h6`, containerlab
 
 The Windows hosts run Windows Server 2022 (evaluation) as a QEMU VM inside a `dockurr/windows` container. They need `/dev/kvm` on the lab host and about 5 GB of RAM each. Both VMs install from one ISO on the lab host, so download the Windows Server 2022 evaluation ISO (free for 180 days) once from the [Microsoft Evaluation Center](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022) and save it as `windows/win2022.iso` before deploying; containerlab refuses to deploy without it. The first deploy installs Windows, which takes a while; follow it with `docker logs -f clab-DC1-DC2-dc1-w1` or in a browser at `http://<container mgmt IP>:8006`. The disk is kept under `windows/<host>/` next to the topology file (ignored by git), so later deploys boot straight into the installed system. Default login: `Docker` / `admin`. The VM sits behind NAT in its container: traffic to the container's `172.30.N.98` address is forwarded to Windows, and Windows' own traffic leaves from that address. Windows' firewall blocks inbound ping until you allow it (for example `netsh advfirewall firewall add rule name=ICMPv4 protocol=icmpv4:8,any dir=in action=allow`).
 
-### DVWA hosts
-`dc1-h6` and `dc2-h6` (`os: dvwa` in the plan, platform `dvwa` in NetBox) are the same Linux hosts as the others, plus two containers in each one's network namespace: `dcN-h6-db` (MariaDB 11.4) and `dcN-h6-web` ([DVWA](https://github.com/digininja/DVWA), pinned by digest). DVWA therefore answers on the host's own address (`172.30.N.82`, port 80) and reaches its database on `127.0.0.1`; addresses, cabling and routing are unchanged. DC1 is the live site; the DC2 database is a read-only replica of DC1's over the DCI. `templates/clab/nodes/dvwa.j2` generates the three nodes from NetBox.
-
-```
-python3 add_hosts_dc1_dc2.py                 # switches dc1-h6/dc2-h6 to the dvwa platform in NetBox
-./4_run_nrx.sh                               # or use the committed DC1-DC2.clab.yaml
-./deploy_lab.sh                              # deploys, configures, then runs setup_dvwa_dc1_dc2.py
-python3 setup_dvwa_dc1_dc2.py --promote      # fail DVWA over to DC2 (DC2 database becomes writable)
-```
-
-DVWA is deliberately vulnerable. No port is published on the lab host; reach it from another machine through SSH (`ssh -L 8080:<dc1-h6 mgmt IP>:80 <lab host>`, then `http://localhost:8080`, login `admin` / `password`).
 

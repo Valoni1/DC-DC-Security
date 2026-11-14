@@ -33,7 +33,6 @@ STYLE = {
     "leaf": "fillColor=#d5e8d4;strokeColor=#82b366;",
     "linux": "fillColor=#dae8fc;strokeColor=#6c8ebf;",
     "windows": "fillColor=#fff2cc;strokeColor=#d6b656;",
-    "dvwa": "fillColor=#f8cecc;strokeColor=#b85450;",
 }
 
 
@@ -66,7 +65,7 @@ def check(clab, plan):
     plan_links |= {frozenset([(h["leaf"], h["leaf_if"]), (h["name"], h["host_if"])]) for h in hosts}
     assert clab_links == plan_links, clab_links ^ plan_links
     assert set(nodes) == set(plan["loopbacks"]), set(nodes) ^ set(plan["loopbacks"])
-    # Containers sharing a host's network namespace (DVWA's -db and -web) are part of that host
+    # Containers sharing a host's network namespace (network-mode container:) are part of that host
     host_nodes = {n for n, v in clab["topology"]["nodes"].items()
                   if n not in nodes and n != "graphite"
                   and not str(v.get("network-mode", "")).startswith("container:")}
@@ -144,10 +143,10 @@ def main():
         "dc-gateway": (110, [W / 2]),
         "superspine": (270, [W / 2 - 220, W / 2 + 220]),
         "spine": (440, [W / 2 - 330, W / 2 + 330]),
-        "leaf": (640, [W / 2 + (i - 2.5) * 225 for i in range(6)]),
+        "leaf": (640, [W / 2 - 330, W / 2 + 330]),
     }
     HOST_Y, HW, HH = 760, 110, 50
-    TABLE_Y, TABLE_H = 860, 560
+    TABLE_Y, TABLE_H = 860, 400
     BOX_H = TABLE_Y + TABLE_H + 20
 
     for dc in (1, 2):  # both site boxes first so they sit behind everything else
@@ -188,7 +187,7 @@ def main():
             for i, h in enumerate(on_leaf):
                 hx = cx + (i - (len(on_leaf) - 1) / 2) * (HW + 10)
                 d.box(
-                    f"<b>{h['name']}</b> ({'DVWA' if h['os'] == 'dvwa' else h['os'].capitalize()})<br>{h['host_ip']}",
+                    f"<b>{h['name']}</b> ({h['os'].capitalize()})<br>{h['host_ip']}",
                     dc_x[dc] + hx - HW / 2, HOST_Y, HW, HH,
                     "rounded=1;whiteSpace=wrap;html=1;fontSize=10;" + STYLE[h["os"]],
                     cid=h["name"],
@@ -260,9 +259,10 @@ def main():
         "as passive interfaces. Hosts route 172.20/16, 172.30/16 and 10.1/16 via the leaf "
         "(configure_hosts_dc1_dc2.py); their default route stays on management. Windows hosts "
         "are a VM behind NAT in their container, which holds the planned address.</li>"
-        "</ul>The single-DCI version was applied with 5_run_config_mgmt.sh and checked on the lab on "
-        "19 October 2026 (all 22 routers configured, dc1-h1 reaches dc2-h1). The backup DCI link "
-        "and BFD shown here are not yet tested. Rendered configs in config_mgmt/configs/ are not committed.",
+        "</ul>The two-DCI version with BFD ran on the lab from 20 October 2026 with 22 routers "
+        "(failover measured 26 October). In November 2026 the lab was cut to two leaves and one "
+        "Linux and one Windows host per DC to free host memory; the remaining addresses are unchanged. "
+        "Rendered configs in config_mgmt/configs/ are not committed.",
         0, py, 1400, 280, panel + "fillColor=#ffffff;strokeColor=#666666;",
     )
     d.box(
@@ -277,8 +277,8 @@ def main():
         "JSON-RPC to http://clab-DC1-DC2-&lt;node&gt;/jsonrpc.</li>"
         "<li><b>Lab host ser10</b>: containers run under the Docker snap package (29.8.0). "
         "The apt docker-ce daemon that held the 6-12 October lab is stopped and masked "
-        "(tools/host/). The Windows hosts are left out of routine deployments because "
-        "of host memory.</li></ul>",
+        "(tools/host/). With 14 routers the Windows hosts fit in memory and are "
+        "deployed with the rest of the lab.</li></ul>",
         1500, py, 1400, 280, panel + "fillColor=#f5f5f5;strokeColor=#999999;dashed=1;",
     )
     legend_y = py + 310
@@ -292,18 +292,16 @@ def main():
                         ("spine", "Spine (AS 6500N)"),
                         ("leaf", "Leaf (AS 6500N)"),
                         ("linux", "Linux host"),
-                        ("windows", "Windows host"),
-                        ("dvwa", "DVWA host")]:
+                        ("windows", "Windows host")]:
         d.box(label, lx, legend_y + 40, 170, 40,
               "rounded=1;whiteSpace=wrap;html=1;fontSize=11;" + STYLE[role])
         lx += 185
     d.box(
         f"All {len(nodes)} routers: Nokia SR Linux (kind {ex['kind']}, type {ex['type'].strip()}, "
         f"image {ex['image']}), 7220 IXR-D3L. Memory: {mem_txt}.<br>"
-        f"Grey line = intra-DC fabric link ({len(plan['links']) - 1}); "
-        f"thick blue = DCI link (1); thin blue = host link ({len(plan.get('hosts', []))}). "
-        f"N = DC number. Hosts: Linux netreplica/ubuntu-host, Windows Server 2022 in dockurr/windows; "
-        f"dcN-h6 also runs DVWA with MariaDB, replicated DC1 to DC2 over the DCI.",
+        f"Grey line = intra-DC fabric link ({sum(1 for l in plan['links'] if l['a'][:3] == l['b'][:3])}); "
+        f"thick blue = DCI link; thin blue = host link ({len(plan.get('hosts', []))}). "
+        f"N = DC number. Hosts: Linux netreplica/ubuntu-host, Windows Server 2022 in dockurr/windows.",
         lx + 20, legend_y + 30, 2900 - lx - 40, 60,
         "text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontSize=12;",
     )

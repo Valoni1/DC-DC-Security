@@ -9,8 +9,8 @@
 #      interfaces are still appearing
 #   4. router configs again (./5_run_config_mgmt.sh) if the DCI routers have
 #      no established BGP session
-#   5. waits for the routes between the DCs, then the host check, DVWA setup,
-#      and the DCI routers' BGP and BFD state
+#   5. waits for the routes between the DCs, then the host check and
+#      the DCI routers' BGP and BFD state
 #
 # All output goes to the screen and to results/repair_<date-time>.txt, so it
 # can be pushed instead of pasted.
@@ -24,7 +24,7 @@ mkdir -p results
 LOG="results/repair_$(date +%Y%m%d_%H%M%S).txt"
 exec > >(tee "$LOG") 2>&1
 P=clab-DC1-DC2-
-HOSTS="dc1-h1 dc1-h2 dc1-h3 dc1-h4 dc1-h5 dc1-h6 dc2-h1 dc2-h2 dc2-h3 dc2-h4 dc2-h5 dc2-h6"
+HOSTS="dc1-h1 dc2-h1"   # Linux hosts; the Windows hosts (dcN-w1) are VMs and have no eth1 to check
 cli() { docker exec "$P$1" /opt/srlinux/bin/sr_cli "$2" 2>&1; }
 
 echo "Repair run $(date -Is)"
@@ -118,10 +118,7 @@ done
 echo "===== 6. host check ====="
 python3 check_hosts_dc1_dc2.py
 
-echo "===== 7. DVWA ====="
-python3 setup_dvwa_dc1_dc2.py
-
-echo "===== 8. DCI routers: BGP and BFD ====="
+echo "===== 7. DCI routers: BGP and BFD ====="
 for r in dc1-dci-r1 dc2-dci-r1; do
     echo "--- $r"
     cli $r "show network-instance default protocols bgp neighbor"

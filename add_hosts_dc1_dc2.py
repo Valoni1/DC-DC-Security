@@ -12,12 +12,10 @@ For each host the script makes sure these exist, creating what is missing:
   - device role "Server" (slug server), so nrx exports it (EXPORT_DEVICE_ROLES)
   - manufacturer "Generic" and a device type per OS ("Linux Host", "Windows Host")
   - platform per OS: "ubuntu" (Linux, mapped to containerlab kind linux in
-    platform_map.yaml), "windows", or "dvwa" (a Linux host that also runs DVWA
-    and its database; platform_map.yaml maps it to templates/clab/nodes/dvwa.j2)
+    platform_map.yaml) or "windows"
   - the host device in Site DC1/DC2, tagged "demo"
   - the host interface (eth1) and a cable from it to the leaf port in the plan
   - for a host that already exists, the platform its OS in the plan calls for
-    (this is how dc1-h6/dc2-h6 were switched from ubuntu to dvwa)
 
 The leaf port must exist and be free. Anything that already exists is left
 alone, so it is safe to re-run. Addresses are not set here: run
@@ -64,10 +62,6 @@ OS_TYPES = {
     "windows": {
         "device_type": {"model": "Windows Host", "slug": "windows-host"},
         "platform": {"name": "Windows", "slug": "windows"},
-    },
-    "dvwa": {
-        "device_type": {"model": "DVWA Host", "slug": "dvwa-host"},
-        "platform": {"name": "DVWA", "slug": "dvwa"},
     },
 }
 
