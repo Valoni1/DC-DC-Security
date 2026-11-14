@@ -4,7 +4,7 @@
 # Redeploys the DC1-DC2 lab and configures it, in one go:
 #   1. destroys the running lab and removes its old clab-DC1-DC2 folder
 #   2. deploys it, with the Windows hosts unless --without-windows is given
-#      (the 14-router lab leaves room for them; they need /dev/kvm and
+#      (the 8-router lab leaves room for them; they need /dev/kvm and
 #      windows/win2022.iso, and are left out with a warning when either is missing)
 #   3. pushes the router configs (./5_run_config_mgmt.sh)
 #   4. sets the host addresses and routes (configure_hosts_dc1_dc2.py)

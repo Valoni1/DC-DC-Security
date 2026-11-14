@@ -242,7 +242,7 @@ The dissertation lab splits the fabric into two independent data centres, DC1 an
 > ./deploy_lab.sh                 # redeploys the lab, configures routers and hosts, checks dc1-h1 -> dc2-h1
 ```
 
-Since November 2026 each DC has two leaves (`dcN-l1`, `dcN-l2`), two spines, two superspines and one DC gateway, 14 SR Linux routers in all (about 28 GB), and one Linux and one Windows host. The four other leaves per DC, the Linux hosts on them and DVWA were removed to free memory on the lab host for other simulations; `slim_lab.sh` made that change on the lab in one run. The addresses that remain are unchanged.
+Since November 2026 each DC has one leaf (`dcN-l1`), one spine (`dcN-sp1`), one superspine (`dcN-ss1`) and one DC gateway (`dcN-dci-r1`), 8 SR Linux routers in all (about 16 GB), and one Linux and one Windows host. Both DCI links stay, so DCI failover works as before. The other leaves, spines and superspines, the Linux hosts on the removed leaves and DVWA were removed to free memory on the lab host for other simulations; `slim_lab.sh` made that change on the lab in one run. The addresses that remain are unchanged.
 
 `deploy_lab.sh` deploys the Windows hosts with the rest of the lab when `/dev/kvm` and `windows/win2022.iso` are present, and leaves them out with a warning otherwise; `--without-windows` leaves them out on purpose. It runs `sudo clab dep`, `./5_run_config_mgmt.sh`, `configure_hosts_dc1_dc2.py` and `check_hosts_dc1_dc2.py` in turn.
 
@@ -262,7 +262,7 @@ The two DCI links run eBGP side by side. On the primary (`ethernet-1/3`) the imp
 ```
 
 ### End hosts
-Each DC has one Linux host, `dcN-h1` on `dcN-l1` `ethernet-1/1` (containerlab kind `linux`, image `netreplica/ubuntu-host`), and one Windows host, `dcN-w1` on `dcN-l2` `ethernet-1/1`, so traffic between the two crosses the spines. Every host sits in its own /28 from `172.30.N.0/24` with the leaf as its gateway (see `hosts:` in `ip_plan_dc1_dc2.yaml`). Leaves advertise the /28s into OSPF as passive interfaces, and the DC gateways export `172.30.N.0/24` over the DCI next to the loopbacks, so hosts in DC1 reach hosts in DC2:
+Each DC has one Linux host, `dcN-h1` on `dcN-l1` `ethernet-1/1` (containerlab kind `linux`, image `netreplica/ubuntu-host`), and one Windows host, `dcN-w1` on `dcN-l1` `ethernet-1/2`. Every host sits in its own /28 from `172.30.N.0/24` with the leaf as its gateway (see `hosts:` in `ip_plan_dc1_dc2.yaml`). Leaves advertise the /28s into OSPF as passive interfaces, and the DC gateways export `172.30.N.0/24` over the DCI next to the loopbacks, so hosts in DC1 reach hosts in DC2:
 
 ```
 > docker exec clab-DC1-DC2-dc1-h1 ping -c 3 172.30.2.2

@@ -141,9 +141,9 @@ def main():
     dc_x = {1: 0, 2: W + 100}
     tiers = {  # y and horizontal centres (relative to the DC box) per tier
         "dc-gateway": (110, [W / 2]),
-        "superspine": (270, [W / 2 - 220, W / 2 + 220]),
-        "spine": (440, [W / 2 - 330, W / 2 + 330]),
-        "leaf": (640, [W / 2 - 330, W / 2 + 330]),
+        "superspine": (270, [W / 2]),
+        "spine": (440, [W / 2]),
+        "leaf": (640, [W / 2]),
     }
     HOST_Y, HW, HH = 760, 110, 50
     TABLE_Y, TABLE_H = 860, 400
@@ -260,8 +260,8 @@ def main():
         "(configure_hosts_dc1_dc2.py); their default route stays on management. Windows hosts "
         "are a VM behind NAT in their container, which holds the planned address.</li>"
         "</ul>The two-DCI version with BFD ran on the lab from 20 October 2026 with 22 routers "
-        "(failover measured 26 October). In November 2026 the lab was cut to two leaves and one "
-        "Linux and one Windows host per DC to free host memory; the remaining addresses are unchanged. "
+        "(failover measured 26 October). In November 2026 the lab was cut to one router per tier (8 in all) "
+        "and one Linux and one Windows host per DC to free host memory; the remaining addresses are unchanged. "
         "Rendered configs in config_mgmt/configs/ are not committed.",
         0, py, 1400, 280, panel + "fillColor=#ffffff;strokeColor=#666666;",
     )
@@ -277,7 +277,7 @@ def main():
         "JSON-RPC to http://clab-DC1-DC2-&lt;node&gt;/jsonrpc.</li>"
         "<li><b>Lab host ser10</b>: containers run under the Docker snap package (29.8.0). "
         "The apt docker-ce daemon that held the 6-12 October lab is stopped and masked "
-        "(tools/host/). With 14 routers the Windows hosts fit in memory and are "
+        "(tools/host/). With 8 routers the Windows hosts fit in memory and are "
         "deployed with the rest of the lab.</li></ul>",
         1500, py, 1400, 280, panel + "fillColor=#f5f5f5;strokeColor=#999999;dashed=1;",
     )

@@ -44,34 +44,6 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        dc1-l2:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC1
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc1-sp2:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: spine
-                graph-level: 10
-                role: Spine
-                group: DC1
-                platform: SR Linux Spine
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
         dc2-sp1:
             kind: srl
             type: ixrd3l 
@@ -100,49 +72,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        dc2-l2:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC2
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc2-sp2:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: spine
-                graph-level: 10
-                role: Spine
-                group: DC2
-                platform: SR Linux Spine
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
         dc1-ss1:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: superspine
-                graph-level: 10
-                role: Superspine
-                group: DC1
-                platform: SR Linux Superspine
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc1-ss2:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:26.7.2
@@ -171,20 +101,6 @@ topology:
                 model: 7220 IXR-D3L 32*100GE
 
         dc2-ss1:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: superspine
-                graph-level: 10
-                role: Superspine
-                group: DC2
-                platform: SR Linux Superspine
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc2-ss2:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:26.7.2
@@ -296,28 +212,14 @@ topology:
 
     links:
         - endpoints: ["dc1-sp1:e1-1", "dc1-l1:e1-28"]
-        - endpoints: ["dc1-sp1:e1-2", "dc1-l2:e1-28"]
-        - endpoints: ["dc1-sp2:e1-1", "dc1-l1:e1-27"]
-        - endpoints: ["dc1-sp2:e1-2", "dc1-l2:e1-27"]
         - endpoints: ["dc2-sp1:e1-1", "dc2-l1:e1-28"]
-        - endpoints: ["dc2-sp1:e1-2", "dc2-l2:e1-28"]
-        - endpoints: ["dc2-sp2:e1-1", "dc2-l1:e1-27"]
-        - endpoints: ["dc2-sp2:e1-2", "dc2-l2:e1-27"]
         - endpoints: ["dc1-sp1:e1-7", "dc1-ss1:e1-1"]
-        - endpoints: ["dc1-sp1:e1-8", "dc1-ss2:e1-1"]
-        - endpoints: ["dc1-sp2:e1-7", "dc1-ss1:e1-2"]
-        - endpoints: ["dc1-sp2:e1-8", "dc1-ss2:e1-2"]
         - endpoints: ["dc1-ss1:e1-3", "dc1-dci-r1:e1-1"]
-        - endpoints: ["dc1-ss2:e1-3", "dc1-dci-r1:e1-2"]
         - endpoints: ["dc2-sp1:e1-7", "dc2-ss1:e1-1"]
-        - endpoints: ["dc2-sp1:e1-8", "dc2-ss2:e1-1"]
-        - endpoints: ["dc2-sp2:e1-7", "dc2-ss1:e1-2"]
-        - endpoints: ["dc2-sp2:e1-8", "dc2-ss2:e1-2"]
         - endpoints: ["dc2-ss1:e1-3", "dc2-dci-r1:e1-1"]
-        - endpoints: ["dc2-ss2:e1-3", "dc2-dci-r1:e1-2"]
         - endpoints: ["dc1-dci-r1:e1-3", "dc2-dci-r1:e1-3"]
         - endpoints: ["dc1-dci-r1:e1-4", "dc2-dci-r1:e1-4"]
         - endpoints: ["dc1-l1:e1-1", "dc1-h1:eth1"]
-        - endpoints: ["dc1-l2:e1-1", "dc1-w1:eth1"]
+        - endpoints: ["dc1-l1:e1-2", "dc1-w1:eth1"]
         - endpoints: ["dc2-l1:e1-1", "dc2-h1:eth1"]
-        - endpoints: ["dc2-l2:e1-1", "dc2-w1:eth1"]
+        - endpoints: ["dc2-l1:e1-2", "dc2-w1:eth1"]

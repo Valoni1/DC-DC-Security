@@ -10,18 +10,17 @@ smaller lab:
     or as a host), with their IP addresses; NetBox deletes their interfaces
     and cables with them
   - cables between remaining devices that the plan does not list (for
-    example dcN-w1's old cable to dcN-l1 ethernet-1/2, now that the plan
-    puts dcN-w1 on dcN-l2 ethernet-1/1), and the addresses on both ends
-    that the plan does not want there
+    example a host moved to another leaf port), and the addresses on both
+    ends that the plan does not want there
   - addresses left on remaining interfaces that lost their cable this way
-    (for example the spines' ports to the removed leaves)
+    (for example the remaining spine's port to a removed leaf)
 
 Run it before add_hosts_dc1_dc2.py and assign_ips_dc1_dc2.py: those add the
 new cable and addresses, and refuse while the old ones are in the way.
 
-Why: in November 2026 the lab was cut from six to two leaves per DC and from
-seven to two hosts per DC (one Linux, one Windows) to free memory on the lab
-host, and DVWA was removed. configure.py builds interfaces and BGP
+Why: in November 2026 the lab was cut to one DC gateway, superspine, spine
+and leaf per DC (22 routers to 8) and to two hosts per DC (one Linux, one
+Windows) to free memory on the lab host, and DVWA was removed. configure.py builds interfaces and BGP
 neighbours from NetBox cables and addresses, so leftovers there would
 configure ports and peers that no longer exist.
 

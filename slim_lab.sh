@@ -2,14 +2,15 @@
 # slim_lab.sh
 #
 # One run that moves the running lab on ser10 to the smaller DC1-DC2 lab
-# (November 2026): two leaves per DC instead of six, one Linux host (dcN-h1)
-# and one Windows host (dcN-w1) per DC, no DVWA, everything else unchanged.
-# 22 routers become 14, which frees about 16 GB of router memory.
+# (November 2026): one DC gateway, one superspine, one spine and one leaf per
+# DC, one Linux host (dcN-h1) and one Windows host (dcN-w1) per DC, no DVWA.
+# Both DCI links, BFD and the failover policy stay. 22 routers become 8,
+# which frees about 28 GB of router memory.
 #
 #   1. records the starting point: branch, memory, running lab containers
 #   2. updates NetBox to the smaller plan: prune_netbox_dc1_dc2.py deletes the
-#      removed leaves and hosts, dcN-w1's old cable and stale addresses;
-#      add_hosts_dc1_dc2.py cables dcN-w1 to dcN-l2 ethernet-1/1;
+#      removed routers and hosts and the addresses left on their links;
+#      add_hosts_dc1_dc2.py adds any host cable that is missing;
 #      assign_ips_dc1_dc2.py sets the addresses; tag_dc1_dc2.py keeps tags right
 #   3. redeploys the lab with ./deploy_lab.sh (destroys the old 22-router lab,
 #      including nodes the new topology no longer lists, deploys, pushes the
@@ -56,12 +57,12 @@ echo "NetBox $NETBOX_URL: HTTP $(curl -s -o /dev/null -m 5 -w '%{http_code}' -H 
 echo "===== 2. NetBox ====="
 source ./venv/bin/activate
 echo "--- 2a. prune (what goes)"
-# Look first: only the removed leaves and hosts may be deleted. Anything else
+# Look first: only the removed routers and hosts may be deleted. Anything else
 # in the list means NetBox holds something this run did not expect, so stop.
 python3 prune_netbox_dc1_dc2.py --dry-run > results/prune_dryrun_$STAMP.txt 2>&1
 cat results/prune_dryrun_$STAMP.txt
 unexpected=$(sed -n '/=== Devices to delete/,/^$/p' results/prune_dryrun_$STAMP.txt | grep '^  ' \
-    | tr -d ' ' | grep -vE '^dc[12]-(l[3-6]|h[2-6])$')
+    | tr -d ' ' | grep -vE '^dc[12]-(l[2-6]|sp2|ss2|h[2-6])$')
 if [ -n "$unexpected" ]; then
     echo "STOPPED: the prune would also delete $(echo $unexpected), which this change does not remove."
     echo "Nothing was changed. Log saved to $LOG; push it so this can be looked at."
@@ -90,8 +91,8 @@ echo "===== 3. redeploy ====="
 echo "===== 4. checks ====="
 routers=$(docker ps --filter label=containerlab=DC1-DC2 --format '{{.Names}} {{.Image}}' | awk '/srlinux/' | wc -l)
 echo "SR Linux routers running: $routers"
-[ "$routers" = 14 ] && pass "14 routers running" || failv "$routers routers running, expected 14"
-left=$(docker ps -a --filter label=containerlab=DC1-DC2 --format '{{.Names}}' | grep -E -- '-l[3-6]$|-h[2-6]$|-h6-(db|web)$')
+[ "$routers" = 8 ] && pass "8 routers running" || failv "$routers routers running, expected 8"
+left=$(docker ps -a --filter label=containerlab=DC1-DC2 --format '{{.Names}}' | grep -E -- '-l[2-6]$|-sp2$|-ss2$|-h[2-6]$|-h6-(db|web)$')
 [ -z "$left" ] && pass "no removed node is left" || failv "removed nodes still present: $(echo $left)"
 
 for r in dc1-dci-r1 dc2-dci-r1; do
