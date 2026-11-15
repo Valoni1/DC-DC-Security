@@ -133,6 +133,19 @@ for w in dc1-w1 dc2-w1; do
         failv "dc1-h1 -> $w ($ip) no answer (normal while Windows is still installing)"
     fi
 done
+
+echo "--- external attacker to the exposed host"
+# The attacker node (ScopeWeaver's host) sits outside the DCs on 198.51.100.0/30
+# and should reach only the exposed host dc1-h1 on that segment.
+if [ "$(docker inspect -f '{{.State.Running}}' ${P}attacker 2>/dev/null)" != true ]; then
+    failv "attacker node not deployed"
+else
+    if docker exec ${P}attacker ping -c 3 -W 1 198.51.100.2 | grep -q " 0% packet loss"; then
+        pass "attacker -> dc1-h1 on the untrusted segment (exposed host reachable)"
+    else
+        failv "attacker cannot reach dc1-h1 at 198.51.100.2 (check eth2 on dc1-h1 and the link)"
+    fi
+fi
 deactivate
 
 echo "--- memory"

@@ -63,13 +63,20 @@ def check(clab, plan):
         clab_links.add(frozenset([(a, nb_if(ai)), (b, nb_if(bi))]))
     plan_links = {frozenset([(l["a"], l["a_if"]), (l["b"], l["b_if"])]) for l in plan["links"]}
     plan_links |= {frozenset([(h["leaf"], h["leaf_if"]), (h["name"], h["host_if"])]) for h in hosts}
+    ext = plan.get("external")
+    ext_nodes = set()
+    if ext:
+        a, e = ext["attacker"], ext["exposed"]
+        plan_links.add(frozenset([(a["name"], a["if"]), (e["name"], e["if"])]))
+        ext_nodes = {a["name"]}  # the exposed host is already a plan host
     assert clab_links == plan_links, clab_links ^ plan_links
     assert set(nodes) == set(plan["loopbacks"]), set(nodes) ^ set(plan["loopbacks"])
     # Containers sharing a host's network namespace (network-mode container:) are part of that host
     host_nodes = {n for n, v in clab["topology"]["nodes"].items()
                   if n not in nodes and n != "graphite"
                   and not str(v.get("network-mode", "")).startswith("container:")}
-    assert host_nodes == {h["name"] for h in hosts}, host_nodes ^ {h["name"] for h in hosts}
+    assert host_nodes == {h["name"] for h in hosts} | ext_nodes, \
+        host_nodes ^ ({h["name"] for h in hosts} | ext_nodes)
     return nodes
 
 
@@ -229,6 +236,22 @@ def main():
                 (f"{l['b']} {l['b_if']}<br>{l['b_ip']}", 0.75, 22),
             ] + ([("no OSPF on the DCI links", 0, 22)] if n == len(dci) - 1 else []),
         )
+
+    # External AI attacker (ScopeWeaver), outside both DCs, with one link to the
+    # exposed host. It reaches the lab only through that host, then pivots inward.
+    ext = plan.get("external")
+    if ext:
+        a = ext["attacker"]
+        d.box(
+            f"<b>{a['name']}</b><br>ScopeWeaver (external AI attacker)<br>"
+            f"{a['ip']} · untrusted {ext['segment']}",
+            -480, HOST_Y - 30, 300, 110,
+            "rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f8cecc;strokeColor=#b85450;",
+            cid=a["name"],
+        )
+        d.edge(a["name"], ext["exposed"]["name"],
+               "endArrow=none;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;fontSize=11;",
+               value=f"exposes {ext['exposed']['name']}")
 
     # Routing, management and legend panels under the two DCs
     py = BOX_H + 40

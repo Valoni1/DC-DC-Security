@@ -16,6 +16,28 @@ topology:
             labels:
                 graph-hide: yes
 
+        # External AI attacker (ScopeWeaver). It sits outside the two DCs with a
+        # single link to the exposed host dc1-h1, so it reaches the lab only
+        # through that host. Clab-only: it is not in NetBox and the routers are
+        # untouched. The base image here is a placeholder; the ScopeWeaver stack
+        # (Go backend, PostgreSQL, Next.js UI on :8787) is installed on this node
+        # afterwards, with its own controlled egress for the LLM API only.
+        attacker:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+                - bash -c "ip addr replace 198.51.100.1/30 dev eth1 && ip link set eth1 up"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Attacker
+                group: External
+                platform: ScopeWeaver (external AI attacker)
+                vendor: Generic
+                model: External attacker
+
         dc1-sp1:
             kind: srl
             type: ixrd3l 
@@ -134,6 +156,9 @@ topology:
             cmd: /start.sh -sS
             exec:
                 - bash -c "echo root:root | chpasswd"
+                # dc1-h1 is the exposed host: eth2 faces the external attacker
+                # segment. eth1 (its lab side) is set by configure_hosts.
+                - bash -c "ip addr replace 198.51.100.2/30 dev eth2 && ip link set eth2 up"
             labels:
                 graph-icon: server
                 graph-level: 10
@@ -141,7 +166,7 @@ topology:
                 group: DC1
                 platform: Ubuntu
                 vendor: Generic
-                model: Linux Host
+                model: Linux Host (internet-facing)
 
         dc1-w1:
             kind: linux
@@ -223,3 +248,5 @@ topology:
         - endpoints: ["dc1-l1:e1-2", "dc1-w1:eth1"]
         - endpoints: ["dc2-l1:e1-1", "dc2-h1:eth1"]
         - endpoints: ["dc2-l1:e1-2", "dc2-w1:eth1"]
+        # External attacker to the exposed host (untrusted segment 198.51.100.0/30)
+        - endpoints: ["attacker:eth1", "dc1-h1:eth2"]

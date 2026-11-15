@@ -56,3 +56,13 @@ hosts:
   # DC2
   - {name: dc2-h1, os: linux, leaf: dc2-l1, leaf_if: ethernet-1/1, leaf_ip: 172.30.2.1/28, host_if: eth1, host_ip: 172.30.2.2/28}
   - {name: dc2-w1, os: windows, leaf: dc2-l1, leaf_if: ethernet-1/2, leaf_ip: 172.30.2.97/28, host_if: eth1, host_ip: 172.30.2.98/28}
+
+# External / untrusted segment (clab-only, not in NetBox; the routers are not
+# touched). One outside AI attacker (ScopeWeaver) with a single link to the
+# exposed host dc1-h1, so it reaches the lab only through that host and then
+# pivots inward. Addresses are set by containerlab exec, not by the NetBox
+# scripts, so prune/add_hosts/assign_ips ignore this block.
+external:
+  segment: 198.51.100.0/30
+  attacker: {name: attacker, if: eth1, ip: 198.51.100.1/30}
+  exposed:  {name: dc1-h1,   if: eth2, ip: 198.51.100.2/30}
