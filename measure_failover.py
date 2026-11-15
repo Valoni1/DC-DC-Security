@@ -32,7 +32,7 @@ USAGE (on the lab host, from the repo folder, lab deployed and configured):
   sudo python3 measure_failover.py                      # silent failure, dc1-h1 -> dc2-h1
   sudo python3 measure_failover.py --fail down
   sudo python3 measure_failover.py --fail none --duration 20
-  sudo python3 measure_failover.py --src dc1-h3 --dst dc2-h5 --repeat 5
+  sudo python3 measure_failover.py --src dc1-h1 --dst dc2-h1 --repeat 5
 """
 
 import argparse
