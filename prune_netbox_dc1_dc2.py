@@ -113,14 +113,23 @@ def main():
             ifaces[(dev.name, i.name)] = i
 
     remove_cables = {}  # cable id -> description
+    strand_ifaces = {}  # (device, interface) -> interface record: ports left unconnected
     unplugged = set()   # (device, interface) of remaining devices whose cable goes
     for (dname, iname), i in ifaces.items():
         if i.cable is None:
             continue
         peers = [(p.device.name, p.name) for p in (i.link_peers or []) if hasattr(p, "device")]
         peer_dev = peers[0][0] if peers else None
-        if peer_dev in remove_devices:
-            unplugged.add((dname, iname))   # cable goes with the removed device
+        if peer_dev in remove_devices or peer_dev is None:
+            # The far end is being removed (or already gone), so this port is
+            # left stranded on a device that stays. Delete the port and its
+            # cable unless the plan still wants this port: configure.py rejects
+            # the whole device if it has a port with no IP and no peer.
+            unplugged.add((dname, iname))
+            if (dname, iname) not in wanted:
+                strand_ifaces[(dname, iname)] = i
+                if i.cable is not None:
+                    remove_cables[i.cable.id] = f"{dname}:{iname} (dangling, peer removed)"
             continue
         if any(frozenset([(dname, iname), p]) in plan_cables for p in peers):
             continue
@@ -149,11 +158,14 @@ def main():
     print(f"\n=== Cables to delete between remaining devices ({len(remove_cables)}) ===")
     for desc in remove_cables.values():
         print(f"  {desc}")
+    print(f"\n=== Stranded ports to delete on remaining devices ({len(strand_ifaces)}) ===")
+    for key in sorted(strand_ifaces):
+        print(f"  {key[0]}:{key[1]}")
     print(f"\n=== Addresses to delete ({len(remove_ips)}) ===")
     for _, desc in remove_ips:
         print(f"  {desc}")
 
-    if not (remove_devices or remove_cables or remove_ips):
+    if not (remove_devices or remove_cables or remove_ips or strand_ifaces):
         print("\nNothing to remove: NetBox already matches the plan.")
         return
     if args.dry_run:
@@ -187,6 +199,8 @@ def main():
         attempt(f"address {desc}", ip.delete)
     for cid, desc in remove_cables.items():
         attempt(f"cable {desc}", lambda cid=cid: nb.dcim.cables.get(cid).delete())
+    for key, iface in sorted(strand_ifaces.items()):
+        attempt(f"port {key[0]}:{key[1]}", iface.delete)
     for name in remove_devices:
         attempt(f"device {name}", nb_devices[name].delete)
 
