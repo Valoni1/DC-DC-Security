@@ -16,6 +16,28 @@ topology:
             labels:
                 graph-hide: yes
 
+        # External AI attacker (ScopeWeaver). It sits outside the two DCs with a
+        # single link to the exposed host dc1-h1, so it reaches the lab only
+        # through that host. Clab-only: it is not in NetBox and the routers are
+        # untouched. The base image here is a placeholder; the ScopeWeaver stack
+        # (Go backend, PostgreSQL, Next.js UI on :8787) is installed on this node
+        # afterwards, with its own controlled egress for the LLM API only.
+        attacker:
+            kind: linux
+            image: netreplica/ubuntu-host:1.4
+            cmd: /start.sh -sS
+            exec:
+                - bash -c "echo root:root | chpasswd"
+                - bash -c "ip addr replace 198.51.100.1/30 dev eth1 && ip link set eth1 up"
+            labels:
+                graph-icon: server
+                graph-level: 10
+                role: Attacker
+                group: External
+                platform: ScopeWeaver (external AI attacker)
+                vendor: Generic
+                model: External attacker
+
         dc1-sp1:
             kind: srl
             type: ixrd3l 
@@ -41,90 +63,6 @@ topology:
                 role: Leaf
                 group: DC1
                 platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc1-l2:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC1
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc1-l3:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC1
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc1-l4:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC1
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc1-l5:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC1
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc1-l6:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC1
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc1-sp2:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: spine
-                graph-level: 10
-                role: Spine
-                group: DC1
-                platform: SR Linux Spine
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
@@ -156,105 +94,7 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        dc2-l2:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC2
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc2-l3:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC2
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc2-l4:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC2
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc2-l5:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC2
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc2-l6:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: leaf
-                graph-level: 10
-                role: Leaf
-                group: DC2
-                platform: SR Linux Leaf
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc2-sp2:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: spine
-                graph-level: 10
-                role: Spine
-                group: DC2
-                platform: SR Linux Spine
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
         dc1-ss1:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: superspine
-                graph-level: 10
-                role: Superspine
-                group: DC1
-                platform: SR Linux Superspine
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
-        dc1-ss2:
             kind: srl
             type: ixrd3l 
             image: ghcr.io/nokia/srlinux:26.7.2
@@ -296,20 +136,6 @@ topology:
                 vendor: Nokia
                 model: 7220 IXR-D3L 32*100GE
 
-        dc2-ss2:
-            kind: srl
-            type: ixrd3l 
-            image: ghcr.io/nokia/srlinux:26.7.2
-            memory: 2Gb
-            labels:
-                graph-icon: superspine
-                graph-level: 10
-                role: Superspine
-                group: DC2
-                platform: SR Linux Superspine
-                vendor: Nokia
-                model: 7220 IXR-D3L 32*100GE
-
         dc2-dci-r1:
             kind: srl
             type: ixrd3l 
@@ -330,6 +156,9 @@ topology:
             cmd: /start.sh -sS
             exec:
                 - bash -c "echo root:root | chpasswd"
+                # dc1-h1 is the exposed host: eth2 faces the external attacker
+                # segment. eth1 (its lab side) is set by configure_hosts.
+                - bash -c "ip addr replace 198.51.100.2/30 dev eth2 && ip link set eth2 up"
             labels:
                 graph-icon: server
                 graph-level: 10
@@ -337,82 +166,7 @@ topology:
                 group: DC1
                 platform: Ubuntu
                 vendor: Generic
-                model: Linux Host
-
-        dc1-h2:
-            kind: linux
-            image: netreplica/ubuntu-host:1.4
-            cmd: /start.sh -sS
-            exec:
-                - bash -c "echo root:root | chpasswd"
-            labels:
-                graph-icon: server
-                graph-level: 10
-                role: Server
-                group: DC1
-                platform: Ubuntu
-                vendor: Generic
-                model: Linux Host
-
-        dc1-h3:
-            kind: linux
-            image: netreplica/ubuntu-host:1.4
-            cmd: /start.sh -sS
-            exec:
-                - bash -c "echo root:root | chpasswd"
-            labels:
-                graph-icon: server
-                graph-level: 10
-                role: Server
-                group: DC1
-                platform: Ubuntu
-                vendor: Generic
-                model: Linux Host
-
-        dc1-h4:
-            kind: linux
-            image: netreplica/ubuntu-host:1.4
-            cmd: /start.sh -sS
-            exec:
-                - bash -c "echo root:root | chpasswd"
-            labels:
-                graph-icon: server
-                graph-level: 10
-                role: Server
-                group: DC1
-                platform: Ubuntu
-                vendor: Generic
-                model: Linux Host
-
-        dc1-h5:
-            kind: linux
-            image: netreplica/ubuntu-host:1.4
-            cmd: /start.sh -sS
-            exec:
-                - bash -c "echo root:root | chpasswd"
-            labels:
-                graph-icon: server
-                graph-level: 10
-                role: Server
-                group: DC1
-                platform: Ubuntu
-                vendor: Generic
-                model: Linux Host
-
-        dc1-h6:
-            kind: linux
-            image: netreplica/ubuntu-host:1.4
-            cmd: /start.sh -sS
-            exec:
-                - bash -c "echo root:root | chpasswd"
-            labels:
-                graph-icon: server
-                graph-level: 10
-                role: Server
-                group: DC1
-                platform: Ubuntu
-                vendor: Generic
-                model: Linux Host
+                model: Linux Host (internet-facing)
 
         dc1-w1:
             kind: linux
@@ -455,81 +209,6 @@ topology:
                 vendor: Generic
                 model: Linux Host
 
-        dc2-h2:
-            kind: linux
-            image: netreplica/ubuntu-host:1.4
-            cmd: /start.sh -sS
-            exec:
-                - bash -c "echo root:root | chpasswd"
-            labels:
-                graph-icon: server
-                graph-level: 10
-                role: Server
-                group: DC2
-                platform: Ubuntu
-                vendor: Generic
-                model: Linux Host
-
-        dc2-h3:
-            kind: linux
-            image: netreplica/ubuntu-host:1.4
-            cmd: /start.sh -sS
-            exec:
-                - bash -c "echo root:root | chpasswd"
-            labels:
-                graph-icon: server
-                graph-level: 10
-                role: Server
-                group: DC2
-                platform: Ubuntu
-                vendor: Generic
-                model: Linux Host
-
-        dc2-h4:
-            kind: linux
-            image: netreplica/ubuntu-host:1.4
-            cmd: /start.sh -sS
-            exec:
-                - bash -c "echo root:root | chpasswd"
-            labels:
-                graph-icon: server
-                graph-level: 10
-                role: Server
-                group: DC2
-                platform: Ubuntu
-                vendor: Generic
-                model: Linux Host
-
-        dc2-h5:
-            kind: linux
-            image: netreplica/ubuntu-host:1.4
-            cmd: /start.sh -sS
-            exec:
-                - bash -c "echo root:root | chpasswd"
-            labels:
-                graph-icon: server
-                graph-level: 10
-                role: Server
-                group: DC2
-                platform: Ubuntu
-                vendor: Generic
-                model: Linux Host
-
-        dc2-h6:
-            kind: linux
-            image: netreplica/ubuntu-host:1.4
-            cmd: /start.sh -sS
-            exec:
-                - bash -c "echo root:root | chpasswd"
-            labels:
-                graph-icon: server
-                graph-level: 10
-                role: Server
-                group: DC2
-                platform: Ubuntu
-                vendor: Generic
-                model: Linux Host
-
         dc2-w1:
             kind: linux
             image: dockurr/windows:6.05
@@ -558,53 +237,16 @@ topology:
 
     links:
         - endpoints: ["dc1-sp1:e1-1", "dc1-l1:e1-28"]
-        - endpoints: ["dc1-sp1:e1-2", "dc1-l2:e1-28"]
-        - endpoints: ["dc1-sp1:e1-3", "dc1-l3:e1-28"]
-        - endpoints: ["dc1-sp1:e1-4", "dc1-l4:e1-28"]
-        - endpoints: ["dc1-sp1:e1-5", "dc1-l5:e1-28"]
-        - endpoints: ["dc1-sp1:e1-6", "dc1-l6:e1-28"]
-        - endpoints: ["dc1-sp2:e1-1", "dc1-l1:e1-27"]
-        - endpoints: ["dc1-sp2:e1-2", "dc1-l2:e1-27"]
-        - endpoints: ["dc1-sp2:e1-3", "dc1-l3:e1-27"]
-        - endpoints: ["dc1-sp2:e1-4", "dc1-l4:e1-27"]
-        - endpoints: ["dc1-sp2:e1-5", "dc1-l5:e1-27"]
-        - endpoints: ["dc1-sp2:e1-6", "dc1-l6:e1-27"]
         - endpoints: ["dc2-sp1:e1-1", "dc2-l1:e1-28"]
-        - endpoints: ["dc2-sp1:e1-2", "dc2-l2:e1-28"]
-        - endpoints: ["dc2-sp1:e1-3", "dc2-l3:e1-28"]
-        - endpoints: ["dc2-sp1:e1-4", "dc2-l4:e1-28"]
-        - endpoints: ["dc2-sp1:e1-5", "dc2-l5:e1-28"]
-        - endpoints: ["dc2-sp1:e1-6", "dc2-l6:e1-28"]
-        - endpoints: ["dc2-sp2:e1-1", "dc2-l1:e1-27"]
-        - endpoints: ["dc2-sp2:e1-2", "dc2-l2:e1-27"]
-        - endpoints: ["dc2-sp2:e1-3", "dc2-l3:e1-27"]
-        - endpoints: ["dc2-sp2:e1-4", "dc2-l4:e1-27"]
-        - endpoints: ["dc2-sp2:e1-5", "dc2-l5:e1-27"]
-        - endpoints: ["dc2-sp2:e1-6", "dc2-l6:e1-27"]
         - endpoints: ["dc1-sp1:e1-7", "dc1-ss1:e1-1"]
-        - endpoints: ["dc1-sp1:e1-8", "dc1-ss2:e1-1"]
-        - endpoints: ["dc1-sp2:e1-7", "dc1-ss1:e1-2"]
-        - endpoints: ["dc1-sp2:e1-8", "dc1-ss2:e1-2"]
         - endpoints: ["dc1-ss1:e1-3", "dc1-dci-r1:e1-1"]
-        - endpoints: ["dc1-ss2:e1-3", "dc1-dci-r1:e1-2"]
         - endpoints: ["dc2-sp1:e1-7", "dc2-ss1:e1-1"]
-        - endpoints: ["dc2-sp1:e1-8", "dc2-ss2:e1-1"]
-        - endpoints: ["dc2-sp2:e1-7", "dc2-ss1:e1-2"]
-        - endpoints: ["dc2-sp2:e1-8", "dc2-ss2:e1-2"]
         - endpoints: ["dc2-ss1:e1-3", "dc2-dci-r1:e1-1"]
-        - endpoints: ["dc2-ss2:e1-3", "dc2-dci-r1:e1-2"]
         - endpoints: ["dc1-dci-r1:e1-3", "dc2-dci-r1:e1-3"]
+        - endpoints: ["dc1-dci-r1:e1-4", "dc2-dci-r1:e1-4"]
         - endpoints: ["dc1-l1:e1-1", "dc1-h1:eth1"]
-        - endpoints: ["dc1-l2:e1-1", "dc1-h2:eth1"]
-        - endpoints: ["dc1-l3:e1-1", "dc1-h3:eth1"]
-        - endpoints: ["dc1-l4:e1-1", "dc1-h4:eth1"]
-        - endpoints: ["dc1-l5:e1-1", "dc1-h5:eth1"]
-        - endpoints: ["dc1-l6:e1-1", "dc1-h6:eth1"]
         - endpoints: ["dc1-l1:e1-2", "dc1-w1:eth1"]
         - endpoints: ["dc2-l1:e1-1", "dc2-h1:eth1"]
-        - endpoints: ["dc2-l2:e1-1", "dc2-h2:eth1"]
-        - endpoints: ["dc2-l3:e1-1", "dc2-h3:eth1"]
-        - endpoints: ["dc2-l4:e1-1", "dc2-h4:eth1"]
-        - endpoints: ["dc2-l5:e1-1", "dc2-h5:eth1"]
-        - endpoints: ["dc2-l6:e1-1", "dc2-h6:eth1"]
         - endpoints: ["dc2-l1:e1-2", "dc2-w1:eth1"]
+        # External attacker to the exposed host (untrusted segment 198.51.100.0/30)
+        - endpoints: ["attacker:eth1", "dc1-h1:eth2"]

@@ -63,10 +63,20 @@ def check(clab, plan):
         clab_links.add(frozenset([(a, nb_if(ai)), (b, nb_if(bi))]))
     plan_links = {frozenset([(l["a"], l["a_if"]), (l["b"], l["b_if"])]) for l in plan["links"]}
     plan_links |= {frozenset([(h["leaf"], h["leaf_if"]), (h["name"], h["host_if"])]) for h in hosts}
+    ext = plan.get("external")
+    ext_nodes = set()
+    if ext:
+        a, e = ext["attacker"], ext["exposed"]
+        plan_links.add(frozenset([(a["name"], a["if"]), (e["name"], e["if"])]))
+        ext_nodes = {a["name"]}  # the exposed host is already a plan host
     assert clab_links == plan_links, clab_links ^ plan_links
     assert set(nodes) == set(plan["loopbacks"]), set(nodes) ^ set(plan["loopbacks"])
-    host_nodes = set(clab["topology"]["nodes"]) - set(nodes) - {"graphite"}
-    assert host_nodes == {h["name"] for h in hosts}, host_nodes ^ {h["name"] for h in hosts}
+    # Containers sharing a host's network namespace (network-mode container:) are part of that host
+    host_nodes = {n for n, v in clab["topology"]["nodes"].items()
+                  if n not in nodes and n != "graphite"
+                  and not str(v.get("network-mode", "")).startswith("container:")}
+    assert host_nodes == {h["name"] for h in hosts} | ext_nodes, \
+        host_nodes ^ ({h["name"] for h in hosts} | ext_nodes)
     return nodes
 
 
@@ -138,12 +148,12 @@ def main():
     dc_x = {1: 0, 2: W + 100}
     tiers = {  # y and horizontal centres (relative to the DC box) per tier
         "dc-gateway": (110, [W / 2]),
-        "superspine": (270, [W / 2 - 220, W / 2 + 220]),
-        "spine": (440, [W / 2 - 330, W / 2 + 330]),
-        "leaf": (640, [W / 2 + (i - 2.5) * 225 for i in range(6)]),
+        "superspine": (270, [W / 2]),
+        "spine": (440, [W / 2]),
+        "leaf": (640, [W / 2]),
     }
     HOST_Y, HW, HH = 760, 110, 50
-    TABLE_Y, TABLE_H = 860, 560
+    TABLE_Y, TABLE_H = 860, 400
     BOX_H = TABLE_Y + TABLE_H + 20
 
     for dc in (1, 2):  # both site boxes first so they sit behind everything else
@@ -207,20 +217,41 @@ def main():
             "text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;overflow=fill;fontSize=12;",
         )
 
-    # DCI: the only link between the two sites
-    dci = [l for l in plan["links"] if dc_of(l["a"]) != dc_of(l["b"])]
-    assert len(dci) == 1, dci
-    l = dci[0]
-    d.edge(
-        l["a"], l["b"],
-        "endArrow=none;html=1;strokeColor=#1f5fbf;strokeWidth=4;fontSize=12;fontStyle=1;",
-        value=f"DCI link · eBGP AS {asn(l['a'])} ↔ AS {asn(l['b'])}",
-        labels=[
-            (f"{l['a']} {l['a_if']}<br>{l['a_ip']}", -0.75, 22),
-            (f"{l['b']} {l['b_if']}<br>{l['b_ip']}", 0.75, 22),
-            ("no OSPF on this link", 0, 22),
-        ],
-    )
+    # DCI: the links between the two sites. The first (lowest port) is the
+    # primary; the others are backups (dci-import-primary sets local-pref 200)
+    dci = sorted((l for l in plan["links"] if dc_of(l["a"]) != dc_of(l["b"])), key=lambda l: l["a_if"])
+    assert dci, "no DCI link in the plan"
+    for n, l in enumerate(dci):
+        role = "primary" if n == 0 else "backup"
+        # spread parallel links vertically so they don't overlap
+        y = 0.5 + (n - (len(dci) - 1) / 2) * 0.3
+        d.edge(
+            l["a"], l["b"],
+            f"endArrow=none;html=1;strokeColor=#1f5fbf;strokeWidth={4 if n == 0 else 2};"
+            f"{'dashed=1;' if n else ''}fontSize=12;fontStyle=1;"
+            f"exitX=1;exitY={y};entryX=0;entryY={y};",
+            value=f"DCI {role} · eBGP AS {asn(l['a'])} ↔ AS {asn(l['b'])} · BFD",
+            labels=[
+                (f"{l['a']} {l['a_if']}<br>{l['a_ip']}", -0.75, 22),
+                (f"{l['b']} {l['b_if']}<br>{l['b_ip']}", 0.75, 22),
+            ] + ([("no OSPF on the DCI links", 0, 22)] if n == len(dci) - 1 else []),
+        )
+
+    # External AI attacker (ScopeWeaver), outside both DCs, with one link to the
+    # exposed host. It reaches the lab only through that host, then pivots inward.
+    ext = plan.get("external")
+    if ext:
+        a = ext["attacker"]
+        d.box(
+            f"<b>{a['name']}</b><br>ScopeWeaver (external AI attacker)<br>"
+            f"{a['ip']} · untrusted {ext['segment']}",
+            -480, HOST_Y - 30, 300, 110,
+            "rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f8cecc;strokeColor=#b85450;",
+            cid=a["name"],
+        )
+        d.edge(a["name"], ext["exposed"]["name"],
+               "endArrow=none;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;fontSize=11;",
+               value=f"exposes {ext['exposed']['name']}")
 
     # Routing, management and legend panels under the two DCs
     py = BOX_H + 40
@@ -243,14 +274,19 @@ def main():
         "<li><b>eBGP over DCI</b> dc1-dci-r1 (65201) ↔ dc2-dci-r1 (65202). "
         "Export policy dci-export sends only the local 172.20.N.0/24 loopbacks and 172.30.N.0/24 "
         "host LANs (mask 24..32); "
-        "dci-import accepts all; bgp-to-ospf redistributes them into the DC's OSPF (gateway is ASBR).</li>"
+        "dci-import accepts all; on the primary DCI link (ethernet-1/3) dci-import-primary also sets "
+        "local-preference 200, so the backup link (ethernet-1/4) carries traffic only when the primary "
+        "fails. BFD (1 s x 3, the vSRL minimum) with fast-failover on both DCI sessions. "
+        "bgp-to-ospf redistributes them into the DC's OSPF (gateway is ASBR).</li>"
         "<li><b>Host LANs</b>: each leaf is the gateway of its hosts' /28s, advertised into OSPF "
         "as passive interfaces. Hosts route 172.20/16, 172.30/16 and 10.1/16 via the leaf "
         "(configure_hosts_dc1_dc2.py); their default route stays on management. Windows hosts "
         "are a VM behind NAT in their container, which holds the planned address.</li>"
-        "</ul>Note: config_mgmt/configs/ holds no rendered DC1/DC2 configs yet, "
-        "so this is the intended configuration, not one captured from a running lab.",
-        0, py, 1400, 250, panel + "fillColor=#ffffff;strokeColor=#666666;",
+        "</ul>The two-DCI version with BFD ran on the lab from 20 October 2026 with 22 routers "
+        "(failover measured 26 October). In November 2026 the lab was cut to one router per tier (8 in all) "
+        "and one Linux and one Windows host per DC to free host memory; the remaining addresses are unchanged. "
+        "Rendered configs in config_mgmt/configs/ are not committed.",
+        0, py, 1400, 280, panel + "fillColor=#ffffff;strokeColor=#666666;",
     )
     d.box(
         "<b>Out-of-band management and tooling</b><ul>"
@@ -261,10 +297,14 @@ def main():
         "topology viewer.</li>"
         "<li><b>NetBox</b> (docker compose, host port 8000 → 8080) is the source of truth. "
         "nrx exports sites DC1, DC2 to containerlab; configure.py pushes configs over "
-        "JSON-RPC to http://clab-DC1-DC2-&lt;node&gt;/jsonrpc.</li></ul>",
-        1500, py, 1400, 250, panel + "fillColor=#f5f5f5;strokeColor=#999999;dashed=1;",
+        "JSON-RPC to http://clab-DC1-DC2-&lt;node&gt;/jsonrpc.</li>"
+        "<li><b>Lab host ser10</b>: containers run under the Docker snap package (29.8.0). "
+        "The apt docker-ce daemon that held the 6-12 October lab is stopped and masked "
+        "(tools/host/). With 8 routers the Windows hosts fit in memory and are "
+        "deployed with the rest of the lab.</li></ul>",
+        1500, py, 1400, 280, panel + "fillColor=#f5f5f5;strokeColor=#999999;dashed=1;",
     )
-    legend_y = py + 280
+    legend_y = py + 310
     d.box(
         "<b>Legend</b>", 0, legend_y, 2900, 110,
         panel + "fillColor=#ffffff;strokeColor=#666666;",
@@ -282,8 +322,8 @@ def main():
     d.box(
         f"All {len(nodes)} routers: Nokia SR Linux (kind {ex['kind']}, type {ex['type'].strip()}, "
         f"image {ex['image']}), 7220 IXR-D3L. Memory: {mem_txt}.<br>"
-        f"Grey line = intra-DC fabric link ({len(plan['links']) - 1}); "
-        f"thick blue = DCI link (1); thin blue = host link ({len(plan.get('hosts', []))}). "
+        f"Grey line = intra-DC fabric link ({sum(1 for l in plan['links'] if l['a'][:3] == l['b'][:3])}); "
+        f"thick blue = DCI link; thin blue = host link ({len(plan.get('hosts', []))}). "
         f"N = DC number. Hosts: Linux netreplica/ubuntu-host, Windows Server 2022 in dockurr/windows.",
         lx + 20, legend_y + 30, 2900 - lx - 40, 60,
         "text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontSize=12;",

@@ -1,0 +1,71 @@
+Baseline capture 2026-10-20T11:47:13
+Output folder: /home/samuel/DC-DC-Security/results/baseline_20261020_1147
+
+ROUTERS (OSPF full/expected, BGP established/total)
+  dc1-dci-r1   OSPF 0/2   BGP 3/3  <-- OSPF
+  dc1-l1       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc1-l2       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc1-l3       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc1-l4       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc1-l5       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc1-l6       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc1-sp1      OSPF 0/8   BGP 8/10  <-- OSPF  <-- BGP
+  dc1-sp2      OSPF 0/8   BGP 8/10  <-- OSPF  <-- BGP
+  dc1-ss1      OSPF 0/3   BGP 3/3  <-- OSPF
+  dc1-ss2      OSPF 0/3   BGP 3/3  <-- OSPF
+  dc2-dci-r1   OSPF 0/2   BGP 3/3  <-- OSPF
+  dc2-l1       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc2-l2       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc2-l3       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc2-l4       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc2-l5       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc2-l6       OSPF 0/2   BGP 2/2  <-- OSPF
+  dc2-sp1      OSPF 0/8   BGP 8/10  <-- OSPF  <-- BGP
+  dc2-sp2      OSPF 0/8   BGP 8/10  <-- OSPF  <-- BGP
+  dc2-ss1      OSPF 0/3   BGP 3/3  <-- OSPF
+  dc2-ss2      OSPF 0/3   BGP 3/3  <-- OSPF
+
+PINGS
+  dc1-l1 lo0 -> dc2-l1 lo0: 10/10 received, rtt min/avg/max/mdev 3.767/4.323/4.947/0.496 ms, TTL 58
+  dc2-l1 lo0 -> dc1-l1 lo0: 10/10 received, rtt min/avg/max/mdev 3.748/3.818/4.073/0.100 ms, TTL 58
+  dc1-h1 -> dc2-h1: 20/20 received, rtt min/avg/max/mdev 1.231/1.639/4.869/0.838 ms, TTL 56
+  dc2-h1 -> dc1-h1: 20/20 received, rtt min/avg/max/mdev 1.336/1.436/1.687/0.076 ms, TTL 56
+  dc1-h2 -> dc2-h2: 20/20 received, rtt min/avg/max/mdev 1.245/1.910/11.394/2.177 ms, TTL 56
+  dc2-h2 -> dc1-h2: 20/20 received, rtt min/avg/max/mdev 1.268/1.396/1.513/0.071 ms, TTL 56
+  dc1-h3 -> dc2-h3: 20/20 received, rtt min/avg/max/mdev 1.226/2.318/18.485/3.711 ms, TTL 56
+  dc2-h3 -> dc1-h3: 20/20 received, rtt min/avg/max/mdev 1.325/1.450/1.664/0.081 ms, TTL 56
+  dc1-h4 -> dc2-h4: 20/20 received, rtt min/avg/max/mdev 1.230/1.959/12.483/2.415 ms, TTL 56
+  dc2-h4 -> dc1-h4: 20/20 received, rtt min/avg/max/mdev 1.268/1.356/1.564/0.077 ms, TTL 56
+  dc1-h5 -> dc2-h5: 20/20 received, rtt min/avg/max/mdev 1.148/2.295/20.667/4.215 ms, TTL 56
+  dc2-h5 -> dc1-h5: 20/20 received, rtt min/avg/max/mdev 1.165/1.362/1.565/0.105 ms, TTL 56
+  dc1-h6 -> dc2-h6: 20/20 received, rtt min/avg/max/mdev 1.226/2.006/13.262/2.583 ms, TTL 56
+  dc2-h6 -> dc1-h6: 20/20 received, rtt min/avg/max/mdev 1.129/1.269/1.445/0.089 ms, TTL 56
+
+===== VERDICT =====
+Baseline NOT clean:
+  - dc1-dci-r1: 0 OSPF neighbours full, expected 2
+  - dc1-l1: 0 OSPF neighbours full, expected 2
+  - dc1-l2: 0 OSPF neighbours full, expected 2
+  - dc1-l3: 0 OSPF neighbours full, expected 2
+  - dc1-l4: 0 OSPF neighbours full, expected 2
+  - dc1-l5: 0 OSPF neighbours full, expected 2
+  - dc1-l6: 0 OSPF neighbours full, expected 2
+  - dc1-sp1: 0 OSPF neighbours full, expected 8
+  - dc1-sp1: 2 BGP session(s) not established
+  - dc1-sp2: 0 OSPF neighbours full, expected 8
+  - dc1-sp2: 2 BGP session(s) not established
+  - dc1-ss1: 0 OSPF neighbours full, expected 3
+  - dc1-ss2: 0 OSPF neighbours full, expected 3
+  - dc2-dci-r1: 0 OSPF neighbours full, expected 2
+  - dc2-l1: 0 OSPF neighbours full, expected 2
+  - dc2-l2: 0 OSPF neighbours full, expected 2
+  - dc2-l3: 0 OSPF neighbours full, expected 2
+  - dc2-l4: 0 OSPF neighbours full, expected 2
+  - dc2-l5: 0 OSPF neighbours full, expected 2
+  - dc2-l6: 0 OSPF neighbours full, expected 2
+  - dc2-sp1: 0 OSPF neighbours full, expected 8
+  - dc2-sp1: 2 BGP session(s) not established
+  - dc2-sp2: 0 OSPF neighbours full, expected 8
+  - dc2-sp2: 2 BGP session(s) not established
+  - dc2-ss1: 0 OSPF neighbours full, expected 3
+  - dc2-ss2: 0 OSPF neighbours full, expected 3

@@ -1,0 +1,19 @@
+
+=== down failure: dc1-h1 -> dc2-h1 (172.30.2.2), 40s at 100 pkt/s, failure at 10s ===
+BGP to 10.1.0.1 (primary): connect
+BFD to 10.1.0.1 (primary): no session (BFD not running)
+link broken (down) at 03:14:06.867
+BFD to 10.1.0.1 went down after 0.10s (seen by polling)
+BGP to 10.1.0.1 dropped after 0.14s (seen by polling)
+dc1-dci-r1: BGP to 10.1.0.1 left established -24.97s after the failure (router clock), cause bfdDown
+dc2-dci-r1: BGP to 10.1.0.0 left established -25.07s after the failure (router clock), cause bfdDown
+BFD and BGP state saved to results/bfd_down_20261026_031407.json
+
+sent 3523, received 3522, lost 1 (0.0%)
+outage (longest gap between replies): 0.012s
+BFD detection time: 0.10s
+BGP detection time: 0.14s
+  (BGP dropped 0.05s after BFD; the rest is reconvergence)
+dc1-dci-r1 ethernet-1/3 packets out: before failure 2, after 0
+dc1-dci-r1 ethernet-1/4 packets out: before failure 1667, after 2656
+link repaired; BGP on the primary re-established after 36s

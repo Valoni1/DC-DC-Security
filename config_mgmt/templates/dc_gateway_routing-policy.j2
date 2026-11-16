@@ -59,6 +59,18 @@
         }
       },
       {
+        "name": "dci-import-primary",
+        "default-action": {
+          "policy-result": "accept",
+          "bgp": {
+            "local-preference": {
+              "value": 200,
+              "operation": "set"
+            }
+          }
+        }
+      },
+      {
         "name": "bgp-to-ospf",
         "default-action": {
           "policy-result": "reject"

@@ -1,0 +1,157 @@
+Repair run 2026-10-26T02:23:44+00:00
+===== 1. containers =====
+clab-DC1-DC2-dc1-dci-r1	Up 22 minutes
+clab-DC1-DC2-dc1-h1	Up 22 minutes
+clab-DC1-DC2-dc1-h2	Up 22 minutes
+clab-DC1-DC2-dc1-h3	Up 22 minutes
+clab-DC1-DC2-dc1-h4	Up 22 minutes
+clab-DC1-DC2-dc1-h5	Up 22 minutes
+clab-DC1-DC2-dc1-h6-db	Up 21 minutes
+clab-DC1-DC2-dc1-h6	Up 22 minutes
+clab-DC1-DC2-dc1-h6-web	Up 21 minutes
+clab-DC1-DC2-dc1-l1	Up 22 minutes
+clab-DC1-DC2-dc1-l2	Up 22 minutes
+clab-DC1-DC2-dc1-l3	Up 22 minutes
+clab-DC1-DC2-dc1-l4	Up 22 minutes
+clab-DC1-DC2-dc1-l5	Up 22 minutes
+clab-DC1-DC2-dc1-l6	Up 22 minutes
+clab-DC1-DC2-dc1-sp1	Up 22 minutes
+clab-DC1-DC2-dc1-sp2	Up 22 minutes
+clab-DC1-DC2-dc1-ss1	Up 22 minutes
+clab-DC1-DC2-dc1-ss2	Up 22 minutes
+clab-DC1-DC2-dc2-dci-r1	Up 21 minutes
+clab-DC1-DC2-dc2-h1	Up 22 minutes
+clab-DC1-DC2-dc2-h2	Up 22 minutes
+clab-DC1-DC2-dc2-h3	Up 22 minutes
+clab-DC1-DC2-dc2-h4	Up 22 minutes
+clab-DC1-DC2-dc2-h5	Up 21 minutes
+clab-DC1-DC2-dc2-h6-db	Up 21 minutes
+clab-DC1-DC2-dc2-h6	Up 21 minutes
+clab-DC1-DC2-dc2-h6-web	Up 21 minutes
+clab-DC1-DC2-dc2-l1	Up 22 minutes
+clab-DC1-DC2-dc2-l2	Up 22 minutes
+clab-DC1-DC2-dc2-l3	Up 22 minutes
+clab-DC1-DC2-dc2-l4	Up 22 minutes
+clab-DC1-DC2-dc2-l5	Up 22 minutes
+clab-DC1-DC2-dc2-l6	Up 22 minutes
+clab-DC1-DC2-dc2-sp1	Up 22 minutes
+clab-DC1-DC2-dc2-sp2	Up 22 minutes
+clab-DC1-DC2-dc2-ss1	Up 21 minutes
+clab-DC1-DC2-dc2-ss2	Up 22 minutes
+clab-DC1-DC2-graphite	Up 22 minutes
+running: 39   not running: 0
+               total        used        free      shared  buff/cache   available
+Mem:              61          33          17           0          11          28
+Swap:             74           1          73
+===== 2. host interfaces =====
+  dc1-h1: eth1 present
+  dc1-h2: eth1 present
+  dc1-h3: eth1 present
+  dc1-h4: eth1 present
+  dc1-h5: eth1 present
+  dc1-h6: eth1 present
+  dc2-h1: eth1 present
+  dc2-h2: eth1 present
+  dc2-h3: eth1 present
+  dc2-h4: eth1 present
+  dc2-h5: eth1 present
+  dc2-h6: eth1 present
+===== 3. host addresses =====
+clab-DC1-DC2-dc1-h1: 172.30.1.2/28 via dc1-l1
+clab-DC1-DC2-dc1-h2: 172.30.1.18/28 via dc1-l2
+clab-DC1-DC2-dc1-h3: 172.30.1.34/28 via dc1-l3
+clab-DC1-DC2-dc1-h4: 172.30.1.50/28 via dc1-l4
+clab-DC1-DC2-dc1-h5: 172.30.1.66/28 via dc1-l5
+clab-DC1-DC2-dc1-h6: 172.30.1.82/28 via dc1-l6
+clab-DC1-DC2-dc2-h1: 172.30.2.2/28 via dc2-l1
+clab-DC1-DC2-dc2-h2: 172.30.2.18/28 via dc2-l2
+clab-DC1-DC2-dc2-h3: 172.30.2.34/28 via dc2-l3
+clab-DC1-DC2-dc2-h4: 172.30.2.50/28 via dc2-l4
+clab-DC1-DC2-dc2-h5: 172.30.2.66/28 via dc2-l5
+clab-DC1-DC2-dc2-h6: 172.30.2.82/28 via dc2-l6
+
+Configured: 12   Failed: 2
+  dc1-h1: 172.30.1.2/28 
+  dc1-h2: 172.30.1.18/28 
+  dc1-h3: 172.30.1.34/28 
+  dc1-h4: 172.30.1.50/28 
+  dc1-h5: 172.30.1.66/28 
+  dc1-h6: 172.30.1.82/28 
+  dc2-h1: 172.30.2.2/28 
+  dc2-h2: 172.30.2.18/28 
+  dc2-h3: 172.30.2.34/28 
+  dc2-h4: 172.30.2.50/28 
+  dc2-h5: 172.30.2.66/28 
+  dc2-h6: 172.30.2.82/28 
+===== 4. router configs =====
+  routers running: 22
+  22 router(s) not answering on management yet; waiting 15 s (1/12)
+  22 router(s) not answering on management yet; waiting 15 s (2/12)
+  22 router(s) not answering on management yet; waiting 15 s (3/12)
+  22 router(s) not answering on management yet; waiting 15 s (4/12)
+  22 router(s) not answering on management yet; waiting 15 s (5/12)
+  22 router(s) not answering on management yet; waiting 15 s (6/12)
+  22 router(s) not answering on management yet; waiting 15 s (7/12)
+  22 router(s) not answering on management yet; waiting 15 s (8/12)
+  22 router(s) not answering on management yet; waiting 15 s (9/12)
+  22 router(s) not answering on management yet; waiting 15 s (10/12)
+  22 router(s) not answering on management yet; waiting 15 s (11/12)
+  22 router(s) not answering on management yet; waiting 15 s (12/12)
+  still not answering: clab-DC1-DC2-dc1-dci-r1 clab-DC1-DC2-dc1-l1 clab-DC1-DC2-dc1-l2 clab-DC1-DC2-dc1-l3 clab-DC1-DC2-dc1-l4 clab-DC1-DC2-dc1-l5 clab-DC1-DC2-dc1-l6 clab-DC1-DC2-dc1-sp1 clab-DC1-DC2-dc1-sp2 clab-DC1-DC2-dc1-ss1 clab-DC1-DC2-dc1-ss2 clab-DC1-DC2-dc2-dci-r1 clab-DC1-DC2-dc2-l1 clab-DC1-DC2-dc2-l2 clab-DC1-DC2-dc2-l3 clab-DC1-DC2-dc2-l4 clab-DC1-DC2-dc2-l5 clab-DC1-DC2-dc2-l6 clab-DC1-DC2-dc2-sp1 clab-DC1-DC2-dc2-sp2 clab-DC1-DC2-dc2-ss1 clab-DC1-DC2-dc2-ss2
+  running the management-bridge fix (the same problem as on 19 October)
+===== 3. DUPLICATE BRIDGES ON 172.20.20.0/24 =====
+route to 172.20.20.10 now: 172.20.20.10 dev br-ecb689c28cd7 src 172.20.20.1 uid 0 \    cache 
+br-ecb689c28cd7  UP             0e:56:fa:2a:3a:28 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+
+===== 4. DOCKER DAEMONS ON SER10 =====
+  94362 Mon Oct 12 12:14:33 2026 dockerd --group docker --exec-root=/run/snap.docker --data-root=/var/snap/docker/common/var-lib-docker --pidfile=/run/snap.docker/docker.pid --config-file=/var/snap/do
+snap: docker  29.8.0   3618  latest/stable  canonical**  -
+apt: containerd.io 2.3.6-1~ubuntu.24.04~noble
+apt: docker-ce 5:27.5.1-1~ubuntu.24.04~noble
+NAME        DESCRIPTION                               DOCKER ENDPOINT               ERROR
+default *   Current DOCKER_HOST based configuration   unix:///var/run/docker.sock   
+DOCKER_HOST=unset
+-- /var/run/docker.sock: server 29.8.0
+network bridge ffdbd7a2055b2a802084a52cf38696305641cd126f7f1bb5143cd0b3a07ced52
+network clab ecb689c28cd77d5f1ba826ff3cc4770a6a66caabf3693a3f4b21ff841575ffaf
+   containers: 45
+-- /run/docker.sock: server 29.8.0
+network bridge ffdbd7a2055b2a802084a52cf38696305641cd126f7f1bb5143cd0b3a07ced52
+network clab ecb689c28cd77d5f1ba826ff3cc4770a6a66caabf3693a3f4b21ff841575ffaf
+   containers: 45
+
+===== 5. RETEST =====
+routers answering JSON-RPC: 0 of 22
+not answering: dc1-dci-r1 dc1-l1 dc1-l2 dc1-l3 dc1-l4 dc1-l5 dc1-l6 dc1-sp1 dc1-sp2 dc1-ss1 dc1-ss2 dc2-dci-r1 dc2-l1 dc2-l2 dc2-l3 dc2-l4 dc2-l5 dc2-l6 dc2-sp1 dc2-sp2 dc2-ss1 dc2-ss2
+
+===== VERDICT =====
+Bridge and cables are now correct but routers still do not answer.
+Paste mgmt_bridge_fix.txt back.
+
+Saved to /home/samuel/DC-DC-Security/tools/host/mgmt_bridge_fix.txt
+  after the fix, not answering: clab-DC1-DC2-dc1-dci-r1
+clab-DC1-DC2-dc1-l1
+clab-DC1-DC2-dc1-l2
+clab-DC1-DC2-dc1-l3
+clab-DC1-DC2-dc1-l4
+clab-DC1-DC2-dc1-l5
+clab-DC1-DC2-dc1-l6
+clab-DC1-DC2-dc1-sp1
+clab-DC1-DC2-dc1-sp2
+clab-DC1-DC2-dc1-ss1
+clab-DC1-DC2-dc1-ss2
+clab-DC1-DC2-dc2-dci-r1
+clab-DC1-DC2-dc2-l1
+clab-DC1-DC2-dc2-l2
+clab-DC1-DC2-dc2-l3
+clab-DC1-DC2-dc2-l4
+clab-DC1-DC2-dc2-l5
+clab-DC1-DC2-dc2-l6
+clab-DC1-DC2-dc2-sp1
+clab-DC1-DC2-dc2-sp2
+clab-DC1-DC2-dc2-ss1
+clab-DC1-DC2-dc2-ss2
+  NetBox at http://localhost:8000: HTTP 200
+  dc1-dci-r1: no BGP output
+  BGP is not up, but routers do not answer on management, so the configs cannot be pushed.
+===== 5. routes between the DCs =====

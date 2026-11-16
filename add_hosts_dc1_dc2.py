@@ -15,6 +15,7 @@ For each host the script makes sure these exist, creating what is missing:
     platform_map.yaml) or "windows"
   - the host device in Site DC1/DC2, tagged "demo"
   - the host interface (eth1) and a cable from it to the leaf port in the plan
+  - for a host that already exists, the platform its OS in the plan calls for
 
 The leaf port must exist and be free. Anything that already exists is left
 alone, so it is safe to re-run. Addresses are not set here: run
@@ -123,6 +124,7 @@ def main():
     # Check every host against NetBox before creating anything.
     # -----------------------------------------------------------------
     plan = []  # hosts that still need a device and/or cable
+    replatform = []  # existing hosts whose platform differs from the plan
     for h in hosts:
         site = nb.dcim.sites.get(name=site_name(h))
         if not site:
@@ -136,6 +138,9 @@ def main():
 
         dev = nb.dcim.devices.get(name=h["name"])
         host_if = nb.dcim.interfaces.get(device_id=dev.id, name=h["host_if"]) if dev else None
+        want = OS_TYPES[h["os"]]["platform"]["slug"]
+        if dev and (not dev.platform or dev.platform.slug != want):
+            replatform.append((h, dev))
 
         if leaf_if.cable is not None:
             peers = leaf_if.link_peers or []
@@ -147,6 +152,28 @@ def main():
                 f'pick a free leaf port for {h["name"]} in the plan.'
             )
         plan.append((h, site, leaf_if, dev))
+
+    if replatform:
+        print(f"\n=== Hosts whose platform changes ({len(replatform)}) ===")
+        for h, dev in replatform:
+            have = dev.platform.slug if dev.platform else "none"
+            print(f'  {h["name"]:8} {have} -> {OS_TYPES[h["os"]]["platform"]["slug"]}')
+        if not args.dry_run:
+            manufacturer = nb.dcim.manufacturers.get(slug=MANUFACTURER["slug"]) or (
+                nb.dcim.manufacturers.create(**MANUFACTURER)
+            )
+            for h, dev in replatform:
+                spec = OS_TYPES[h["os"]]
+                dtype = nb.dcim.device_types.get(slug=spec["device_type"]["slug"]) or (
+                    nb.dcim.device_types.create(manufacturer=manufacturer.id, **spec["device_type"])
+                )
+                platform = nb.dcim.platforms.get(slug=spec["platform"]["slug"]) or (
+                    nb.dcim.platforms.create(**spec["platform"])
+                )
+                dev.platform = platform.id
+                dev.device_type = dtype.id
+                dev.save()
+                print(f'  OK: {h["name"]} is now {spec["platform"]["name"]}')
 
     if not plan:
         print("\nNothing to do: every host exists and is cabled.")

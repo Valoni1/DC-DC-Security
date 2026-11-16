@@ -18,7 +18,7 @@ Checks, in order:
 
 USAGE (on the lab host, after configure_hosts_dc1_dc2.py):
   python3 check_hosts_dc1_dc2.py                 # dc1-h1 -> dc2-h1
-  python3 check_hosts_dc1_dc2.py dc1-h3 dc2-h5   # any two hosts in the plan
+  python3 check_hosts_dc1_dc2.py dc1-h1 dc2-w1   # any two hosts in the plan
 """
 
 import os

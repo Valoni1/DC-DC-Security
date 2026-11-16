@@ -1,0 +1,284 @@
+Router boot check 2026-10-26T02:51:09+00:00
+ 02:51:09 up 26 days, 32 min,  3 users,  load average: 0.31, 0.37, 0.52
+
+===== 1. INSIDE THE ROUTERS =====
+--- dc1-l1  (management address 172.20.20.10)
+[container log, last 25 lines]
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2635
+  Application dhcp_client_mgr is running: PID 2663
+  Application mgmt_server is running: PID 2691
+  Application mfib_mgr is running: PID 2765
+  Application net_inst_mgr is running: PID 2868
+  Application chassis_mgr is running: PID 2885
+  Application lag_mgr is running: PID 2944
+  Application mcid_mgr is running: PID 2960
+  Application license_mgr is running: PID 2986
+  Application aaa_mgr is running: PID 3062
+  Application sflow_sample_mgr is running: PID 3090
+  Application bfd_mgr is running: PID 3116
+  Application log_mgr is running: PID 3138
+  Application fib_mgr is running: PID 3174
+  Application evpn_mgr is running: PID 3279
+  Application arp_nd_mgr is running: PID 3314
+  Application label_mgr is running: PID 3349
+  Application l2_mac_mgr is running: PID 3385
+  Application xdp_lc_1 is running: PID 3498
+  Application radius_mgr is running: PID 3536
+  Application alarm_mgr is running: PID 3578
+  Application stat_id_mgr is running: PID 3593
+  Application index_res_mgr is running: PID 3613
+[SR Linux processes]
+      1 sr_aaa_mgr
+      1 sr_acl_mgr
+      1 sr_alarm_mgr
+      1 sr_app_mgr
+      1 sr_arp_nd_mgr
+      1 sr_bfd_mgr
+      1 sr_chassis_mgr
+      1 sr_device_mgr
+      1 sr_dhcp_client_
+      1 sr_evpn_mgr
+      1 sr_fhs_mgr
+      1 sr_fib_mgr
+      1 sr_grpc_server
+      1 sr_idb_server
+      1 sr_index_res_mg
+      1 sr_l2_mac_learn
+      1 sr_l2_mac_mgr
+      1 sr_label_mgr
+      1 sr_lag_mgr
+      1 sr_license_mgr
+      2 sr_linux
+      1 sr_linux_mgr
+      1 sr_log_mgr
+      1 sr_mcid_mgr
+      1 sr_mfib_mgr
+      1 sr_mgmt_server
+      1 sr_net_inst_mgr
+      1 sr_pinger
+      1 sr_plcy_mgr
+      1 sr_qos_mgr
+      1 sr_radius_mgr
+      1 sr_sflow_sample
+      1 sr_simbdb_proxy
+      1 sr_stat_id_mgr
+      1 sr_supportd
+      1 sr_vxlan_mgr
+      1 sr_xdp_lc
+sr_ processes: 38
+[management namespace]
+srbase-mgmt (id: 5)
+monit (id: 4)
+srbase
+    inet 127.0.0.1/8 scope host lo
+    inet 127.250.250.1/30 brd 127.250.250.3 scope global gateway
+11: mgmt0.0@if6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000 link-netns srbase
+    inet 172.20.20.10/24 brd 172.20.20.255 scope global mgmt0.0
+[sr_cli show version]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Hostname             : dc1-l1
+Chassis Type         : 7220 IXR-D3L
+Part Number          : Sim Part No.
+Serial Number        : Sim Serial No.
+System HW MAC Address: 1A:C1:09:FF:00:00
+OS                   : SR Linux
+Software Version     : v26.7.2
+Build Number         : 519-g94fbd638fa8
+Architecture         : x86_64
+Last Booted          : 2026-10-26T02:01:54.550Z
+Total Memory         : 64949616 kB
+Free Memory          : 29690852 kB
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[JSON-RPC from inside the router]
+HTTP 000
+--- dc2-dci-r1  (management address 172.20.20.33)
+[container log, last 25 lines]
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2609
+  Application dhcp_client_mgr is running: PID 2658
+  Application mgmt_server is running: PID 2681
+  Application mfib_mgr is running: PID 2728
+  Application net_inst_mgr is running: PID 2792
+  Application chassis_mgr is running: PID 2802
+  Application lag_mgr is running: PID 2817
+  Application mcid_mgr is running: PID 2866
+  Application license_mgr is running: PID 2899
+  Application aaa_mgr is running: PID 2942
+  Application sflow_sample_mgr is running: PID 2989
+  Application bfd_mgr is running: PID 3037
+  Application log_mgr is running: PID 3068
+  Application fib_mgr is running: PID 3101
+  Application evpn_mgr is running: PID 3169
+  Application arp_nd_mgr is running: PID 3212
+  Application label_mgr is running: PID 3235
+  Application l2_mac_mgr is running: PID 3289
+  Application xdp_lc_1 is running: PID 3443
+  Application radius_mgr is running: PID 3455
+  Application acl_mgr is running: PID 3472
+  Application alarm_mgr is running: PID 3566
+  Application stat_id_mgr is running: PID 3592
+  Application pinger is running: PID 3667
+[SR Linux processes]
+      1 sr_aaa_mgr
+      1 sr_acl_mgr
+      1 sr_alarm_mgr
+      1 sr_app_mgr
+      1 sr_arp_nd_mgr
+      1 sr_bfd_mgr
+      1 sr_chassis_mgr
+      1 sr_device_mgr
+      1 sr_dhcp_client_
+      1 sr_evpn_mgr
+      1 sr_fhs_mgr
+      1 sr_fib_mgr
+      1 sr_grpc_server
+      1 sr_idb_server
+      1 sr_index_res_mg
+      1 sr_l2_mac_learn
+      1 sr_l2_mac_mgr
+      1 sr_label_mgr
+      1 sr_lag_mgr
+      1 sr_license_mgr
+      2 sr_linux
+      1 sr_linux_mgr
+      1 sr_log_mgr
+      1 sr_mcid_mgr
+      1 sr_mfib_mgr
+      1 sr_mgmt_server
+      1 sr_net_inst_mgr
+      1 sr_pinger
+      1 sr_plcy_mgr
+      1 sr_qos_mgr
+      1 sr_radius_mgr
+      1 sr_sflow_sample
+      1 sr_simbdb_proxy
+      1 sr_stat_id_mgr
+      1 sr_supportd
+      1 sr_vxlan_mgr
+      1 sr_xdp_lc
+sr_ processes: 38
+[management namespace]
+srbase-mgmt (id: 5)
+monit (id: 4)
+srbase
+    inet 127.0.0.1/8 scope host lo
+    inet 127.250.250.1/30 brd 127.250.250.3 scope global gateway
+11: mgmt0.0@if6: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000 link-netns srbase
+    inet 172.20.20.33/24 brd 172.20.20.255 scope global mgmt0.0
+[sr_cli show version]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Hostname             : dc2-dci-r1
+Chassis Type         : 7220 IXR-D3L
+Part Number          : Sim Part No.
+Serial Number        : Sim Serial No.
+System HW MAC Address: 1A:16:13:FF:00:00
+OS                   : SR Linux
+Software Version     : v26.7.2
+Build Number         : 519-g94fbd638fa8
+Architecture         : x86_64
+Last Booted          : 2026-10-26T02:01:57.450Z
+Total Memory         : 64949616 kB
+Free Memory          : 29691104 kB
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[JSON-RPC from inside the router]
+HTTP 000
+
+===== 2. APPARMOR AND THE SUDO TEST =====
+Oct 26 02:51:10 ser10 kernel: audit: type=1400 audit(1792983070.005:5765854): apparmor="DENIED" operation="ptrace" class="ptrace" profile="snap.docker.dockerd" pid=2768546 comm="ps" requested_mask="read" denied_mask="read" peer="rsyslogd"
+Oct 26 02:51:10 ser10 kernel: audit: type=1400 audit(1792983070.024:5765855): apparmor="DENIED" operation="ptrace" class="ptrace" profile="snap.docker.dockerd" pid=2768546 comm="ps" requested_mask="read" denied_mask="read" peer="snap.snapd-desktop-integration.snapd-desktop-integration"
+Oct 26 02:51:10 ser10 kernel: audit: type=1400 audit(1792983070.025:5765856): apparmor="DENIED" operation="ptrace" class="ptrace" profile="snap.docker.dockerd" pid=2768546 comm="ps" requested_mask="read" denied_mask="read" peer="snap.snapd-desktop-integration.snapd-desktop-integration"
+Oct 26 02:51:10 ser10 kernel: audit: type=1400 audit(1792983070.025:5765857): apparmor="DENIED" operation="ptrace" class="ptrace" profile="snap.docker.dockerd" pid=2768546 comm="ps" requested_mask="read" denied_mask="read" peer="/usr/sbin/cupsd"
+Oct 26 02:51:10 ser10 kernel: audit: type=1400 audit(1792983070.025:5765858): apparmor="DENIED" operation="ptrace" class="ptrace" profile="snap.docker.dockerd" pid=2768546 comm="ps" requested_mask="read" denied_mask="read" peer="/usr/sbin/cups-browsed"
+Oct 26 02:51:10 ser10 kernel: audit: type=1400 audit(1792983070.025:5765859): apparmor="DENIED" operation="ptrace" class="ptrace" profile="snap.docker.dockerd" pid=2768546 comm="ps" requested_mask="read" denied_mask="read" peer="snap.snapd-desktop-integration.snapd-desktop-integration"
+Oct 26 02:51:10 ser10 kernel: audit: type=1400 audit(1792983070.026:5765860): apparmor="DENIED" operation="ptrace" class="ptrace" profile="snap.docker.dockerd" pid=2768546 comm="ps" requested_mask="read" denied_mask="read" peer="snap.snapd-desktop-integration.snapd-desktop-integration"
+Oct 26 02:51:10 ser10 kernel: audit: type=1400 audit(1792983070.100:5765861): apparmor="DENIED" operation="ptrace" class="ptrace" profile="snap.docker.dockerd" pid=2768546 comm="ps" requested_mask="read" denied_mask="read" peer="desktop-icons-ng"
+Oct 26 02:51:10 ser10 kernel: audit: type=1400 audit(1792983070.103:5765862): apparmor="DENIED" operation="ptrace" class="ptrace" profile="snap.docker.dockerd" pid=2768546 comm="ps" requested_mask="read" denied_mask="read" peer="snap.firmware-updater.firmware-notifier"
+Oct 26 02:51:10 ser10 kernel: audit: type=1400 audit(1792983070.103:5765863): apparmor="DENIED" operation="ptrace" class="ptrace" profile="snap.docker.dockerd" pid=2768546 comm="ps" requested_mask="read" denied_mask="read" peer="snap.firmware-updater.firmware-notifier"
+AppArmor denials in the last 2 hours: 6203
+===== SUDO TESTS =====
+privileged,     as user            PASS
+privileged,     as real root       PASS
+not privileged, as user            PASS
+
+===== APPARMOR DENIALS DURING TESTS =====
+new denials: -12
+
+===== VERDICT =====
+sudo works in a privileged container now. The boot failure is not reproducible;
+try deploying the lab again.
+
+===== FIX =====
+No automatic fix for this cause; nothing changed.
+
+Saved to /home/samuel/DC-DC-Security/tools/host/srl_diag.txt
+
+===== 3. ROUTERS ANSWERING JSON-RPC =====
+before: 0 of 22
+Routers did not boot: redeploying the lab (deploy_lab.sh)
+├─────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────┼─────────┼────────────────────┤
+│ clab-DC1-DC2-dc2-ss1    │ srl                                                                                            │ running │ 172.20.20.19       │
+│                         │ ghcr.io/nokia/srlinux:26.7.2                                                                   │         │ 3fff:172:20:20::13 │
+├─────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────┼─────────┼────────────────────┤
+│ clab-DC1-DC2-dc2-ss2    │ srl                                                                                            │ running │ 172.20.20.20       │
+│                         │ ghcr.io/nokia/srlinux:26.7.2                                                                   │         │ 3fff:172:20:20::14 │
+├─────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────┼─────────┼────────────────────┤
+│ clab-DC1-DC2-graphite   │ linux                                                                                          │ running │ 172.20.20.8        │
+│                         │ netreplica/graphite:latest                                                                     │         │ 3fff:172:20:20::8  │
+╰─────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────┴─────────┴────────────────────╯
+===== 3. router configs =====
+26-Oct-26 02:53:16 INFO [dc1-dci-r1] - Configuration deployed!
+26-Oct-26 02:53:19 INFO [dc1-l1] - Configuration deployed!
+26-Oct-26 02:53:21 INFO [dc1-l2] - Configuration deployed!
+26-Oct-26 02:53:24 INFO [dc1-l3] - Configuration deployed!
+26-Oct-26 02:53:26 INFO [dc1-l4] - Configuration deployed!
+26-Oct-26 02:53:28 INFO [dc1-l5] - Configuration deployed!
+26-Oct-26 02:53:31 INFO [dc1-l6] - Configuration deployed!
+26-Oct-26 02:53:34 INFO [dc1-sp1] - Configuration deployed!
+26-Oct-26 02:53:37 INFO [dc1-sp2] - Configuration deployed!
+26-Oct-26 02:53:40 INFO [dc1-ss1] - Configuration deployed!
+26-Oct-26 02:53:42 INFO [dc1-ss2] - Configuration deployed!
+26-Oct-26 02:53:44 INFO [dc2-dci-r1] - Configuration deployed!
+26-Oct-26 02:53:47 INFO [dc2-l1] - Configuration deployed!
+26-Oct-26 02:53:49 INFO [dc2-l2] - Configuration deployed!
+26-Oct-26 02:53:51 INFO [dc2-l3] - Configuration deployed!
+26-Oct-26 02:53:53 INFO [dc2-l4] - Configuration deployed!
+26-Oct-26 02:53:55 INFO [dc2-l5] - Configuration deployed!
+26-Oct-26 02:54:00 INFO [dc2-l6] - Configuration deployed!
+26-Oct-26 02:54:04 INFO [dc2-sp1] - Configuration deployed!
+26-Oct-26 02:54:07 INFO [dc2-sp2] - Configuration deployed!
+26-Oct-26 02:54:09 INFO [dc2-ss1] - Configuration deployed!
+26-Oct-26 02:54:12 INFO [dc2-ss2] - Configuration deployed!
+===== 4. hosts =====
+clab-DC1-DC2-dc1-h1: 172.30.1.2/28 via dc1-l1
+clab-DC1-DC2-dc1-h2: 172.30.1.18/28 via dc1-l2
+clab-DC1-DC2-dc1-h3: 172.30.1.34/28 via dc1-l3
+clab-DC1-DC2-dc1-h4: 172.30.1.50/28 via dc1-l4
+clab-DC1-DC2-dc1-h5: 172.30.1.66/28 via dc1-l5
+clab-DC1-DC2-dc1-h6: 172.30.1.82/28 via dc1-l6
+clab-DC1-DC2-dc1-w1: 172.30.1.98/28 via dc1-l1
+  FAILED: Error response from daemon: No such container: clab-DC1-DC2-dc1-w1
+clab-DC1-DC2-dc2-h1: 172.30.2.2/28 via dc2-l1
+clab-DC1-DC2-dc2-h2: 172.30.2.18/28 via dc2-l2
+clab-DC1-DC2-dc2-h3: 172.30.2.34/28 via dc2-l3
+clab-DC1-DC2-dc2-h4: 172.30.2.50/28 via dc2-l4
+clab-DC1-DC2-dc2-h5: 172.30.2.66/28 via dc2-l5
+clab-DC1-DC2-dc2-h6: 172.30.2.82/28 via dc2-l6
+clab-DC1-DC2-dc2-w1: 172.30.2.98/28 via dc2-l1
+  FAILED: Error response from daemon: No such container: clab-DC1-DC2-dc2-w1
+Configured: 12   Failed: 2
+===== 4b. waiting for routes between the DCs =====
+===== 5. check =====
+===== VERDICT =====
+dc1-h1 reaches dc2-h1. The path works.
+Saved to /home/samuel/DC-DC-Security/host_check.txt
+===== 6. DVWA =====
+===== VERDICT =====
+DVWA is up in DC1 and its database is replicated to DC2 over the DCI.
+Log saved to results/deploy_20261026_025220.txt. Push it: git add results && git commit -m 'deploy log' && git push
+after the redeploy: 22 of 22 routers answer JSON-RPC
+
+===== VERDICT =====
+All routers answer. The lab is back; run the failover test next.
+Log saved to results/routers_boot_20261026_025109.txt. Push it: git add results && git commit -m 'routers boot log' && git push
