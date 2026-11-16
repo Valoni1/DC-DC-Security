@@ -52,7 +52,24 @@ echo "branch $(git rev-parse --abbrev-ref HEAD) at $(git log -1 --format='%h %s'
 free -g
 echo "lab containers running: $(docker ps -q --filter label=containerlab=DC1-DC2 | wc -l)"
 docker ps --filter label=containerlab=DC1-DC2 --format '{{.Names}}' | sort | paste -sd' ' -
-echo "NetBox $NETBOX_URL: HTTP $(curl -s -o /dev/null -m 5 -w '%{http_code}' -H "Authorization: Token $NETBOX_TOKEN" "$NETBOX_URL/api/status/")"
+nb_code=$(curl -s -o /dev/null -m 5 -w '%{http_code}' -H "Authorization: Token $NETBOX_TOKEN" "$NETBOX_URL/api/status/")
+echo "NetBox $NETBOX_URL: HTTP $nb_code"
+# Stop here if NetBox is not answering: every step below needs it, and without
+# it the script would tear down and redeploy the lab for nothing (as on the
+# 16 Nov 00:29 run). HTTP 200 is up; 000/401/403/5xx mean down or wrong token.
+if [ "$nb_code" != 200 ]; then
+    echo
+    echo "STOPPED: NetBox did not answer with HTTP 200 (got $nb_code), so nothing was changed."
+    if [ "$nb_code" = 000 ]; then
+        echo "It looks down. Start it, wait until it answers, then run this script again:"
+        echo "    ./3_deploy_netbox.sh        # brings NetBox up and waits for it"
+        echo "  or: (cd netbox && docker compose up -d)"
+    else
+        echo "NetBox answered but rejected the request; check NETBOX_TOKEN is the right token."
+    fi
+    echo "Log saved to $LOG."
+    exit 1
+fi
 
 echo "===== 2. NetBox ====="
 source ./venv/bin/activate
