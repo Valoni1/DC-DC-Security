@@ -55,28 +55,32 @@ def nb_if(clab_if):
 
 
 def check(clab, plan):
-    nodes = {n: v for n, v in clab["topology"]["nodes"].items() if v["kind"] == "srl"}
+    all_nodes = clab["topology"]["nodes"]
+    nodes = {n: v for n, v in all_nodes.items() if v["kind"] == "srl"}
+    bridge_nodes = {n for n, v in all_nodes.items() if v.get("kind") == "bridge"}
     hosts = plan.get("hosts", [])
+    # Fabric and host links only; links to the external bridge are checked apart.
     clab_links = set()
     for link in clab["topology"]["links"]:
         (a, ai), (b, bi) = (e.split(":") for e in link["endpoints"])
+        if a in bridge_nodes or b in bridge_nodes:
+            continue
         clab_links.add(frozenset([(a, nb_if(ai)), (b, nb_if(bi))]))
     plan_links = {frozenset([(l["a"], l["a_if"]), (l["b"], l["b_if"])]) for l in plan["links"]}
     plan_links |= {frozenset([(h["leaf"], h["leaf_if"]), (h["name"], h["host_if"])]) for h in hosts}
-    ext = plan.get("external")
-    ext_nodes = set()
-    if ext:
-        a, e = ext["attacker"], ext["exposed"]
-        plan_links.add(frozenset([(a["name"], a["if"]), (e["name"], e["if"])]))
-        ext_nodes = {a["name"]}  # the exposed host is already a plan host
     assert clab_links == plan_links, clab_links ^ plan_links
     assert set(nodes) == set(plan["loopbacks"]), set(nodes) ^ set(plan["loopbacks"])
+    # External segment: clab nodes on it that are not routers or hosts (the
+    # vantage node); the ScopeWeaver member runs in its own compose, not clab.
+    ext = plan.get("external") or {}
+    ext_clab = {m["name"] for m in ext.get("members", [])
+                if m["name"] in all_nodes and m["name"] not in {h["name"] for h in hosts}}
     # Containers sharing a host's network namespace (network-mode container:) are part of that host
-    host_nodes = {n for n, v in clab["topology"]["nodes"].items()
-                  if n not in nodes and n != "graphite"
+    host_nodes = {n for n, v in all_nodes.items()
+                  if n not in nodes and n not in bridge_nodes and n != "graphite"
                   and not str(v.get("network-mode", "")).startswith("container:")}
-    assert host_nodes == {h["name"] for h in hosts} | ext_nodes, \
-        host_nodes ^ ({h["name"] for h in hosts} | ext_nodes)
+    assert host_nodes == {h["name"] for h in hosts} | ext_clab, \
+        host_nodes ^ ({h["name"] for h in hosts} | ext_clab)
     return nodes
 
 
@@ -237,21 +241,30 @@ def main():
             ] + ([("no OSPF on the DCI links", 0, 22)] if n == len(dci) - 1 else []),
         )
 
-    # External AI attacker (ScopeWeaver), outside both DCs, with one link to the
-    # exposed host. It reaches the lab only through that host, then pivots inward.
+    # External / untrusted segment, outside both DCs: the ScopeWeaver attacker
+    # and a vantage node share a bridge with the exposed host, which they reach
+    # directly and pivot inward from.
     ext = plan.get("external")
     if ext:
-        a = ext["attacker"]
-        d.box(
-            f"<b>{a['name']}</b><br>ScopeWeaver (external AI attacker)<br>"
-            f"{a['ip']} · untrusted {ext['segment']}",
-            -480, HOST_Y - 30, 300, 110,
-            "rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f8cecc;strokeColor=#b85450;",
-            cid=a["name"],
-        )
-        d.edge(a["name"], ext["exposed"]["name"],
-               "endArrow=none;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;fontSize=11;",
-               value=f"exposes {ext['exposed']['name']}")
+        members = ext.get("members", [])
+        exposed = next((m["name"] for m in members if m.get("role") == "exposed"), None)
+        off = {"attacker": 0, "vantage": 1}
+        for m in members:
+            if m.get("role") == "exposed":
+                continue
+            label = {"attacker": "ScopeWeaver (external AI attacker)",
+                     "vantage": "external vantage node"}.get(m.get("role"), m.get("role", ""))
+            y = HOST_Y - 60 + off.get(m.get("role"), 2) * 120
+            d.box(
+                f"<b>{m['name']}</b><br>{label}<br>{m['ip']}",
+                -500, y, 320, 100,
+                "rounded=1;whiteSpace=wrap;html=1;fontSize=11;fillColor=#f8cecc;strokeColor=#b85450;",
+                cid=m["name"],
+            )
+            if exposed:
+                d.edge(m["name"], exposed,
+                       "endArrow=none;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;fontSize=11;",
+                       value=f"untrusted {ext['segment']}")
 
     # Routing, management and legend panels under the two DCs
     py = BOX_H + 40

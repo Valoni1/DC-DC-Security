@@ -63,6 +63,10 @@ hosts:
 # pivots inward. Addresses are set by containerlab exec, not by the NetBox
 # scripts, so prune/add_hosts/assign_ips ignore this block.
 external:
-  segment: 198.51.100.0/30
-  attacker: {name: attacker, if: eth1, ip: 198.51.100.1/30}
-  exposed:  {name: dc1-h1,   if: eth2, ip: 198.51.100.2/30}
+  segment: 198.51.100.0/29
+  bridge: clab-ext           # host bridge (docker network) the members share
+  gateway: 198.51.100.6      # the bridge's own address; nothing routes through it
+  members:
+    - {name: attacker,    if: eth1, ip: 198.51.100.1/29, role: vantage}   # clab node
+    - {name: dc1-h1,      if: eth2, ip: 198.51.100.2/29, role: exposed}   # clab node (exposed host)
+    - {name: scopeweaver,          ip: 198.51.100.3/29, role: attacker}   # docker compose, not a clab node
