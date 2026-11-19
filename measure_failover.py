@@ -15,8 +15,10 @@ dc1-dci-r1 and dc2-dci-r1) part-way through, and reports:
 It then repairs the link, and appends a row to results/failover_results.csv and
 to results/failover_results_v2.csv. The v2 file adds the BFD detection time
 from the router's own log, the BFD diagnostic, and whether the run is valid:
-a silent failure must end in "Control Detection Time Expired", a port shutdown
-in "Path Down".
+a silent failure must end in BFD "Control Detection Time Expired"; a port
+shutdown counts as valid when BFD logs "Path Down" or when the primary port
+goes oper-down and interface tracking drops BGP first (exit event trackingDown),
+which can beat BFD's own Path Down on a fast hard-down.
 
 Failure modes (--fail):
   silent  the link stays up but carries nothing (100% loss in both directions
@@ -317,13 +319,28 @@ def run_once(args, dst_ip, primary_peer):
             if isinstance(record[GATEWAYS[0]]["bgp_neighbor"], dict) else None
         router_detect, bfd_diag = (ev[0], ev[1]) if ev else (None, None)
         expected = {"silent": "Control Detection Time Expired", "down": "Path Down"}[args.fail]
-        valid = bfd_diag == expected
+        after_primary = links_after.get(GATEWAYS[0], {})
+        port_down = after_primary.get("oper-state") == "down"
+        if args.fail == "silent":
+            valid = bfd_diag == expected
+        else:
+            # A port shutdown is a valid hard-down whether BFD logged "Path Down"
+            # or SR Linux interface tracking caught the link loss first. When the
+            # port goes oper-down, tracking can drop BGP (exit event trackingDown)
+            # before BFD logs its own Path Down, so bfd_diag is then None. Both
+            # paths are a genuine detected hard-down, so accept either.
+            valid = bfd_diag == expected or (port_down and exit_event in ("trackingDown", "bfdDown"))
         record["router_detect_s"], record["bfd_diag"], record["valid"] = router_detect, bfd_diag, valid
         if ev:
             print(f"{GATEWAYS[0]} log: BFD went down {router_detect:.3f}s after the failure, "
                   f"diagnostic '{bfd_diag}'; BGP exit event {exit_event}")
-        print(f"RUN VALID: BFD diagnostic is '{bfd_diag}' as a {args.fail} failure should give" if valid else
-              f"RUN NOT VALID as a {args.fail} failure: expected BFD diagnostic '{expected}', got '{bfd_diag}'")
+        if valid and args.fail == "down" and bfd_diag != expected:
+            print(f"RUN VALID: primary port went oper-down (reason "
+                  f"{after_primary.get('oper-down-reason')}), BGP exit event {exit_event}; "
+                  f"interface tracking detected the hard-down before BFD logged '{expected}'")
+        else:
+            print(f"RUN VALID: BFD diagnostic is '{bfd_diag}' as a {args.fail} failure should give" if valid else
+                  f"RUN NOT VALID as a {args.fail} failure: expected BFD diagnostic '{expected}', got '{bfd_diag}'")
         for gw in GATEWAYS:
             b, a = links_before[gw], links_after.get(gw, {})
             print(f"{gw} {PRIMARY_IF}: oper-state {b.get('oper-state')} -> {a.get('oper-state')}, "
