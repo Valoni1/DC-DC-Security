@@ -13,7 +13,8 @@
 #   4. builds and starts the stack, waits for the UI
 #   5. checks it can reach the exposed host
 #
-# Before the agent can run, put your Anthropic key in scopeweaver/src/.env.
+# Before the agent can run, put your DeepSeek key (as OPENAI_API_KEY) in
+# scopeweaver/src/.env.
 # ScopeWeaver is a deliberately offensive tool: run it only against this
 # isolated lab, never an online system.
 #
@@ -51,8 +52,8 @@ else
     echo "copied env.lab.example -> $SRC/.env"
 fi
 cp docker-compose.override.yml "$SRC/docker-compose.override.yml"
-if ! grep -qE '^ANTHROPIC_API_KEY=.+' "$SRC/.env"; then
-    echo "WARNING: ANTHROPIC_API_KEY is empty in $SRC/.env."
+if ! grep -qE '^OPENAI_API_KEY=.+' "$SRC/.env"; then
+    echo "WARNING: OPENAI_API_KEY (the DeepSeek key) is empty in $SRC/.env."
     echo "         Paste your key there, then re-run this script (or: cd $SRC && docker compose up -d)."
 fi
 

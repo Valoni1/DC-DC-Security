@@ -21,11 +21,16 @@ on this segment; it has no route to the lab's management network. The SR Linux
 routers are untouched.
 
 ## Model
-Hosted **Claude** via the Anthropic API is recommended — this agent plans and
-drives tools over many steps, which needs a frontier model; a local model good
-enough would need a GPU ser10 does not have. Default `ARTEX_LLM_MODEL` is
-`claude-sonnet-5-5` (fast and cheap enough to repeat runs); use
-`claude-opus-5-5` for maximum reasoning. Set `ANTHROPIC_API_KEY` in `src/.env`.
+A hosted frontier model is needed — this agent plans and drives tools over many
+steps, and a local model good enough would need a GPU ser10 does not have. This
+lab uses **DeepSeek** via its OpenAI-compatible API: ScopeWeaver speaks to any
+"OpenAI Chat Completions" endpoint, so the provider is set to `openai`, the base
+URL points at `https://api.deepseek.com`, and the DeepSeek key goes in
+`OPENAI_API_KEY`. Default `ARTEX_LLM_MODEL` is `deepseek-chat`; use
+`deepseek-reasoner` for the stronger (slower) reasoning model. Set
+`OPENAI_API_KEY` in `src/.env`. (To switch to another provider later, set
+`ARTEX_LLM_PROVIDER`/`ARTEX_LLM_BASE_URL`/`ARTEX_LLM_MODEL` and the matching key,
+or configure it in the UI under LLM → New.)
 
 ## Run (on ser10, after `./deploy_lab.sh`)
 ```
