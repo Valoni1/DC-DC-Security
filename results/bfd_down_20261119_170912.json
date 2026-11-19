@@ -1,0 +1,521 @@
+{
+  "link_broken_at": "2026-11-19T17:09:12.378786+00:00",
+  "primary_bfd_last_seen_up": null,
+  "dc1-dci-r1": {
+    "bgp_neighbor": {
+      "admin-state": "enable",
+      "description": "dc2-dci-r1",
+      "under-maintenance": false,
+      "maintenance-group": "",
+      "peer-type": "ebgp",
+      "local-preference": 100,
+      "next-hop-self": false,
+      "peer-as": 65202,
+      "peer-group": "dci",
+      "route-flap-damping": false,
+      "peer-router-id": "0.0.0.0",
+      "session-state": "active",
+      "last-state": "idle",
+      "last-event": "trackingDown",
+      "last-establish-exit-event": "trackingDown",
+      "last-established": "2026-11-19T17:09:12.200Z",
+      "established-transitions": "54",
+      "export-policy": [
+        "dci-export"
+      ],
+      "import-policy": [
+        "dci-import-primary"
+      ],
+      "advertised-capabilities": [
+        "ROUTE_REFRESH",
+        "4-OCTET_ASN",
+        "MP_BGP",
+        "GRACEFUL_RESTART"
+      ],
+      "as-path-options": {
+        "allow-own-as": 0,
+        "replace-peer-as": false,
+        "remove-private-as": {
+          "mode": "disabled",
+          "leading-only": false,
+          "ignore-peer-as": false
+        }
+      },
+      "authentication": {
+        "transmit-active": false
+      },
+      "failure-detection": {
+        "enable-bfd": true,
+        "fast-failover": true
+      },
+      "graceful-restart": {
+        "admin-state": "disable",
+        "mode": "HELPER_ONLY"
+      },
+      "multihop": {
+        "admin-state": "disable",
+        "maximum-hops": 1
+      },
+      "afi-safi": [
+        {
+          "afi-safi-name": "srl_nokia-common:evpn",
+          "admin-state": "enable",
+          "oper-state": "down",
+          "received-routes": 0,
+          "sent-routes": 0,
+          "active-routes": 0,
+          "rejected-routes": 0,
+          "suppressed-routes": 0,
+          "received-routes-withdrawn-due-to-error": 0,
+          "send-community-type": [
+            "standard",
+            "extended",
+            "large"
+          ],
+          "add-paths": {
+            "receive": false,
+            "send": false
+          },
+          "graceful-restart": {
+            "extended-route-retention": {
+              "admin-state": "disable",
+              "retention-time": 15552000,
+              "default-retention-policy": "reject",
+              "extended-retention-active": false,
+              "remaining-retention-time": 0
+            }
+          },
+          "evpn": {
+            "advertise-ipv6-next-hops": false,
+            "default-received-encapsulation": "vxlan",
+            "prefix-limit-received": {
+              "max-received-routes": 4294967295,
+              "warning-threshold-pct": 90,
+              "prefix-limit-exceeded": false
+            }
+          }
+        },
+        {
+          "afi-safi-name": "srl_nokia-common:ipv4-unicast",
+          "admin-state": "enable",
+          "oper-state": "down",
+          "received-routes": 0,
+          "sent-routes": 0,
+          "active-routes": 0,
+          "rejected-routes": 0,
+          "suppressed-routes": 0,
+          "received-routes-withdrawn-due-to-error": 0,
+          "send-community-type": [
+            "standard",
+            "extended",
+            "large"
+          ],
+          "add-paths": {
+            "receive": false,
+            "send": false
+          },
+          "graceful-restart": {
+            "extended-route-retention": {
+              "admin-state": "disable",
+              "retention-time": 15552000,
+              "default-retention-policy": "reject",
+              "extended-retention-active": false,
+              "remaining-retention-time": 0
+            }
+          },
+          "ipv4-unicast": {
+            "advertise-ipv6-next-hops": false,
+            "receive-ipv6-next-hops": false,
+            "prefix-limit-received": {
+              "max-received-routes": 4294967295,
+              "warning-threshold-pct": 90,
+              "prevent-teardown": false,
+              "prefix-limit-exceeded": false
+            },
+            "link-bandwidth": {
+              "add-next-hop-count-to-received-bgp-routes": "disable"
+            }
+          }
+        },
+        {
+          "afi-safi-name": "srl_nokia-common:ipv6-unicast",
+          "admin-state": "disable",
+          "oper-state": "down",
+          "ipv6-unicast": {
+            "link-bandwidth": {
+              "add-next-hop-count-to-received-bgp-routes": "disable"
+            }
+          }
+        },
+        {
+          "afi-safi-name": "srl_nokia-common:route-target",
+          "admin-state": "disable",
+          "oper-state": "down"
+        }
+      ],
+      "local-as": {
+        "as-number": 65201,
+        "prepend-global-as": true,
+        "prepend-local-as": true
+      },
+      "route-reflector": {
+        "client": false
+      },
+      "send-default-route": {
+        "ipv4-unicast": false,
+        "ipv6-unicast": false
+      },
+      "timers": {
+        "connect-retry": 120,
+        "hold-time": 90,
+        "keepalive-interval": 30,
+        "minimum-advertisement-interval": 5,
+        "prefix-limit-restart-timer": 0,
+        "negotiated-hold-time": 0,
+        "negotiated-keepalive-interval": 0
+      },
+      "transport": {
+        "mtu-discovery": true,
+        "passive-mode": false,
+        "local-port": 0,
+        "remote-port": 0
+      },
+      "sent-messages": {
+        "queue-depth": 0,
+        "total-updates": "0",
+        "total-non-updates": "0",
+        "route-refresh": "0",
+        "total-messages": "0",
+        "last-notification-time": "2026-11-19T16:28:20.200Z",
+        "last-notification-error-code": "Cease",
+        "last-notification-error-subcode": "Connection Collision Resolution",
+        "total-notifications": 7
+      },
+      "received-messages": {
+        "queue-depth": 0,
+        "total-updates": "0",
+        "total-non-updates": "0",
+        "malformed-updates": "0",
+        "route-refresh": "0",
+        "total-messages": "0",
+        "last-update-time": "2026-11-19T17:09:04.200Z",
+        "last-notification-time": "2026-11-19T16:31:17.200Z",
+        "last-notification-error-code": "Cease",
+        "last-notification-error-subcode": "Connection Collision Resolution",
+        "total-notifications": 19
+      }
+    },
+    "bfd_sessions": {
+      "peer": [
+        {
+          "local-discriminator": 16385,
+          "oper-state": "up",
+          "local-address": "10.1.0.2",
+          "remote-address": "10.1.0.3",
+          "remote-discriminator": 16385,
+          "subscribed-protocols": "BGP",
+          "session-state": "UP",
+          "remote-session-state": "UP",
+          "last-state-transition": "2026-11-19T13:58:35.477Z",
+          "failure-transitions": "0",
+          "local-diagnostic-code": "NO_DIAGNOSTIC",
+          "remote-diagnostic-code": "NO_DIAGNOSTIC",
+          "remote-minimum-receive-interval": 1000000,
+          "remote-control-plane-independent": false,
+          "active-transmit-interval": 1000000,
+          "active-receive-interval": 1000000,
+          "remote-multiplier": 3,
+          "async": {
+            "last-packet-transmitted": "2026-11-19T17:09:11.425Z",
+            "last-packet-received": "2026-11-19T17:09:11.160Z",
+            "transmitted-packets": "5584",
+            "received-packets": "5584",
+            "up-transitions": "1"
+          }
+        }
+      ]
+    },
+    "router_log_bfd": "2026-11-19T16:21:54.678038+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00152|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16410 to 10.1.0.1:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:21:54.678405+00:00 dc1-dci-r1 sr_bgp_mgr: bgp|7328|7399|00130|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.1 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:22:53.043046+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00157|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16411 to 10.1.0.1:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:22:53.043465+00:00 dc1-dci-r1 sr_bgp_mgr: bgp|7328|7399|00134|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.1 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:23:51.381040+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00162|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16412 to 10.1.0.1:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:23:51.381445+00:00 dc1-dci-r1 sr_bgp_mgr: bgp|7328|7399|00137|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.1 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:24:49.775051+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00167|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16413 to 10.1.0.1:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:24:49.775450+00:00 dc1-dci-r1 sr_bgp_mgr: bgp|7328|7399|00141|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.1 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:25:48.023107+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00172|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16414 to 10.1.0.1:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:25:48.023603+00:00 dc1-dci-r1 sr_bgp_mgr: bgp|7328|7399|00145|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.1 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:26:46.353043+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00177|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16415 to 10.1.0.1:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:26:46.353990+00:00 dc1-dci-r1 sr_bgp_mgr: bgp|7328|7399|00148|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.1 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:27:44.746069+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00182|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16416 to 10.1.0.1:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:27:44.746465+00:00 dc1-dci-r1 sr_bgp_mgr: bgp|7328|7399|00152|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.1 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:28:43.261046+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00187|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16417 to 10.1.0.1:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:28:43.261382+00:00 dc1-dci-r1 sr_bgp_mgr: bgp|7328|7399|00155|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.1 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:29:43.422081+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00192|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16418 to 10.1.0.1:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:29:43.422539+00:00 dc1-dci-r1 sr_bgp_mgr: bgp|7328|7399|00159|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.1 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:30:41.493047+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00197|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16419 to 10.1.0.1:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:30:41.494030+00:00 dc1-dci-r1 sr_bgp_mgr: bgp|7328|7399|00161|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.1 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:43:24.698148+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00202|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16420 to 10.1.0.1:16420 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:44:46.725885+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00207|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16421 to 10.1.0.1:16421 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:46:08.753968+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00212|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16422 to 10.1.0.1:16422 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:47:29.745356+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00217|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16423 to 10.1.0.1:16423 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:48:50.676500+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00222|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16424 to 10.1.0.1:16424 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:50:11.611233+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00227|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16425 to 10.1.0.1:16425 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:51:32.569203+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00232|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16426 to 10.1.0.1:16426 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:52:53.543420+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00237|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16427 to 10.1.0.1:16427 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:54:15.571592+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00242|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16428 to 10.1.0.1:16428 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:55:36.487677+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00247|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16429 to 10.1.0.1:16429 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:56:58.451624+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00252|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16430 to 10.1.0.1:16430 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:58:20.494559+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00257|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16431 to 10.1.0.1:16431 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:59:42.523247+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00262|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16432 to 10.1.0.1:16432 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:01:04.533542+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00267|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16433 to 10.1.0.1:16433 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:02:26.527915+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00272|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16434 to 10.1.0.1:16434 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:03:47.523189+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00277|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16435 to 10.1.0.1:16435 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:05:08.499890+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00282|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16436 to 10.1.0.1:16436 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:06:30.497884+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00287|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16437 to 10.1.0.1:16437 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:07:51.434896+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00292|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16438 to 10.1.0.1:16438 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:09:12.426884+00:00 dc1-dci-r1 sr_bfd_mgr: bfd|3006|3006|00297|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.0:16439 to 10.1.0.1:16439 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)"
+  },
+  "dc2-dci-r1": {
+    "bgp_neighbor": {
+      "admin-state": "enable",
+      "description": "dc1-dci-r1",
+      "under-maintenance": false,
+      "maintenance-group": "",
+      "peer-type": "ebgp",
+      "local-preference": 100,
+      "next-hop-self": false,
+      "peer-as": 65201,
+      "peer-group": "dci",
+      "route-flap-damping": false,
+      "peer-router-id": "0.0.0.0",
+      "session-state": "active",
+      "last-state": "idle",
+      "last-event": "trackingDown",
+      "last-establish-exit-event": "trackingDown",
+      "last-established": "2026-11-19T17:09:12.200Z",
+      "established-transitions": "54",
+      "export-policy": [
+        "dci-export"
+      ],
+      "import-policy": [
+        "dci-import-primary"
+      ],
+      "advertised-capabilities": [
+        "ROUTE_REFRESH",
+        "4-OCTET_ASN",
+        "MP_BGP",
+        "GRACEFUL_RESTART"
+      ],
+      "as-path-options": {
+        "allow-own-as": 0,
+        "replace-peer-as": false,
+        "remove-private-as": {
+          "mode": "disabled",
+          "leading-only": false,
+          "ignore-peer-as": false
+        }
+      },
+      "authentication": {
+        "transmit-active": false
+      },
+      "failure-detection": {
+        "enable-bfd": true,
+        "fast-failover": true
+      },
+      "graceful-restart": {
+        "admin-state": "disable",
+        "mode": "HELPER_ONLY"
+      },
+      "multihop": {
+        "admin-state": "disable",
+        "maximum-hops": 1
+      },
+      "afi-safi": [
+        {
+          "afi-safi-name": "srl_nokia-common:evpn",
+          "admin-state": "enable",
+          "oper-state": "down",
+          "received-routes": 0,
+          "sent-routes": 0,
+          "active-routes": 0,
+          "rejected-routes": 0,
+          "suppressed-routes": 0,
+          "received-routes-withdrawn-due-to-error": 0,
+          "send-community-type": [
+            "standard",
+            "extended",
+            "large"
+          ],
+          "add-paths": {
+            "receive": false,
+            "send": false
+          },
+          "graceful-restart": {
+            "extended-route-retention": {
+              "admin-state": "disable",
+              "retention-time": 15552000,
+              "default-retention-policy": "reject",
+              "extended-retention-active": false,
+              "remaining-retention-time": 0
+            }
+          },
+          "evpn": {
+            "advertise-ipv6-next-hops": false,
+            "default-received-encapsulation": "vxlan",
+            "prefix-limit-received": {
+              "max-received-routes": 4294967295,
+              "warning-threshold-pct": 90,
+              "prefix-limit-exceeded": false
+            }
+          }
+        },
+        {
+          "afi-safi-name": "srl_nokia-common:ipv4-unicast",
+          "admin-state": "enable",
+          "oper-state": "down",
+          "received-routes": 0,
+          "sent-routes": 0,
+          "active-routes": 0,
+          "rejected-routes": 0,
+          "suppressed-routes": 0,
+          "received-routes-withdrawn-due-to-error": 0,
+          "send-community-type": [
+            "standard",
+            "extended",
+            "large"
+          ],
+          "add-paths": {
+            "receive": false,
+            "send": false
+          },
+          "graceful-restart": {
+            "extended-route-retention": {
+              "admin-state": "disable",
+              "retention-time": 15552000,
+              "default-retention-policy": "reject",
+              "extended-retention-active": false,
+              "remaining-retention-time": 0
+            }
+          },
+          "ipv4-unicast": {
+            "advertise-ipv6-next-hops": false,
+            "receive-ipv6-next-hops": false,
+            "prefix-limit-received": {
+              "max-received-routes": 4294967295,
+              "warning-threshold-pct": 90,
+              "prevent-teardown": false,
+              "prefix-limit-exceeded": false
+            },
+            "link-bandwidth": {
+              "add-next-hop-count-to-received-bgp-routes": "disable"
+            }
+          }
+        },
+        {
+          "afi-safi-name": "srl_nokia-common:ipv6-unicast",
+          "admin-state": "disable",
+          "oper-state": "down",
+          "ipv6-unicast": {
+            "link-bandwidth": {
+              "add-next-hop-count-to-received-bgp-routes": "disable"
+            }
+          }
+        },
+        {
+          "afi-safi-name": "srl_nokia-common:route-target",
+          "admin-state": "disable",
+          "oper-state": "down"
+        }
+      ],
+      "local-as": {
+        "as-number": 65202,
+        "prepend-global-as": true,
+        "prepend-local-as": true
+      },
+      "route-reflector": {
+        "client": false
+      },
+      "send-default-route": {
+        "ipv4-unicast": false,
+        "ipv6-unicast": false
+      },
+      "timers": {
+        "connect-retry": 120,
+        "hold-time": 90,
+        "keepalive-interval": 30,
+        "minimum-advertisement-interval": 5,
+        "prefix-limit-restart-timer": 0,
+        "negotiated-hold-time": 0,
+        "negotiated-keepalive-interval": 0
+      },
+      "transport": {
+        "mtu-discovery": true,
+        "passive-mode": false,
+        "local-port": 0,
+        "remote-port": 0
+      },
+      "sent-messages": {
+        "queue-depth": 0,
+        "total-updates": "0",
+        "total-non-updates": "0",
+        "route-refresh": "0",
+        "total-messages": "0",
+        "last-notification-time": "2026-11-19T16:31:17.200Z",
+        "last-notification-error-code": "Cease",
+        "last-notification-error-subcode": "Connection Collision Resolution",
+        "total-notifications": 26
+      },
+      "received-messages": {
+        "queue-depth": 0,
+        "total-updates": "0",
+        "total-non-updates": "0",
+        "malformed-updates": "0",
+        "route-refresh": "0",
+        "total-messages": "0",
+        "last-update-time": "2026-11-19T17:09:03.200Z",
+        "total-notifications": 0
+      }
+    },
+    "bfd_sessions": {
+      "peer": [
+        {
+          "local-discriminator": 16385,
+          "oper-state": "up",
+          "local-address": "10.1.0.3",
+          "remote-address": "10.1.0.2",
+          "remote-discriminator": 16385,
+          "subscribed-protocols": "BGP",
+          "session-state": "UP",
+          "remote-session-state": "UP",
+          "last-state-transition": "2026-11-19T13:58:35.475Z",
+          "failure-transitions": "0",
+          "local-diagnostic-code": "NO_DIAGNOSTIC",
+          "remote-diagnostic-code": "NO_DIAGNOSTIC",
+          "remote-minimum-receive-interval": 1000000,
+          "remote-control-plane-independent": false,
+          "active-transmit-interval": 1000000,
+          "active-receive-interval": 1000000,
+          "remote-multiplier": 3,
+          "async": {
+            "last-packet-transmitted": "2026-11-19T17:09:12.086Z",
+            "last-packet-received": "2026-11-19T17:09:11.589Z",
+            "transmitted-packets": "5585",
+            "received-packets": "5584",
+            "up-transitions": "1"
+          }
+        }
+      ]
+    },
+    "router_log_bfd": "2026-11-19T16:21:54.722890+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00151|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16410 to 10.1.0.0:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:21:54.723380+00:00 dc2-dci-r1 sr_bgp_mgr: bgp|7323|7381|00137|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.0 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:22:52.890880+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00156|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16411 to 10.1.0.0:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:22:52.891345+00:00 dc2-dci-r1 sr_bgp_mgr: bgp|7323|7381|00141|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.0 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:23:51.330911+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00161|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16412 to 10.1.0.0:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:23:51.331370+00:00 dc2-dci-r1 sr_bgp_mgr: bgp|7323|7381|00145|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.0 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:24:49.628863+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00166|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16413 to 10.1.0.0:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:24:49.629257+00:00 dc2-dci-r1 sr_bgp_mgr: bgp|7323|7381|00149|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.0 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:25:48.108916+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00171|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16414 to 10.1.0.0:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:25:48.109413+00:00 dc2-dci-r1 sr_bgp_mgr: bgp|7323|7381|00153|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.0 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:26:46.395898+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00176|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16415 to 10.1.0.0:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:26:46.396346+00:00 dc2-dci-r1 sr_bgp_mgr: bgp|7323|7381|00157|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.0 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:27:44.809909+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00181|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16416 to 10.1.0.0:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:27:44.810338+00:00 dc2-dci-r1 sr_bgp_mgr: bgp|7323|7381|00161|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.0 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:28:43.121884+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00186|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16417 to 10.1.0.0:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:28:43.122251+00:00 dc2-dci-r1 sr_bgp_mgr: bgp|7323|7381|00165|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.0 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:29:43.563924+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00191|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16418 to 10.1.0.0:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:29:43.564395+00:00 dc2-dci-r1 sr_bgp_mgr: bgp|7323|7381|00169|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.0 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:30:41.412915+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00196|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16419 to 10.1.0.0:0 has transitioned to the Down state with local-diagnostic code: Control Detection Time Expired (1) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:30:41.413360+00:00 dc2-dci-r1 sr_bgp_mgr: bgp|7323|7381|00172|EV|bgpNeighborBackwardTransition|W: In network-instance default, the BGP session with VR default (1): Group dci: Peer 10.1.0.0 moved from higher state ESTABLISHED to lower state IDLE due to event BFD_DOWN\n2026-11-19T16:43:24.699344+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00201|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16420 to 10.1.0.0:16420 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:44:46.727515+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00206|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16421 to 10.1.0.0:16421 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:46:08.754242+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00211|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16422 to 10.1.0.0:16422 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:47:29.744814+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00216|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16423 to 10.1.0.0:16423 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:48:50.677859+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00221|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16424 to 10.1.0.0:16424 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:50:11.612788+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00226|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16425 to 10.1.0.0:16425 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:51:32.570591+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00231|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16426 to 10.1.0.0:16426 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:52:53.538909+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00236|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16427 to 10.1.0.0:16427 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:54:15.572664+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00241|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16428 to 10.1.0.0:16428 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:55:36.489477+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00246|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16429 to 10.1.0.0:16429 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:56:58.453540+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00251|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16430 to 10.1.0.0:16430 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:58:20.495268+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00256|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16431 to 10.1.0.0:16431 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T16:59:42.523418+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00261|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16432 to 10.1.0.0:16432 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:01:04.534857+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00266|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16433 to 10.1.0.0:16433 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:02:26.528881+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00271|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16434 to 10.1.0.0:16434 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:03:47.523785+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00276|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16435 to 10.1.0.0:16435 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:05:08.498851+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00281|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16436 to 10.1.0.0:16436 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:06:30.498800+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00286|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16437 to 10.1.0.0:16437 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:07:51.436138+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00291|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16438 to 10.1.0.0:16438 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)\n2026-11-19T17:09:12.428010+00:00 dc2-dci-r1 sr_bfd_mgr: bfd|3017|3017|00296|EV|bfdDownEvent|W: BFD: Network-instance default - Session from 10.1.0.1:16439 to 10.1.0.0:16439 has transitioned to the Down state with local-diagnostic code: Path Down (5) and remote-diagnostic code: No Diagnostic (0)"
+  },
+  "primary_bfd_packet_trace": [],
+  "primary_link_before": {
+    "dc1-dci-r1": {
+      "admin-state": "enable",
+      "oper-state": "up",
+      "oper-down-reason": null,
+      "last-change": "2026-11-19T17:08:21.349Z",
+      "subinterface-oper-state": "up",
+      "subinterface-last-change": "2026-11-19T17:08:21.349Z",
+      "arp": null,
+      "kernel": "56: e1-3@if55: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9500 qdisc noqueue state UP mode DEFAULT group default qlen 1000\n    link/ether aa:c1:ab:21:95:55 brd ff:ff:ff:ff:ff:ff link-netns clab-DC1-DC2-dc2-dci-r1 promiscuity 0  allmulti 0 minmtu 68 maxmtu 65535 \n    veth addrgenmode eui64 numtxqueues 24 numrxqueues 24 gso_max_size 65536 gso_max_segs 65535 tso_max_size 524280 tso_max_segs 65535 gro_max_size 65536 \n    RX:  bytes packets errors dropped  missed   mcast           \n       5221960   54455      0       7       0       0 \n    TX:  bytes packets errors dropped carrier collsns           \n       5280947   55228      0       0       0       0 \n    altname clab-o-d5e6edc3ae536ed7\nqdisc noqueue 0: root refcnt 2"
+    },
+    "dc2-dci-r1": {
+      "admin-state": "enable",
+      "oper-state": "up",
+      "oper-down-reason": null,
+      "last-change": "2026-11-19T17:08:21.349Z",
+      "subinterface-oper-state": "up",
+      "subinterface-last-change": "2026-11-19T17:08:21.350Z",
+      "arp": null,
+      "kernel": "55: e1-3@if56: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9500 qdisc noqueue state UP mode DEFAULT group default qlen 1000\n    link/ether aa:c1:ab:5e:3f:62 brd ff:ff:ff:ff:ff:ff link-netns clab-DC1-DC2-dc1-dci-r1 promiscuity 0  allmulti 0 minmtu 68 maxmtu 65535 \n    veth addrgenmode eui64 numtxqueues 24 numrxqueues 24 gso_max_size 65536 gso_max_segs 65535 tso_max_size 524280 tso_max_segs 65535 gro_max_size 65536 \n    RX:  bytes packets errors dropped  missed   mcast           \n       5281437   55233      0       7       0       0 \n    TX:  bytes packets errors dropped carrier collsns           \n       5222450   54460      0       1       0       0 \n    altname clab-o-97ad2a93bebd4aec\nqdisc noqueue 0: root refcnt 2"
+    }
+  },
+  "primary_link_after_0.3s": {
+    "dc1-dci-r1": {
+      "admin-state": "disable",
+      "oper-state": "down",
+      "oper-down-reason": "port-admin-disabled",
+      "last-change": "2026-11-19T17:09:12.424Z",
+      "subinterface-oper-state": "down",
+      "subinterface-last-change": "2026-11-19T17:09:12.425Z",
+      "arp": null,
+      "kernel": "56: e1-3@if55: <BROADCAST,MULTICAST> mtu 9500 qdisc noqueue state DOWN mode DEFAULT group default qlen 1000\n    link/ether aa:c1:ab:21:95:55 brd ff:ff:ff:ff:ff:ff link-netns clab-DC1-DC2-dc2-dci-r1 promiscuity 0  allmulti 0 minmtu 68 maxmtu 65535 \n    veth addrgenmode eui64 numtxqueues 24 numrxqueues 24 gso_max_size 65536 gso_max_segs 65535 tso_max_size 524280 tso_max_segs 65535 gro_max_size 65536 \n    RX:  bytes packets errors dropped  missed   mcast           \n       5222940   54465      0       7       0       0 \n    TX:  bytes packets errors dropped carrier collsns           \n       5282067   55240      0       0       0       0 \n    altname clab-o-d5e6edc3ae536ed7\nqdisc noqueue 0: root refcnt 2"
+    },
+    "dc2-dci-r1": {
+      "admin-state": "enable",
+      "oper-state": "down",
+      "oper-down-reason": "lower-layer-down",
+      "last-change": "2026-11-19T17:09:12.426Z",
+      "subinterface-oper-state": "down",
+      "subinterface-last-change": "2026-11-19T17:09:12.426Z",
+      "arp": null,
+      "kernel": "55: e1-3@if56: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 9500 qdisc noqueue state DOWN mode DEFAULT group default qlen 1000\n    link/ether aa:c1:ab:5e:3f:62 brd ff:ff:ff:ff:ff:ff link-netns clab-DC1-DC2-dc1-dci-r1 promiscuity 0  allmulti 0 minmtu 68 maxmtu 65535 \n    veth addrgenmode eui64 numtxqueues 24 numrxqueues 24 gso_max_size 65536 gso_max_segs 65535 tso_max_size 524280 tso_max_segs 65535 gro_max_size 65536 \n    RX:  bytes packets errors dropped  missed   mcast           \n       5282067   55240      0       7       0       0 \n    TX:  bytes packets errors dropped carrier collsns           \n       5222940   54465      0       1       0       0 \n    altname clab-o-97ad2a93bebd4aec\nqdisc noqueue 0: root refcnt 2"
+    }
+  },
+  "router_detect_s": 0.048097848892211914,
+  "bfd_diag": "Path Down",
+  "valid": true
+}

@@ -1,0 +1,24 @@
+run 3 of 30
+
+=== down failure: dc1-h1 -> dc2-h1 (172.30.2.2), 40s at 100 pkt/s, failure at 10s ===
+BGP to 10.1.0.1 (primary): established
+BFD to 10.1.0.1 (primary): UP, transmit interval 1000000 us, remote minimum receive 1000000 us
+link broken (down) at 16:46:08.703
+BFD to 10.1.0.1 went down after 0.14s (seen by polling)
+BGP to 10.1.0.1 dropped after 0.19s (seen by polling)
+dc1-dci-r1: BGP to 10.1.0.1 left established -0.50s after the failure (router clock), cause trackingDown
+dc2-dci-r1: BGP to 10.1.0.0 left established -0.50s after the failure (router clock), cause trackingDown
+dc1-dci-r1 log: BFD went down 0.051s after the failure, diagnostic 'Path Down'; BGP exit event trackingDown
+RUN VALID: BFD diagnostic is 'Path Down' as a down failure should give
+dc1-dci-r1 ethernet-1/3: oper-state up -> down, subinterface up -> down, down reason port-admin-disabled
+dc2-dci-r1 ethernet-1/3: oper-state up -> down, subinterface up -> down, down reason lower-layer-down
+BFD and BGP state saved to results/bfd_down_20261119_164609.json
+
+sent 3516, received 3515, lost 1 (0.0%)
+outage (longest gap between replies): 0.015s
+BFD detection time: 0.14s
+BGP detection time: 0.19s
+  (BGP dropped 0.04s after BFD; the rest is reconvergence)
+dc1-dci-r1 ethernet-1/3 packets out: before failure 890, after 36
+dc1-dci-r1 ethernet-1/4 packets out: before failure 7, after 2682
+link repaired; BGP on the primary re-established after 36s

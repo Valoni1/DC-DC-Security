@@ -5,3 +5,63 @@ time,fail,src,dst,sent,received,lost,outage_s,poll_bgp_detect_s,router_bfd_detec
 2026-11-19T14:04:39,down,dc1-h1,dc2-h1,3521,3520,1,0.011,0.17,,,trackingDown,False,59,2611,36
 2026-11-19T14:24:16,silent,dc1-h1,dc2-h1,3473,2838,635,7.395,7.52,7.405,Control Detection Time Expired,bfdDown,True,705,1941,13
 2026-11-19T14:26:11,down,dc1-h1,dc2-h1,3500,3500,0,0.003,0.19,0.048,Path Down,trackingDown,True,59,2584,36
+2026-11-19T16:03:03,silent,dc1-h1,dc2-h1,3480,2841,639,7.373,6.25,6.070,Control Detection Time Expired,bfdDown,True,563,2081,13
+2026-11-19T16:04:01,silent,dc1-h1,dc2-h1,3486,2937,549,6.354,6.35,6.228,Control Detection Time Expired,bfdDown,True,657,2069,13
+2026-11-19T16:04:59,silent,dc1-h1,dc2-h1,3483,2929,554,6.390,6.55,6.401,Control Detection Time Expired,bfdDown,True,664,1982,13
+2026-11-19T16:05:58,silent,dc1-h1,dc2-h1,3492,2906,586,6.732,6.83,6.692,Control Detection Time Expired,bfdDown,True,688,1963,14
+2026-11-19T16:06:56,silent,dc1-h1,dc2-h1,3482,2955,527,6.059,6.02,5.998,Control Detection Time Expired,bfdDown,True,621,2024,13
+2026-11-19T16:07:54,silent,dc1-h1,dc2-h1,3486,2932,554,6.415,6.37,6.337,Control Detection Time Expired,bfdDown,True,639,2008,13
+2026-11-19T16:08:52,silent,dc1-h1,dc2-h1,3483,2937,546,6.282,6.50,6.287,Control Detection Time Expired,bfdDown,True,635,2015,13
+2026-11-19T16:09:51,silent,dc1-h1,dc2-h1,3492,2915,577,6.673,6.83,6.660,Control Detection Time Expired,bfdDown,True,655,2003,14
+2026-11-19T16:10:49,silent,dc1-h1,dc2-h1,3488,2960,528,6.124,6.27,6.139,Control Detection Time Expired,bfdDown,True,609,2039,13
+2026-11-19T16:11:47,silent,dc1-h1,dc2-h1,3487,2927,560,6.479,6.57,6.459,Control Detection Time Expired,bfdDown,True,629,2022,13
+2026-11-19T16:12:46,silent,dc1-h1,dc2-h1,3488,2902,586,6.836,6.91,6.812,Control Detection Time Expired,bfdDown,True,647,2001,14
+2026-11-19T16:13:44,silent,dc1-h1,dc2-h1,3493,2973,520,6.019,6.05,6.030,Control Detection Time Expired,bfdDown,True,583,2067,13
+2026-11-19T16:14:43,silent,dc1-h1,dc2-h1,3474,2913,561,6.511,6.66,6.523,Control Detection Time Expired,bfdDown,True,616,2021,14
+2026-11-19T16:15:43,silent,dc1-h1,dc2-h1,3486,2797,689,7.937,8.16,7.935,Control Detection Time Expired,bfdDown,True,741,1911,15
+2026-11-19T16:16:41,silent,dc1-h1,dc2-h1,3493,2965,528,6.130,6.20,6.087,Control Detection Time Expired,bfdDown,True,581,2073,13
+2026-11-19T16:17:39,silent,dc1-h1,dc2-h1,3484,2915,569,6.543,6.57,6.352,Control Detection Time Expired,bfdDown,True,603,2046,13
+2026-11-19T16:18:37,silent,dc1-h1,dc2-h1,3491,2939,552,6.387,6.53,6.365,Control Detection Time Expired,bfdDown,True,592,2065,13
+2026-11-19T16:19:36,silent,dc1-h1,dc2-h1,3499,2900,599,6.868,7.00,6.889,Control Detection Time Expired,bfdDown,True,718,2024,14
+2026-11-19T16:20:34,silent,dc1-h1,dc2-h1,3492,2956,536,6.208,6.37,6.228,Control Detection Time Expired,bfdDown,True,657,2077,13
+2026-11-19T16:21:33,silent,dc1-h1,dc2-h1,3488,2907,581,6.713,6.90,6.716,Control Detection Time Expired,bfdDown,True,688,1969,14
+2026-11-19T16:22:31,silent,dc1-h1,dc2-h1,3493,2973,520,6.003,6.19,5.970,Control Detection Time Expired,bfdDown,True,619,2038,13
+2026-11-19T16:23:29,silent,dc1-h1,dc2-h1,3497,2941,556,6.362,6.53,6.375,Control Detection Time Expired,bfdDown,True,650,2009,13
+2026-11-19T16:24:28,silent,dc1-h1,dc2-h1,3498,2913,585,6.729,6.89,6.745,Control Detection Time Expired,bfdDown,True,671,1987,14
+2026-11-19T16:25:26,silent,dc1-h1,dc2-h1,3490,2963,527,6.089,6.33,6.101,Control Detection Time Expired,bfdDown,True,613,2038,13
+2026-11-19T16:26:24,silent,dc1-h1,dc2-h1,3486,2931,555,6.385,6.32,6.314,Control Detection Time Expired,bfdDown,True,631,2016,13
+2026-11-19T16:27:23,silent,dc1-h1,dc2-h1,3506,2926,580,6.712,6.88,6.681,Control Detection Time Expired,bfdDown,True,647,2017,14
+2026-11-19T16:28:21,silent,dc1-h1,dc2-h1,3495,2965,530,6.111,6.28,6.061,Control Detection Time Expired,bfdDown,True,591,2062,13
+2026-11-19T16:29:20,silent,dc1-h1,dc2-h1,3485,2912,573,6.605,6.76,6.623,Control Detection Time Expired,bfdDown,True,631,2013,14
+2026-11-19T16:30:19,silent,dc1-h1,dc2-h1,3498,2813,685,7.898,7.93,7.772,Control Detection Time Expired,bfdDown,True,728,1924,14
+2026-11-19T16:31:18,silent,dc1-h1,dc2-h1,3477,2890,587,6.780,6.88,6.790,Control Detection Time Expired,bfdDown,True,639,1999,14
+2026-11-19T16:44:31,down,dc1-h1,dc2-h1,3507,3507,0,0.005,0.16,0.043,Path Down,trackingDown,True,49,2629,37
+2026-11-19T16:45:53,down,dc1-h1,dc2-h1,3519,3518,1,0.014,0.19,0.049,Path Down,trackingDown,True,44,2650,37
+2026-11-19T16:47:14,down,dc1-h1,dc2-h1,3516,3515,1,0.015,0.19,0.051,Path Down,trackingDown,True,36,2682,36
+2026-11-19T16:48:35,down,dc1-h1,dc2-h1,3491,3491,0,0.003,0.17,0.050,Path Down,trackingDown,True,29,2671,36
+2026-11-19T16:49:56,down,dc1-h1,dc2-h1,3495,3494,1,0.014,0.19,0.046,Path Down,trackingDown,True,102,2602,36
+2026-11-19T16:51:17,down,dc1-h1,dc2-h1,3496,3495,1,0.013,0.19,0.046,Path Down,trackingDown,True,90,2610,36
+2026-11-19T16:52:38,down,dc1-h1,dc2-h1,3489,3489,0,0.003,0.19,0.046,Path Down,trackingDown,True,80,2625,36
+2026-11-19T16:54:00,down,dc1-h1,dc2-h1,3482,3481,1,0.013,0.19,0.054,Path Down,trackingDown,True,67,2630,37
+2026-11-19T16:55:20,down,dc1-h1,dc2-h1,3490,3490,0,0.003,0.18,0.049,Path Down,trackingDown,True,64,2637,35
+2026-11-19T16:56:42,down,dc1-h1,dc2-h1,3496,3496,0,0.003,0.19,0.045,Path Down,trackingDown,True,47,2656,37
+2026-11-19T16:58:04,down,dc1-h1,dc2-h1,3497,3496,1,0.013,0.17,0.042,Path Down,trackingDown,True,36,2667,37
+2026-11-19T16:59:27,down,dc1-h1,dc2-h1,3490,3490,0,0.003,0.19,0.047,Path Down,trackingDown,True,33,3732,37
+2026-11-19T17:00:48,down,dc1-h1,dc2-h1,3501,3501,0,0.004,0.16,0.041,Path Down,trackingDown,True,26,2681,37
+2026-11-19T17:02:11,down,dc1-h1,dc2-h1,3497,3496,1,0.015,0.18,0.045,Path Down,trackingDown,True,109,2680,37
+2026-11-19T17:03:32,down,dc1-h1,dc2-h1,3489,3489,0,0.003,0.17,0.041,Path Down,trackingDown,True,98,2602,36
+2026-11-19T17:04:52,down,dc1-h1,dc2-h1,3482,3482,0,0.003,0.18,0.045,Path Down,trackingDown,True,93,2607,36
+2026-11-19T17:06:14,down,dc1-h1,dc2-h1,3498,3498,0,0.003,0.19,0.049,Path Down,trackingDown,True,80,2625,37
+2026-11-19T17:07:35,down,dc1-h1,dc2-h1,3495,3495,0,0.004,0.18,0.046,Path Down,trackingDown,True,72,2630,36
+2026-11-19T17:08:56,down,dc1-h1,dc2-h1,3498,3498,0,0.003,0.17,0.042,Path Down,trackingDown,True,61,2638,36
+2026-11-19T17:10:17,down,dc1-h1,dc2-h1,3483,3483,0,0.003,0.23,0.048,Path Down,trackingDown,True,51,2639,36
+2026-11-19T17:11:39,down,dc1-h1,dc2-h1,3458,3458,0,0.003,0.17,0.040,Path Down,trackingDown,True,33,2640,37
+2026-11-19T17:13:00,down,dc1-h1,dc2-h1,3471,3471,0,0.003,0.18,0.045,Path Down,trackingDown,True,27,2660,36
+2026-11-19T17:14:20,down,dc1-h1,dc2-h1,3479,3478,1,0.014,0.19,0.046,Path Down,trackingDown,True,107,2580,35
+2026-11-19T17:15:41,down,dc1-h1,dc2-h1,3480,3480,0,0.003,0.18,0.047,Path Down,trackingDown,True,97,2590,36
+2026-11-19T17:17:02,down,dc1-h1,dc2-h1,3492,3492,0,0.003,0.18,0.044,Path Down,trackingDown,True,87,2612,36
+2026-11-19T17:18:23,down,dc1-h1,dc2-h1,3484,3484,0,0.003,0.16,0.038,Path Down,trackingDown,True,74,2621,36
+2026-11-19T17:19:45,down,dc1-h1,dc2-h1,3495,3495,0,0.003,0.20,0.047,Path Down,trackingDown,True,63,2642,37
+2026-11-19T17:21:06,down,dc1-h1,dc2-h1,3480,3480,0,0.005,0.18,0.043,Path Down,trackingDown,True,57,2635,35
+2026-11-19T17:22:28,down,dc1-h1,dc2-h1,3478,3478,0,0.003,0.18,0.041,Path Down,trackingDown,True,40,2648,37
+2026-11-19T17:23:49,down,dc1-h1,dc2-h1,3489,3488,1,0.014,0.16,0.046,Path Down,trackingDown,True,29,2674,36
