@@ -47,6 +47,12 @@ if ! docker network inspect clab-ext >/dev/null 2>&1; then
     docker network create --subnet 198.51.100.0/29 --gateway 198.51.100.6 \
         -o com.docker.network.bridge.name=clab-ext clab-ext >/dev/null
 fi
+# The attacker node uses lab-kali:latest (Kali + manual-attack tools). Build it
+# once if missing; redeploys then reuse the cached image. Needs network for apt.
+if ! docker image inspect lab-kali:latest >/dev/null 2>&1; then
+    echo "building lab-kali:latest (Kali manual-attacker image; first build only)"
+    docker build -t lab-kali:latest kali/ || { echo "WARNING: lab-kali build failed; the attacker node will not deploy until it succeeds."; }
+fi
 WINDOWS=yes
 [ "$1" = "--without-windows" ] && WINDOWS=no
 if [ $WINDOWS = yes ] && [ ! -e /dev/kvm ]; then
