@@ -67,6 +67,6 @@ external:
   bridge: clab-ext           # host bridge (docker network) the members share
   gateway: 198.51.100.6      # the bridge's own address; nothing routes through it
   members:
-    - {name: attacker,    if: eth1, ip: 198.51.100.1/29, role: vantage}   # clab node
+    - {name: attacker,    if: eth1, ip: 198.51.100.1/29, role: vantage}   # clab node (Kali, manual attacker)
     - {name: dc1-h1,      if: eth2, ip: 198.51.100.2/29, role: exposed}   # clab node (exposed host)
     - {name: scopeweaver,          ip: 198.51.100.3/29, role: attacker}   # docker compose, not a clab node

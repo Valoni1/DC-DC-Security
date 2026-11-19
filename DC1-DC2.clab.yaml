@@ -30,8 +30,10 @@ topology:
         # 198.51.100.3. Clab-only: not in NetBox, and the routers are untouched.
         attacker:
             kind: linux
-            image: netreplica/ubuntu-host:1.4
-            cmd: /start.sh -sS
+            # Kali manual-attacker box (built by deploy_lab.sh as lab-kali:latest
+            # from kali/Dockerfile). This is the non-AI vantage node; the
+            # ScopeWeaver AI stack sits on the same segment at .3.
+            image: lab-kali:latest
             exec:
                 - bash -c "echo root:root | chpasswd"
                 - bash -c "ip addr replace 198.51.100.1/29 dev eth1 && ip link set eth1 up"
@@ -40,9 +42,9 @@ topology:
                 graph-level: 10
                 role: Attacker
                 group: External
-                platform: External vantage (ScopeWeaver on the same segment)
+                platform: Kali Linux (manual attacker; ScopeWeaver AI on the same segment)
                 vendor: Generic
-                model: External vantage
+                model: Kali Linux
 
         dc1-sp1:
             kind: srl
