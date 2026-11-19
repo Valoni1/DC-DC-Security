@@ -2,15 +2,17 @@
 # next to the upstream docker-compose.yml so `docker compose` merges the two.
 #
 # It does two things:
-#   1. pins the LLM to hosted Claude (provider + model; the key comes from .env)
+#   1. pins the LLM to DeepSeek's OpenAI-compatible API (provider + base URL +
+#      model; the key comes from .env as OPENAI_API_KEY)
 #   2. puts the ScopeWeaver container on the lab's external segment (clab-ext,
 #      198.51.100.0/29) at .3, so it shares the untrusted L2 with the vantage
 #      node (.1) and the exposed host dc1-h1 (.2). Postgres stays internal.
 services:
   scopeweaver:
     environment:
-      ARTEX_LLM_PROVIDER: "anthropic"
-      ARTEX_LLM_MODEL: "${ARTEX_LLM_MODEL:-claude-sonnet-5-5}"
+      ARTEX_LLM_PROVIDER: "openai"
+      ARTEX_LLM_BASE_URL: "${ARTEX_LLM_BASE_URL:-https://api.deepseek.com}"
+      ARTEX_LLM_MODEL: "${ARTEX_LLM_MODEL:-deepseek-chat}"
     networks:
       default: {}
       ext:
