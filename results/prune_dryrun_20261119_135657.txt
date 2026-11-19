@@ -1,0 +1,11 @@
+Connected to NetBox at http://localhost:8000
+
+=== Devices to delete (0) ===
+
+=== Cables to delete between remaining devices (0) ===
+
+=== Stranded ports to delete on remaining devices (0) ===
+
+=== Addresses to delete (0) ===
+
+Nothing to remove: NetBox already matches the plan.

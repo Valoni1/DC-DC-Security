@@ -1,0 +1,2080 @@
+===== 1. destroy =====
+13:57:29 INFO Parsing & checking topology file=DC1-DC2.clab.yaml
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 INFO Parsing & checking topology file=DC1-DC2.clab.yaml
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:29 INFO Destroying lab name=DC1-DC2
+13:57:29 ERRO container "clab-DC1-DC2-dc1-sp1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2312
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2400
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2478
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2532
+  Application dhcp_client_mgr is running: PID 2552
+  Application mgmt_server is running: PID 2590
+  Application mfib_mgr is running: PID 2627
+  Application net_inst_mgr is running: PID 2686
+  Application chassis_mgr is running: PID 2711
+  Application lag_mgr is running: PID 2779
+  Application mcid_mgr is running: PID 2806
+  Application license_mgr is running: PID 2872
+  Application aaa_mgr is running: PID 2918
+  Application sflow_sample_mgr is running: PID 2969
+  Application bfd_mgr is running: PID 2997
+  Application log_mgr is running: PID 3018
+  Application fib_mgr is running: PID 3056
+  Application evpn_mgr is running: PID 3105
+  Application arp_nd_mgr is running: PID 3153
+  Application label_mgr is running: PID 3177
+  Application l2_mac_mgr is running: PID 3203
+  Application xdp_lc_1 is running: PID 3389
+  Application radius_mgr is running: PID 3416
+  Application acl_mgr is running: PID 3452
+  Application alarm_mgr is running: PID 3489
+  Application stat_id_mgr is running: PID 3547
+  Application index_res_mgr is running: PID 3573
+  Application pinger is running: PID 3597
+13:57:29 ERRO container "clab-DC1-DC2-dc1-sp1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2312
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2400
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2478
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2532
+  Application dhcp_client_mgr is running: PID 2552
+  Application mgmt_server is running: PID 2590
+  Application mfib_mgr is running: PID 2627
+  Application net_inst_mgr is running: PID 2686
+  Application chassis_mgr is running: PID 2711
+  Application lag_mgr is running: PID 2779
+  Application mcid_mgr is running: PID 2806
+  Application license_mgr is running: PID 2872
+  Application aaa_mgr is running: PID 2918
+  Application sflow_sample_mgr is running: PID 2969
+  Application bfd_mgr is running: PID 2997
+  Application log_mgr is running: PID 3018
+  Application fib_mgr is running: PID 3056
+  Application evpn_mgr is running: PID 3105
+  Application arp_nd_mgr is running: PID 3153
+  Application label_mgr is running: PID 3177
+  Application l2_mac_mgr is running: PID 3203
+  Application xdp_lc_1 is running: PID 3389
+  Application radius_mgr is running: PID 3416
+  Application acl_mgr is running: PID 3452
+  Application alarm_mgr is running: PID 3489
+  Application stat_id_mgr is running: PID 3547
+  Application index_res_mgr is running: PID 3573
+  Application pinger is running: PID 3597
+13:57:29 ERRO container "clab-DC1-DC2-dc2-ss1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2312
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2416
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2530
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2568
+  Application dhcp_client_mgr is running: PID 2586
+  Application mgmt_server is running: PID 2599
+  Application mfib_mgr is running: PID 2630
+  Application net_inst_mgr is running: PID 2722
+  Application chassis_mgr is running: PID 2744
+  Application lag_mgr is running: PID 2827
+  Application mcid_mgr is running: PID 2870
+  Application license_mgr is running: PID 2904
+  Application aaa_mgr is running: PID 2933
+  Application sflow_sample_mgr is running: PID 2968
+  Application bfd_mgr is running: PID 3006
+  Application log_mgr is running: PID 3039
+  Application fib_mgr is running: PID 3104
+  Application evpn_mgr is running: PID 3123
+  Application arp_nd_mgr is running: PID 3152
+  Application label_mgr is running: PID 3214
+  Application l2_mac_mgr is running: PID 3278
+  Application xdp_lc_1 is running: PID 3410
+  Application radius_mgr is running: PID 3425
+  Application acl_mgr is running: PID 3448
+  Application alarm_mgr is running: PID 3486
+  Application stat_id_mgr is running: PID 3530
+  Application index_res_mgr is running: PID 3564
+13:57:29 ERRO container "clab-DC1-DC2-dc1-l1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2314
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2400
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2478
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2532
+  Application dhcp_client_mgr is running: PID 2552
+  Application mgmt_server is running: PID 2586
+  Application mfib_mgr is running: PID 2621
+  Application net_inst_mgr is running: PID 2686
+  Application chassis_mgr is running: PID 2703
+  Application lag_mgr is running: PID 2735
+  Application mcid_mgr is running: PID 2784
+  Application license_mgr is running: PID 2802
+  Application aaa_mgr is running: PID 2857
+  Application sflow_sample_mgr is running: PID 2939
+  Application bfd_mgr is running: PID 2978
+  Application log_mgr is running: PID 3024
+  Application fib_mgr is running: PID 3093
+  Application evpn_mgr is running: PID 3119
+  Application arp_nd_mgr is running: PID 3154
+  Application label_mgr is running: PID 3193
+  Application l2_mac_mgr is running: PID 3240
+  Application xdp_lc_1 is running: PID 3395
+  Application radius_mgr is running: PID 3412
+  Application acl_mgr is running: PID 3428
+  Application alarm_mgr is running: PID 3457
+  Application stat_id_mgr is running: PID 3513
+  Application index_res_mgr is running: PID 3577
+  Application pinger is running: PID 3608
+  Application linux_mgr is running: PID 3642
+13:57:29 ERRO container "clab-DC1-DC2-dc1-l1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2314
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2400
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2478
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2532
+  Application dhcp_client_mgr is running: PID 2552
+  Application mgmt_server is running: PID 2586
+  Application mfib_mgr is running: PID 2621
+  Application net_inst_mgr is running: PID 2686
+  Application chassis_mgr is running: PID 2703
+  Application lag_mgr is running: PID 2735
+  Application mcid_mgr is running: PID 2784
+  Application license_mgr is running: PID 2802
+  Application aaa_mgr is running: PID 2857
+  Application sflow_sample_mgr is running: PID 2939
+  Application bfd_mgr is running: PID 2978
+  Application log_mgr is running: PID 3024
+  Application fib_mgr is running: PID 3093
+  Application evpn_mgr is running: PID 3119
+  Application arp_nd_mgr is running: PID 3154
+  Application label_mgr is running: PID 3193
+  Application l2_mac_mgr is running: PID 3240
+  Application xdp_lc_1 is running: PID 3395
+  Application radius_mgr is running: PID 3412
+  Application acl_mgr is running: PID 3428
+  Application alarm_mgr is running: PID 3457
+  Application stat_id_mgr is running: PID 3513
+  Application index_res_mgr is running: PID 3577
+  Application pinger is running: PID 3608
+  Application linux_mgr is running: PID 3642
+13:57:29 ERRO container "clab-DC1-DC2-dc2-sp1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2313
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2401
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2492
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2530
+  Application dhcp_client_mgr is running: PID 2548
+  Application mgmt_server is running: PID 2588
+  Application mfib_mgr is running: PID 2631
+  Application net_inst_mgr is running: PID 2701
+  Application chassis_mgr is running: PID 2718
+  Application lag_mgr is running: PID 2758
+  Application mcid_mgr is running: PID 2794
+  Application license_mgr is running: PID 2848
+  Application aaa_mgr is running: PID 2867
+  Application sflow_sample_mgr is running: PID 2934
+  Application bfd_mgr is running: PID 3005
+  Application log_mgr is running: PID 3017
+  Application fib_mgr is running: PID 3037
+  Application evpn_mgr is running: PID 3082
+  Application arp_nd_mgr is running: PID 3137
+  Application label_mgr is running: PID 3168
+  Application l2_mac_mgr is running: PID 3199
+  Application xdp_lc_1 is running: PID 3389
+  Application radius_mgr is running: PID 3412
+  Application acl_mgr is running: PID 3462
+  Application alarm_mgr is running: PID 3495
+  Application stat_id_mgr is running: PID 3546
+  Application index_res_mgr is running: PID 3573
+  Application pinger is running: PID 3617
+  Application linux_mgr is running: PID 3670
+13:57:29 ERRO container "clab-DC1-DC2-dc2-sp1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2313
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2401
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2492
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2530
+  Application dhcp_client_mgr is running: PID 2548
+  Application mgmt_server is running: PID 2588
+  Application mfib_mgr is running: PID 2631
+  Application net_inst_mgr is running: PID 2701
+  Application chassis_mgr is running: PID 2718
+  Application lag_mgr is running: PID 2758
+  Application mcid_mgr is running: PID 2794
+  Application license_mgr is running: PID 2848
+  Application aaa_mgr is running: PID 2867
+  Application sflow_sample_mgr is running: PID 2934
+  Application bfd_mgr is running: PID 3005
+  Application log_mgr is running: PID 3017
+  Application fib_mgr is running: PID 3037
+  Application evpn_mgr is running: PID 3082
+  Application arp_nd_mgr is running: PID 3137
+  Application label_mgr is running: PID 3168
+  Application l2_mac_mgr is running: PID 3199
+  Application xdp_lc_1 is running: PID 3389
+  Application radius_mgr is running: PID 3412
+  Application acl_mgr is running: PID 3462
+  Application alarm_mgr is running: PID 3495
+  Application stat_id_mgr is running: PID 3546
+  Application index_res_mgr is running: PID 3573
+  Application pinger is running: PID 3617
+  Application linux_mgr is running: PID 3670
+13:57:29 ERRO container "clab-DC1-DC2-dc2-l1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2312
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2416
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2530
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2568
+  Application dhcp_client_mgr is running: PID 2588
+  Application mgmt_server is running: PID 2623
+  Application mfib_mgr is running: PID 2654
+  Application net_inst_mgr is running: PID 2724
+  Application chassis_mgr is running: PID 2740
+  Application lag_mgr is running: PID 2782
+  Application mcid_mgr is running: PID 2824
+  Application license_mgr is running: PID 2847
+  Application aaa_mgr is running: PID 2913
+  Application sflow_sample_mgr is running: PID 2934
+  Application bfd_mgr is running: PID 2988
+  Application log_mgr is running: PID 3065
+  Application fib_mgr is running: PID 3091
+  Application evpn_mgr is running: PID 3120
+  Application arp_nd_mgr is running: PID 3155
+  Application label_mgr is running: PID 3240
+  Application l2_mac_mgr is running: PID 3255
+  Application xdp_lc_1 is running: PID 3408
+  Application radius_mgr is running: PID 3426
+  Application acl_mgr is running: PID 3454
+  Application alarm_mgr is running: PID 3480
+  Application stat_id_mgr is running: PID 3513
+  Application index_res_mgr is running: PID 3614
+13:57:29 ERRO container "clab-DC1-DC2-dc2-l1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2312
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2416
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2530
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2568
+  Application dhcp_client_mgr is running: PID 2588
+  Application mgmt_server is running: PID 2623
+  Application mfib_mgr is running: PID 2654
+  Application net_inst_mgr is running: PID 2724
+  Application chassis_mgr is running: PID 2740
+  Application lag_mgr is running: PID 2782
+  Application mcid_mgr is running: PID 2824
+  Application license_mgr is running: PID 2847
+  Application aaa_mgr is running: PID 2913
+  Application sflow_sample_mgr is running: PID 2934
+  Application bfd_mgr is running: PID 2988
+  Application log_mgr is running: PID 3065
+  Application fib_mgr is running: PID 3091
+  Application evpn_mgr is running: PID 3120
+  Application arp_nd_mgr is running: PID 3155
+  Application label_mgr is running: PID 3240
+  Application l2_mac_mgr is running: PID 3255
+  Application xdp_lc_1 is running: PID 3408
+  Application radius_mgr is running: PID 3426
+  Application acl_mgr is running: PID 3454
+  Application alarm_mgr is running: PID 3480
+  Application stat_id_mgr is running: PID 3513
+  Application index_res_mgr is running: PID 3614
+13:57:29 ERRO container "clab-DC1-DC2-dc1-ss1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2313
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2399
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2477
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2521
+  Application dhcp_client_mgr is running: PID 2556
+  Application mgmt_server is running: PID 2607
+  Application mfib_mgr is running: PID 2634
+  Application net_inst_mgr is running: PID 2685
+  Application chassis_mgr is running: PID 2712
+  Application lag_mgr is running: PID 2730
+  Application mcid_mgr is running: PID 2776
+  Application license_mgr is running: PID 2840
+  Application aaa_mgr is running: PID 2866
+  Application sflow_sample_mgr is running: PID 2900
+  Application bfd_mgr is running: PID 2925
+  Application log_mgr is running: PID 2956
+  Application fib_mgr is running: PID 2977
+  Application evpn_mgr is running: PID 3061
+  Application arp_nd_mgr is running: PID 3147
+  Application label_mgr is running: PID 3165
+  Application l2_mac_mgr is running: PID 3184
+  Application xdp_lc_1 is running: PID 3393
+  Application radius_mgr is running: PID 3409
+  Application acl_mgr is running: PID 3465
+  Application alarm_mgr is running: PID 3485
+  Application stat_id_mgr is running: PID 3507
+  Application pinger is running: PID 3582
+13:57:29 ERRO container "clab-DC1-DC2-dc2-l1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2312
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2416
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2530
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2568
+  Application dhcp_client_mgr is running: PID 2588
+  Application mgmt_server is running: PID 2623
+  Application mfib_mgr is running: PID 2654
+  Application net_inst_mgr is running: PID 2724
+  Application chassis_mgr is running: PID 2740
+  Application lag_mgr is running: PID 2782
+  Application mcid_mgr is running: PID 2824
+  Application license_mgr is running: PID 2847
+  Application aaa_mgr is running: PID 2913
+  Application sflow_sample_mgr is running: PID 2934
+  Application bfd_mgr is running: PID 2988
+  Application log_mgr is running: PID 3065
+  Application fib_mgr is running: PID 3091
+  Application evpn_mgr is running: PID 3120
+  Application arp_nd_mgr is running: PID 3155
+  Application label_mgr is running: PID 3240
+  Application l2_mac_mgr is running: PID 3255
+  Application xdp_lc_1 is running: PID 3408
+  Application radius_mgr is running: PID 3426
+  Application acl_mgr is running: PID 3454
+  Application alarm_mgr is running: PID 3480
+  Application stat_id_mgr is running: PID 3513
+  Application index_res_mgr is running: PID 3614
+13:57:29 ERRO container "clab-DC1-DC2-dc1-ss1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2313
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2399
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2477
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2521
+  Application dhcp_client_mgr is running: PID 2556
+  Application mgmt_server is running: PID 2607
+  Application mfib_mgr is running: PID 2634
+  Application net_inst_mgr is running: PID 2685
+  Application chassis_mgr is running: PID 2712
+  Application lag_mgr is running: PID 2730
+  Application mcid_mgr is running: PID 2776
+  Application license_mgr is running: PID 2840
+  Application aaa_mgr is running: PID 2866
+  Application sflow_sample_mgr is running: PID 2900
+  Application bfd_mgr is running: PID 2925
+  Application log_mgr is running: PID 2956
+  Application fib_mgr is running: PID 2977
+  Application evpn_mgr is running: PID 3061
+  Application arp_nd_mgr is running: PID 3147
+  Application label_mgr is running: PID 3165
+  Application l2_mac_mgr is running: PID 3184
+  Application xdp_lc_1 is running: PID 3393
+  Application radius_mgr is running: PID 3409
+  Application acl_mgr is running: PID 3465
+  Application alarm_mgr is running: PID 3485
+  Application stat_id_mgr is running: PID 3507
+  Application pinger is running: PID 3582
+13:57:29 ERRO container "clab-DC1-DC2-dc1-l1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2314
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2400
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2478
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2532
+  Application dhcp_client_mgr is running: PID 2552
+  Application mgmt_server is running: PID 2586
+  Application mfib_mgr is running: PID 2621
+  Application net_inst_mgr is running: PID 2686
+  Application chassis_mgr is running: PID 2703
+  Application lag_mgr is running: PID 2735
+  Application mcid_mgr is running: PID 2784
+  Application license_mgr is running: PID 2802
+  Application aaa_mgr is running: PID 2857
+  Application sflow_sample_mgr is running: PID 2939
+  Application bfd_mgr is running: PID 2978
+  Application log_mgr is running: PID 3024
+  Application fib_mgr is running: PID 3093
+  Application evpn_mgr is running: PID 3119
+  Application arp_nd_mgr is running: PID 3154
+  Application label_mgr is running: PID 3193
+  Application l2_mac_mgr is running: PID 3240
+  Application xdp_lc_1 is running: PID 3395
+  Application radius_mgr is running: PID 3412
+  Application acl_mgr is running: PID 3428
+  Application alarm_mgr is running: PID 3457
+  Application stat_id_mgr is running: PID 3513
+  Application index_res_mgr is running: PID 3577
+  Application pinger is running: PID 3608
+  Application linux_mgr is running: PID 3642
+13:57:29 ERRO container "clab-DC1-DC2-dc2-ss1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1748
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1748
+  Application simbdb_proxy is running: PID 2312
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2416
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2530
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2568
+  Application dhcp_client_mgr is running: PID 2586
+  Application mgmt_server is running: PID 2599
+  Application mfib_mgr is running: PID 2630
+  Application net_inst_mgr is running: PID 2722
+  Application chassis_mgr is running: PID 2744
+  Application lag_mgr is running: PID 2827
+  Application mcid_mgr is running: PID 2870
+  Application license_mgr is running: PID 2904
+  Application aaa_mgr is running: PID 2933
+  Application sflow_sample_mgr is running: PID 2968
+  Application bfd_mgr is running: PID 3006
+  Application log_mgr is running: PID 3039
+  Application fib_mgr is running: PID 3104
+  Application evpn_mgr is running: PID 3123
+  Application arp_nd_mgr is running: PID 3152
+  Application label_mgr is running: PID 3214
+  Application l2_mac_mgr is running: PID 3278
+  Application xdp_lc_1 is running: PID 3410
+  Application radius_mgr is running: PID 3425
+  Application acl_mgr is running: PID 3448
+  Application alarm_mgr is running: PID 3486
+  Application stat_id_mgr is running: PID 3530
+  Application index_res_mgr is running: PID 3564
+13:57:29 ERRO container "clab-DC1-DC2-dc2-dci-r1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1746
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1746
+  Application simbdb_proxy is running: PID 2309
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2397
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2481
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2543
+  Application dhcp_client_mgr is running: PID 2573
+  Application mgmt_server is running: PID 2629
+  Application mfib_mgr is running: PID 2658
+  Application net_inst_mgr is running: PID 2729
+  Application chassis_mgr is running: PID 2757
+  Application lag_mgr is running: PID 2798
+  Application mcid_mgr is running: PID 2856
+  Application license_mgr is running: PID 2907
+  Application aaa_mgr is running: PID 2929
+  Application sflow_sample_mgr is running: PID 2983
+  Application bfd_mgr is running: PID 3009
+  Application log_mgr is running: PID 3053
+  Application fib_mgr is running: PID 3090
+  Application evpn_mgr is running: PID 3148
+  Application arp_nd_mgr is running: PID 3199
+  Application label_mgr is running: PID 3235
+  Application l2_mac_mgr is running: PID 3349
+  Application xdp_lc_1 is running: PID 3391
+  Application radius_mgr is running: PID 3422
+  Application acl_mgr is running: PID 3471
+  Application alarm_mgr is running: PID 3502
+  Application stat_id_mgr is running: PID 3559
+  Application index_res_mgr is running: PID 3579
+13:57:29 ERRO container "clab-DC1-DC2-dc1-dci-r1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1764
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1764
+  Application simbdb_proxy is running: PID 2313
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2399
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2506
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2577
+  Application dhcp_client_mgr is running: PID 2607
+  Application mgmt_server is running: PID 2629
+  Application mfib_mgr is running: PID 2651
+  Application net_inst_mgr is running: PID 2735
+  Application chassis_mgr is running: PID 2755
+  Application lag_mgr is running: PID 2786
+  Application mcid_mgr is running: PID 2849
+  Application license_mgr is running: PID 2864
+  Application aaa_mgr is running: PID 2889
+  Application sflow_sample_mgr is running: PID 2946
+  Application bfd_mgr is running: PID 2983
+  Application log_mgr is running: PID 3046
+  Application fib_mgr is running: PID 3067
+  Application evpn_mgr is running: PID 3105
+  Application arp_nd_mgr is running: PID 3177
+  Application label_mgr is running: PID 3211
+  Application l2_mac_mgr is running: PID 3252
+  Application xdp_lc_1 is running: PID 3393
+  Application radius_mgr is running: PID 3411
+  Application acl_mgr is running: PID 3439
+  Application alarm_mgr is running: PID 3472
+  Application stat_id_mgr is running: PID 3526
+  Application index_res_mgr is running: PID 3555
+  Application pinger is running: PID 3615
+13:57:29 ERRO container "clab-DC1-DC2-dc1-dci-r1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1764
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1764
+  Application simbdb_proxy is running: PID 2313
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2399
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2506
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2577
+  Application dhcp_client_mgr is running: PID 2607
+  Application mgmt_server is running: PID 2629
+  Application mfib_mgr is running: PID 2651
+  Application net_inst_mgr is running: PID 2735
+  Application chassis_mgr is running: PID 2755
+  Application lag_mgr is running: PID 2786
+  Application mcid_mgr is running: PID 2849
+  Application license_mgr is running: PID 2864
+  Application aaa_mgr is running: PID 2889
+  Application sflow_sample_mgr is running: PID 2946
+  Application bfd_mgr is running: PID 2983
+  Application log_mgr is running: PID 3046
+  Application fib_mgr is running: PID 3067
+  Application evpn_mgr is running: PID 3105
+  Application arp_nd_mgr is running: PID 3177
+  Application label_mgr is running: PID 3211
+  Application l2_mac_mgr is running: PID 3252
+  Application xdp_lc_1 is running: PID 3393
+  Application radius_mgr is running: PID 3411
+  Application acl_mgr is running: PID 3439
+  Application alarm_mgr is running: PID 3472
+  Application stat_id_mgr is running: PID 3526
+  Application index_res_mgr is running: PID 3555
+  Application pinger is running: PID 3615
+13:57:29 ERRO container "clab-DC1-DC2-dc2-dci-r1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1746
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1746
+  Application simbdb_proxy is running: PID 2309
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2397
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2481
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2543
+  Application dhcp_client_mgr is running: PID 2573
+  Application mgmt_server is running: PID 2629
+  Application mfib_mgr is running: PID 2658
+  Application net_inst_mgr is running: PID 2729
+  Application chassis_mgr is running: PID 2757
+  Application lag_mgr is running: PID 2798
+  Application mcid_mgr is running: PID 2856
+  Application license_mgr is running: PID 2907
+  Application aaa_mgr is running: PID 2929
+  Application sflow_sample_mgr is running: PID 2983
+  Application bfd_mgr is running: PID 3009
+  Application log_mgr is running: PID 3053
+  Application fib_mgr is running: PID 3090
+  Application evpn_mgr is running: PID 3148
+  Application arp_nd_mgr is running: PID 3199
+  Application label_mgr is running: PID 3235
+  Application l2_mac_mgr is running: PID 3349
+  Application xdp_lc_1 is running: PID 3391
+  Application radius_mgr is running: PID 3422
+  Application acl_mgr is running: PID 3471
+  Application alarm_mgr is running: PID 3502
+  Application stat_id_mgr is running: PID 3559
+  Application index_res_mgr is running: PID 3579
+13:57:29 ERRO container "clab-DC1-DC2-dc1-dci-r1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1764
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1764
+  Application simbdb_proxy is running: PID 2313
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2399
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2506
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2577
+  Application dhcp_client_mgr is running: PID 2607
+  Application mgmt_server is running: PID 2629
+  Application mfib_mgr is running: PID 2651
+  Application net_inst_mgr is running: PID 2735
+  Application chassis_mgr is running: PID 2755
+  Application lag_mgr is running: PID 2786
+  Application mcid_mgr is running: PID 2849
+  Application license_mgr is running: PID 2864
+  Application aaa_mgr is running: PID 2889
+  Application sflow_sample_mgr is running: PID 2946
+  Application bfd_mgr is running: PID 2983
+  Application log_mgr is running: PID 3046
+  Application fib_mgr is running: PID 3067
+  Application evpn_mgr is running: PID 3105
+  Application arp_nd_mgr is running: PID 3177
+  Application label_mgr is running: PID 3211
+  Application l2_mac_mgr is running: PID 3252
+  Application xdp_lc_1 is running: PID 3393
+  Application radius_mgr is running: PID 3411
+  Application acl_mgr is running: PID 3439
+  Application alarm_mgr is running: PID 3472
+  Application stat_id_mgr is running: PID 3526
+  Application index_res_mgr is running: PID 3555
+  Application pinger is running: PID 3615
+13:57:29 ERRO container "clab-DC1-DC2-dc2-dci-r1" exited; container output:
+Mon Nov 16 01:09:35 UTC 2026: entrypoint.sh called
+Mon Nov 16 01:09:35 UTC 2026: Calling boot_run script
+net.ipv6.conf.mgmt0.disable_ipv6 = 0
+Actual changes:
+tx-checksum-ip-generic: off
+tx-tcp-segmentation: off [not requested]
+tx-tcp-ecn-segmentation: off [not requested]
+tx-tcp-mangleid-segmentation: off [not requested]
+tx-tcp6-segmentation: off [not requested]
+tx-udp-segmentation: off [not requested]
+tx-checksum-sctp: off
+rx-checksum: off
+net.ipv4.ip_local_port_range = 55000 65535
+jq: error: Could not open file /var/run/srlinux/devices/hw_details.json: No such file or directory
+Removing user _chrony from group tls
+gpasswd: user '_chrony' is not a member of 'tls'
+1000
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+chgrp: invalid group: ‘docker’
+Running as user "root" and group "root". This could be dangerous.
+lrwxrwxrwx 1 root root 37 Nov 16 01:09 /usr/lib/x86_64-linux-gnu/wireshark/plugins/4.4/epan/liblib_portmirror.so -> /opt/srlinux/lib/liblib_portmirror.so
+No op
+Mon Nov 16 01:09:38 UTC 2026: entrypoint.sh done, executing sudo -E bash -c touch /.dockerenv && /opt/srlinux/bin/sr_linux
+
+/usr/bin/sudo --non-interactive -- /opt/srlinux/bin/sr_linux --sudo-switched
+
+sr_app_mgr: Not starting in a named namespace, giving it the name "srbase"
+sr_app_mgr: Unix domain socket directory is /opt/srlinux/var/run/
+Log directory is /var/log/srlinux/stdout
+  Found supportd: PID 1746
+  Started simbdb_proxy: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_simbdb_proxy" >>/var/log/srlinux/stdout/simbdb_proxy.log 2>&1 &
+  Application supportd is running: PID 1746
+  Application simbdb_proxy is running: PID 2309
+  Started dev_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_device_mgr" >>/var/log/srlinux/stdout/dev_mgr.log 2>&1 &
+  Application dev_mgr is running: PID 2397
+  Started idb_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_idb_server" >>/var/log/srlinux/stdout/idb_server.log 2>&1 &
+  Application idb_server is running: PID 2481
+  Started l2_mac_learn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_learn_mgr" >>/var/log/srlinux/stdout/l2_mac_learn_mgr.log 2>&1 &
+  Started dhcp_client_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_dhcp_client_mgr" >>/var/log/srlinux/stdout/dhcp_client_mgr.log 2>&1 &
+  Started mgmt_server: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mgmt_server" >>/var/log/srlinux/stdout/mgmt_server.log 2>&1 &
+  Started mfib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mfib_mgr" >>/var/log/srlinux/stdout/mfib_mgr.log 2>&1 &
+  Started net_inst_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_net_inst_mgr" >>/var/log/srlinux/stdout/net_inst_mgr.log 2>&1 &
+  Started chassis_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_chassis_mgr" >>/var/log/srlinux/stdout/chassis_mgr.log 2>&1 &
+  Started lag_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_lag_mgr" >>/var/log/srlinux/stdout/lag_mgr.log 2>&1 &
+  Started mcid_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_mcid_mgr" >>/var/log/srlinux/stdout/mcid_mgr.log 2>&1 &
+  Started license_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_license_mgr" >>/var/log/srlinux/stdout/license_mgr.log 2>&1 &
+  Started aaa_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_aaa_mgr" >>/var/log/srlinux/stdout/aaa_mgr.log 2>&1 &
+  Started sflow_sample_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_sflow_sample_mgr" >>/var/log/srlinux/stdout/sflow_sample_mgr.log 2>&1 &
+  Started bfd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_bfd_mgr" >>/var/log/srlinux/stdout/bfd_mgr.log 2>&1 &
+  Started log_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_log_mgr" >>/var/log/srlinux/stdout/log_mgr.log 2>&1 &
+  Started fib_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_fib_mgr" >>/var/log/srlinux/stdout/fib_mgr.log 2>&1 &
+  Started evpn_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_evpn_mgr" >>/var/log/srlinux/stdout/evpn_mgr.log 2>&1 &
+  Started arp_nd_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_arp_nd_mgr" >>/var/log/srlinux/stdout/arp_nd_mgr.log 2>&1 &
+  Started label_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_label_mgr" >>/var/log/srlinux/stdout/label_mgr.log 2>&1 &
+  Started l2_mac_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_l2_mac_mgr" >>/var/log/srlinux/stdout/l2_mac_mgr.log 2>&1 &
+  Started xdp_lc_1: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "exec -a sr_xdp_lc_1 ./sr_xdp_lc  --slot_num 1 --complex_num 2" >>/var/log/srlinux/stdout/xdp_lc_1.log 2>&1 &
+  Started radius_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_radius_mgr" >>/var/log/srlinux/stdout/radius_mgr.log 2>&1 &
+  Started acl_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_acl_mgr" >>/var/log/srlinux/stdout/acl_mgr.log 2>&1 &
+  Started alarm_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_alarm_mgr" >>/var/log/srlinux/stdout/alarm_mgr.log 2>&1 &
+  Started stat_id_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_stat_id_mgr" >>/var/log/srlinux/stdout/stat_id_mgr.log 2>&1 &
+  Started index_res_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_index_res_mgr" >>/var/log/srlinux/stdout/index_res_mgr.log 2>&1 &
+  Started pinger: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "./sr_pinger" >>/var/log/srlinux/stdout/pinger.log 2>&1 &
+  Started linux_mgr: source /etc/profile.d/sr_app_env.sh &>/dev/null; /usr/bin/bash -lc "systemctl stop chrony  2>/dev/null ; ./sr_linux_mgr" >>/var/log/srlinux/stdout/linux_mgr.log 2>&1 &
+  Application l2_mac_learn_mgr is running: PID 2543
+  Application dhcp_client_mgr is running: PID 2573
+  Application mgmt_server is running: PID 2629
+  Application mfib_mgr is running: PID 2658
+  Application net_inst_mgr is running: PID 2729
+  Application chassis_mgr is running: PID 2757
+  Application lag_mgr is running: PID 2798
+  Application mcid_mgr is running: PID 2856
+  Application license_mgr is running: PID 2907
+  Application aaa_mgr is running: PID 2929
+  Application sflow_sample_mgr is running: PID 2983
+  Application bfd_mgr is running: PID 3009
+  Application log_mgr is running: PID 3053
+  Application fib_mgr is running: PID 3090
+  Application evpn_mgr is running: PID 3148
+  Application arp_nd_mgr is running: PID 3199
+  Application label_mgr is running: PID 3235
+  Application l2_mac_mgr is running: PID 3349
+  Application xdp_lc_1 is running: PID 3391
+  Application radius_mgr is running: PID 3422
+  Application acl_mgr is running: PID 3471
+  Application alarm_mgr is running: PID 3502
+  Application stat_id_mgr is running: PID 3559
+  Application index_res_mgr is running: PID 3579
+13:57:29 INFO Removed container name=clab-DC1-DC2-dc2-l1
+13:57:29 INFO Removed container name=clab-DC1-DC2-dc1-sp1
+13:57:29 INFO Removed container name=clab-DC1-DC2-dc1-l1
+13:57:29 INFO Removed container name=clab-DC1-DC2-dc2-dci-r1
+13:57:29 INFO Removed container name=clab-DC1-DC2-dc2-ss1
+13:57:29 INFO Removed container name=clab-DC1-DC2-dc1-dci-r1
+13:57:29 INFO Removed container name=clab-DC1-DC2-dc1-ss1
+13:57:29 INFO Removed container name=clab-DC1-DC2-dc2-sp1
+13:57:29 INFO Removed container name=clab-DC1-DC2-dc1-h1
+13:57:29 INFO Removed container name=clab-DC1-DC2-graphite
+13:57:29 INFO Removed container name=clab-DC1-DC2-attacker
+13:57:29 INFO Removed container name=clab-DC1-DC2-dc2-h1
+13:57:32 INFO Removed container name=clab-DC1-DC2-dc2-w1
+13:57:32 INFO Removed container name=clab-DC1-DC2-dc1-w1
+13:57:32 INFO Removing host entries path=/etc/hosts
+13:57:32 INFO Removing SSH config path=/etc/ssh/ssh_config.d/clab-DC1-DC2.conf
+===== 2. deploy =====
+creating docker network clab-ext (external segment 198.51.100.0/29)
+13:57:33 INFO Containerlab started version=0.79.0
+13:57:33 INFO Parsing & checking topology file=DC1-DC2.clab.yaml
+13:57:33 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:33 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:33 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:33 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:33 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:33 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:33 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:33 WARN Deprecation notice
+  notice=
+  │ You are using a deprecated SR Linux node type name. Consider using a new format with dashes. Example: ixr-d2l, ixr-h5-64d, etc.
+  │ Deprecated type format will be removed after January 2026
+ deprecated type=ixrd3l
+13:57:33 INFO Creating docker network name=clab IPv4 subnet=172.20.20.0/24 IPv6 subnet=3fff:172:20:20::/64 MTU=0
+13:57:34 INFO Creating lab directory path=/home/samuel/DC-DC-Security/clab-DC1-DC2
+13:57:34 INFO Creating container name=dc1-w1
+13:57:34 INFO Creating container name=dc1-h1
+13:57:34 INFO Creating container name=dc2-h1
+13:57:34 INFO Creating container name=dc2-w1
+13:57:34 INFO Creating container name=dc2-ss1
+13:57:34 INFO Creating container name=dc1-sp1
+13:57:34 INFO Creating container name=graphite
+13:57:34 INFO Creating container name=attacker
+13:57:34 INFO Creating container name=dc1-l1
+13:57:34 INFO Creating container name=dc2-dci-r1
+13:57:34 INFO Creating container name=dc2-sp1
+13:57:34 INFO Creating container name=dc1-dci-r1
+13:57:34 INFO Creating container name=dc2-l1
+13:57:34 INFO Creating container name=dc1-ss1
+13:57:34 INFO Created link: attacker:eth1 ▪┄┄▪ clab-ext:ext-attacker
+13:57:34 INFO Created link: dc1-h1:eth2 ▪┄┄▪ clab-ext:ext-dc1h1
+13:57:34 INFO Created link: dc1-sp1:e1-1 ▪┄┄▪ dc1-l1:e1-28
+13:57:34 INFO Created link: dc1-l1:e1-1 ▪┄┄▪ dc1-h1:eth1
+13:57:34 INFO Running postdeploy actions kind=srl node=dc1-dci-r1
+13:57:34 INFO Running postdeploy actions kind=srl node=dc1-sp1
+13:57:34 INFO Running postdeploy actions kind=srl node=dc1-l1
+13:57:34 INFO Created link: dc1-dci-r1:e1-3 ▪┄┄▪ dc2-dci-r1:e1-3
+13:57:34 INFO Created link: dc1-sp1:e1-7 ▪┄┄▪ dc1-ss1:e1-1
+13:57:34 INFO Created link: dc1-dci-r1:e1-4 ▪┄┄▪ dc2-dci-r1:e1-4
+13:57:34 INFO Running postdeploy actions kind=srl node=dc2-dci-r1
+13:57:35 INFO Created link: dc1-ss1:e1-3 ▪┄┄▪ dc1-dci-r1:e1-1
+13:57:35 INFO Running postdeploy actions kind=srl node=dc1-ss1
+13:57:35 INFO Created link: dc2-l1:e1-1 ▪┄┄▪ dc2-h1:eth1
+13:57:35 INFO Created link: dc2-sp1:e1-1 ▪┄┄▪ dc2-l1:e1-28
+13:57:35 INFO Created link: dc1-l1:e1-2 ▪┄┄▪ dc1-w1:eth1
+13:57:35 INFO Created link: dc2-l1:e1-2 ▪┄┄▪ dc2-w1:eth1
+13:57:35 INFO Running postdeploy actions kind=srl node=dc2-l1
+13:57:35 INFO Created link: dc2-sp1:e1-7 ▪┄┄▪ dc2-ss1:e1-1
+13:57:35 INFO Running postdeploy actions kind=srl node=dc2-sp1
+13:57:35 INFO Created link: dc2-ss1:e1-3 ▪┄┄▪ dc2-dci-r1:e1-1
+13:57:35 INFO Running postdeploy actions kind=srl node=dc2-ss1
+13:57:57 INFO Executed command node=attacker command="bash -c echo root:root | chpasswd" stdout=""
+13:57:57 INFO Executed command node=attacker command="bash -c ip addr replace 198.51.100.1/29 dev eth1 && ip link set eth1 up" stdout=""
+13:57:57 INFO Executed command node=dc2-h1 command="bash -c echo root:root | chpasswd" stdout=""
+13:57:57 INFO Executed command node=dc1-h1 command="bash -c echo root:root | chpasswd" stdout=""
+13:57:57 INFO Executed command node=dc1-h1 command="bash -c ip addr replace 198.51.100.2/29 dev eth2 && ip link set eth2 up" stdout=""
+13:57:57 INFO Executed command node=graphite command="sh -c graphite_motd.sh 8080"
+  stdout=
+  │ Graphite visualization 🎨 http://85.255.236.72:8080/graphite
+
+13:57:57 INFO Adding host entries path=/etc/hosts
+13:57:57 INFO Adding SSH config for nodes path=/etc/ssh/ssh_config.d/clab-DC1-DC2.conf
+13:57:57 INFO containerlab version
+  🎉=
+  │ A newer containerlab version (0.83.0) is available!
+  │ Release notes: https://containerlab.dev/rn/0.83/
+  │ Run 'clab version upgrade' or see https://containerlab.dev/install/ for other installation options.
+[1m╭[0m[1m─────────────────────────[0m[1m┬[0m[1m──────────────────────────────[0m[1m┬[0m[1m─────────[0m[1m┬[0m[1m───────────────────[0m[1m╮[0m
+[1m│[0m[1m           Name          [0m[1m│[0m[1m          Kind/Image          [0m[1m│[0m[1m  State  [0m[1m│[0m[1m   IPv4/6 Address  [0m[1m│[0m
+[1m├[0m[1m─────────────────────────[0m[1m┼[0m[1m──────────────────────────────[0m[1m┼[0m[1m─────────[0m[1m┼[0m[1m───────────────────[0m[1m┤[0m
+│ clab-DC1-DC2-attacker   │ linux                        │ running │ 172.20.20.3       │
+│                         │ netreplica/ubuntu-host:1.4   │         │ 3fff:172:20:20::3 │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc1-dci-r1 │ srl                          │ running │ 172.20.20.5       │
+│                         │ ghcr.io/nokia/srlinux:26.7.2 │         │ 3fff:172:20:20::5 │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc1-h1     │ linux                        │ running │ 172.20.20.2       │
+│                         │ netreplica/ubuntu-host:1.4   │         │ 3fff:172:20:20::2 │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc1-l1     │ srl                          │ running │ 172.20.20.7       │
+│                         │ ghcr.io/nokia/srlinux:26.7.2 │         │ 3fff:172:20:20::7 │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc1-sp1    │ srl                          │ running │ 172.20.20.6       │
+│                         │ ghcr.io/nokia/srlinux:26.7.2 │         │ 3fff:172:20:20::6 │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc1-ss1    │ srl                          │ running │ 172.20.20.10      │
+│                         │ ghcr.io/nokia/srlinux:26.7.2 │         │ 3fff:172:20:20::a │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc1-w1     │ linux                        │ running │ 172.20.20.15      │
+│                         │ dockurr/windows:6.05         │         │ 3fff:172:20:20::f │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc2-dci-r1 │ srl                          │ running │ 172.20.20.8       │
+│                         │ ghcr.io/nokia/srlinux:26.7.2 │         │ 3fff:172:20:20::8 │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc2-h1     │ linux                        │ running │ 172.20.20.4       │
+│                         │ netreplica/ubuntu-host:1.4   │         │ 3fff:172:20:20::4 │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc2-l1     │ srl                          │ running │ 172.20.20.14      │
+│                         │ ghcr.io/nokia/srlinux:26.7.2 │         │ 3fff:172:20:20::e │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc2-sp1    │ srl                          │ running │ 172.20.20.12      │
+│                         │ ghcr.io/nokia/srlinux:26.7.2 │         │ 3fff:172:20:20::c │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc2-ss1    │ srl                          │ running │ 172.20.20.13      │
+│                         │ ghcr.io/nokia/srlinux:26.7.2 │         │ 3fff:172:20:20::d │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-dc2-w1     │ linux                        │ running │ 172.20.20.11      │
+│                         │ dockurr/windows:6.05         │         │ 3fff:172:20:20::b │
+├─────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
+│ clab-DC1-DC2-graphite   │ linux                        │ running │ 172.20.20.9       │
+│                         │ netreplica/graphite:latest   │         │ 3fff:172:20:20::9 │
+╰─────────────────────────┴──────────────────────────────┴─────────┴───────────────────╯
+===== 3. router configs =====
+19-Nov-26 13:58:00 INFO [dc1-dci-r1] - Configuration deployed!
+19-Nov-26 13:58:02 INFO [dc1-l1] - Configuration deployed!
+19-Nov-26 13:58:04 INFO [dc1-sp1] - Configuration deployed!
+19-Nov-26 13:58:06 INFO [dc1-ss1] - Configuration deployed!
+19-Nov-26 13:58:09 INFO [dc2-dci-r1] - Configuration deployed!
+19-Nov-26 13:58:11 INFO [dc2-l1] - Configuration deployed!
+19-Nov-26 13:58:13 INFO [dc2-sp1] - Configuration deployed!
+19-Nov-26 13:58:15 INFO [dc2-ss1] - Configuration deployed!
+===== 4. hosts =====
+clab-DC1-DC2-dc1-h1: 172.30.1.2/28 via dc1-l1
+clab-DC1-DC2-dc1-w1: 172.30.1.98/28 via dc1-l1
+clab-DC1-DC2-dc2-h1: 172.30.2.2/28 via dc2-l1
+clab-DC1-DC2-dc2-w1: 172.30.2.98/28 via dc2-l1
+
+Configured: 4   Failed: 0
+===== 4b. waiting for routes between the DCs =====
+===== 5. check =====
+===== VERDICT =====
+dc1-h1 reaches dc2-h1. The path works.
+
+Saved to /home/samuel/DC-DC-Security/host_check.txt
+===== 6. memory =====
+               total        used        free      shared  buff/cache   available
+Mem:              61          26          32           0           3          35
+Swap:             74           0          73
+clab-DC1-DC2-attacker	5.793MiB / 61.94GiB
+clab-DC1-DC2-dc1-dci-r1	0B / 0B
+clab-DC1-DC2-dc1-h1	5.039MiB / 61.94GiB
+clab-DC1-DC2-dc1-l1	0B / 0B
+clab-DC1-DC2-dc1-sp1	0B / 0B
+clab-DC1-DC2-dc1-ss1	0B / 0B
+clab-DC1-DC2-dc1-w1	4.069GiB / 4.657GiB
+clab-DC1-DC2-dc2-dci-r1	0B / 0B
+clab-DC1-DC2-dc2-h1	5.355MiB / 61.94GiB
+clab-DC1-DC2-dc2-l1	0B / 0B
+clab-DC1-DC2-dc2-sp1	0B / 0B
+clab-DC1-DC2-dc2-ss1	0B / 0B
+clab-DC1-DC2-dc2-w1	4.07GiB / 4.657GiB
+clab-DC1-DC2-graphite	84.14MiB / 61.94GiB
+
+Log saved to results/deploy_20261119_135714.txt. Push it: git add results && git commit -m 'deploy log' && git push
