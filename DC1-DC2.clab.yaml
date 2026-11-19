@@ -16,27 +16,33 @@ topology:
             labels:
                 graph-hide: yes
 
-        # External AI attacker (ScopeWeaver). It sits outside the two DCs with a
-        # single link to the exposed host dc1-h1, so it reaches the lab only
-        # through that host. Clab-only: it is not in NetBox and the routers are
-        # untouched. The base image here is a placeholder; the ScopeWeaver stack
-        # (Go backend, PostgreSQL, Next.js UI on :8787) is installed on this node
-        # afterwards, with its own controlled egress for the LLM API only.
+        # Host bridge for the external / untrusted segment (198.51.100.0/29).
+        # deploy_lab.sh creates it (as a docker network named clab-ext) before
+        # deploying, so the ScopeWeaver compose stack can join the same L2 as
+        # the lab nodes. Clab attaches the vantage node and the exposed host to
+        # it; ScopeWeaver (198.51.100.3) joins it through docker.
+        clab-ext:
+            kind: bridge
+
+        # External vantage node, outside the two DCs on the untrusted segment.
+        # It is the plain foothold the attacker works from; the ScopeWeaver
+        # stack (its own compose, see scopeweaver/) sits on the same segment at
+        # 198.51.100.3. Clab-only: not in NetBox, and the routers are untouched.
         attacker:
             kind: linux
             image: netreplica/ubuntu-host:1.4
             cmd: /start.sh -sS
             exec:
                 - bash -c "echo root:root | chpasswd"
-                - bash -c "ip addr replace 198.51.100.1/30 dev eth1 && ip link set eth1 up"
+                - bash -c "ip addr replace 198.51.100.1/29 dev eth1 && ip link set eth1 up"
             labels:
                 graph-icon: server
                 graph-level: 10
                 role: Attacker
                 group: External
-                platform: ScopeWeaver (external AI attacker)
+                platform: External vantage (ScopeWeaver on the same segment)
                 vendor: Generic
-                model: External attacker
+                model: External vantage
 
         dc1-sp1:
             kind: srl
@@ -158,7 +164,7 @@ topology:
                 - bash -c "echo root:root | chpasswd"
                 # dc1-h1 is the exposed host: eth2 faces the external attacker
                 # segment. eth1 (its lab side) is set by configure_hosts.
-                - bash -c "ip addr replace 198.51.100.2/30 dev eth2 && ip link set eth2 up"
+                - bash -c "ip addr replace 198.51.100.2/29 dev eth2 && ip link set eth2 up"
             labels:
                 graph-icon: server
                 graph-level: 10
@@ -248,5 +254,7 @@ topology:
         - endpoints: ["dc1-l1:e1-2", "dc1-w1:eth1"]
         - endpoints: ["dc2-l1:e1-1", "dc2-h1:eth1"]
         - endpoints: ["dc2-l1:e1-2", "dc2-w1:eth1"]
-        # External attacker to the exposed host (untrusted segment 198.51.100.0/30)
-        - endpoints: ["attacker:eth1", "dc1-h1:eth2"]
+        # Untrusted segment (198.51.100.0/29): the vantage node and the exposed
+        # host attach to the clab-ext bridge; ScopeWeaver joins it via docker.
+        - endpoints: ["attacker:eth1", "clab-ext:ext-attacker"]
+        - endpoints: ["dc1-h1:eth2", "clab-ext:ext-dc1h1"]

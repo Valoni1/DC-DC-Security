@@ -38,6 +38,15 @@ left=$(docker ps -aq --filter label=containerlab=DC1-DC2)
 sudo rm -rf clab-DC1-DC2
 
 echo "===== 2. deploy ====="
+# The topology has a kind:bridge node named clab-ext for the external/untrusted
+# segment (198.51.100.0/29). containerlab needs that Linux bridge to exist
+# first; we make it as a docker network so the ScopeWeaver compose stack can
+# join the same L2 later (see scopeweaver/setup_scopeweaver.sh). Idempotent.
+if ! docker network inspect clab-ext >/dev/null 2>&1; then
+    echo "creating docker network clab-ext (external segment 198.51.100.0/29)"
+    docker network create --subnet 198.51.100.0/29 --gateway 198.51.100.6 \
+        -o com.docker.network.bridge.name=clab-ext clab-ext >/dev/null
+fi
 WINDOWS=yes
 [ "$1" = "--without-windows" ] && WINDOWS=no
 if [ $WINDOWS = yes ] && [ ! -e /dev/kvm ]; then

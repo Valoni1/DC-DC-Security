@@ -1,0 +1,21 @@
+# Lab override for ScopeWeaver's own compose. setup_scopeweaver.sh copies this
+# next to the upstream docker-compose.yml so `docker compose` merges the two.
+#
+# It does two things:
+#   1. pins the LLM to hosted Claude (provider + model; the key comes from .env)
+#   2. puts the ScopeWeaver container on the lab's external segment (clab-ext,
+#      198.51.100.0/29) at .3, so it shares the untrusted L2 with the vantage
+#      node (.1) and the exposed host dc1-h1 (.2). Postgres stays internal.
+services:
+  scopeweaver:
+    environment:
+      ARTEX_LLM_PROVIDER: "anthropic"
+      ARTEX_LLM_MODEL: "${ARTEX_LLM_MODEL:-claude-sonnet-5-5}"
+    networks:
+      default: {}
+      ext:
+        ipv4_address: 198.51.100.3
+networks:
+  ext:
+    external: true
+    name: clab-ext
