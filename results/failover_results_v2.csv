@@ -3,3 +3,5 @@ time,fail,src,dst,sent,received,lost,outage_s,poll_bgp_detect_s,router_bfd_detec
 2026-11-16T01:16:37,down,dc1-h1,dc2-h1,3478,3478,0,0.007,0.17,0.048,Path Down,trackingDown,True,87,2545,36
 2026-11-19T14:03:18,silent,dc1-h1,dc2-h1,3478,2879,599,6.958,7.16,6.982,Control Detection Time Expired,bfdDown,True,661,1989,14
 2026-11-19T14:04:39,down,dc1-h1,dc2-h1,3521,3520,1,0.011,0.17,,,trackingDown,False,59,2611,36
+2026-11-19T14:24:16,silent,dc1-h1,dc2-h1,3473,2838,635,7.395,7.52,7.405,Control Detection Time Expired,bfdDown,True,705,1941,13
+2026-11-19T14:26:11,down,dc1-h1,dc2-h1,3500,3500,0,0.003,0.19,0.048,Path Down,trackingDown,True,59,2584,36
